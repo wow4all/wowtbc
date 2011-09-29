@@ -1,0 +1,80 @@
+Index: SpellEffects.cpp
+===================================================================
+--- SpellEffects.cpp	(revision 1562)
++++ SpellEffects.cpp	(working copy)
+@@ -563,6 +563,18 @@
+ 			static_damage=true;
+ 			break;
+ 		}
++
++		if( GetProto()->Id = 45150 ) // Meteor slash - brutallus
++		{  
++			int splitCount = 0; 
++			for( std::set<Object*>::iterator itr = u_caster->GetInRangeOppFactsSetBegin(); itr != u_caster->GetInRangeOppFactsSetEnd(); ++itr ) 
++			{ 
++				if( (*itr)->isInFront( u_caster ) && u_caster->CalcDistance( (*itr) ) <= 65 ) 
++					splitCount++; 
++			}; 
++ 
++			dmg = dmg / splitCount; 
++		};
+ 	}
+ 
+ 	// check for no more damage left (chains)
+@@ -4252,6 +4264,13 @@
+ 			}
+ 		}
+ 	}
++
++    if( u_caster->HasAura( 13867 ) )
++        u_caster->CastSpell( unitTarget, 18425, true );
++    else if( u_caster->HasAura( 13754 ) ) // roll
++        if( RandomUInt( 1 ) )
++            u_caster->CastSpell( unitTarget, 18425, true );
++
+ 	// FIXME:This thing prevent target from spell casting too but cant find.
+ 	uint32 school=0;
+ 	if(unitTarget->GetCurrentSpell())
+@@ -4266,7 +4285,7 @@
+ 			int32 DurationModifier = static_cast< Player* >( unitTarget )->MechanicDurationPctMod[MECHANIC_INTERRUPTED];
+ 			if(DurationModifier >= - 100)
+ 				duration = (duration*(100+DurationModifier))/100;
+-		}
++        }
+ 		unitTarget->SchoolCastPrevent[school]=duration+getMSTime();
+ 		// TODO: visual!
+ 	}
+Index: SpellFixes.cpp
+===================================================================
+--- SpellFixes.cpp	(revision 1562)
++++ SpellFixes.cpp	(working copy)
+@@ -5964,6 +5964,17 @@
+ 			sp->procChance = 7;
+ 		}
+ 
++        // improved kick hax fixZ
++        sp = dbcSpell.LookupEntryForced( 13754 );
++        if( sp )
++        {
++            sp->procFlags = PROC_NULL;
++        }
++        sp = dbcSpell.LookupEntryForced( 13867 );
++        {
++            sp->procFlags = PROC_NULL;
++        }
++
+ 		//all Drums 
+ 		sp = dbcSpell.LookupEntryForced( 35474 );
+ 		if( sp != NULL )
+@@ -6047,7 +6058,10 @@
+ 		
+ 		sp = dbcSpell.LookupEntryForced( 40475 );		// Black temple melee trinket
+ 		if( sp != NULL )
+-			sp->procChance = 50;
++        {
++            sp->procFlags = PROC_ON_MELEE_ATTACK | PROC_ON_SPELL_HIT_VICTIM;
++			sp->procChance = 20;
++        }
+ 
+ 		// Band of the Eternal Champion: reduced proc rate
+ 		sp = dbcSpell.LookupEntryForced( 35080 );
