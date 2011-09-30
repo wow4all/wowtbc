@@ -19,7 +19,7 @@
 
 #include "StdAfx.h"
 #include "./Setup.h"
-#include #include "./EAS/EasyFunctions.h"
+#include "./EAS/EasyFunctions.h"
 
 #define SendQuickMenu(textid) objmgr.CreateGossipMenuForPlayer(&Menu, pObject->GetGUID(), textid, plr); \
 	Menu->SendTo(plr);
