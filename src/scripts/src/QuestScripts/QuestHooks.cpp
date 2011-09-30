@@ -20,8 +20,8 @@
 
 
 #include "StdAfx.h"
-#include "Setup.h"
-#include "EAS/EasyFunctions.h"
+#include "./Setup.h"
+#include #include "./EAS/EasyFunctions.h"
 
 
 /*************************************************************************************

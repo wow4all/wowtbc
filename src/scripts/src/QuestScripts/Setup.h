@@ -25,6 +25,7 @@
 void SetupDruid(ScriptMgr * mgr);
 void SetupPaladin(ScriptMgr * mgr);
 void SetupWarrior(ScriptMgr * mgr);
+void SetupMage(ScriptMgr * mgr);
 
 //	###		Proffessions Quests	###
 void SetupFirstAid(ScriptMgr * mgr);
