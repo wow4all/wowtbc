@@ -26,7 +26,7 @@ public:
   }
 };
 
-void SetupZenn_Foulhoof(ScriptMgr *mgr)
+void SetupTeldrassil(ScriptMgr *mgr)
 {	
   QuestScript *Zenn_FoulhoofQuest = (QuestScript*) new Zenn_Foulhoof();
   mgr->register_quest_script(489, Zenn_FoulhoofQuest);

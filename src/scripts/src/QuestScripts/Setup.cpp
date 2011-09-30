@@ -74,7 +74,7 @@ extern "C" SCRIPT_DECL void _exp_script_register(ScriptMgr* mgr)
 	SetupUnGoro(mgr);
 	SetupWestfall(mgr);
 	SetupZangarmarsh(mgr);
-	SetupZenn_Foulhoof(mgr);
+	SetupTeldrassil(mgr);
 //	###		Misc		###
 	SetupQuestGossip(mgr);
 	SetupQuestHooks(mgr);

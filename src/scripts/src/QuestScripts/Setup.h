@@ -65,7 +65,7 @@ void SetupTirisfalGlades(ScriptMgr * mgr);
 void SetupUnGoro(ScriptMgr * mgr);
 void SetupWestfall(ScriptMgr * mgr);
 void SetupZangarmarsh(ScriptMgr * mgr);
-void SetupZenn_Foulhoof(ScriptMgr *mgr);
+void SetupTeldrassil(ScriptMgr *mgr);
 //	###		Misc	###
 void SetupQuestGossip(ScriptMgr * mgr);
 void SetupQuestHooks(ScriptMgr * mgr);
