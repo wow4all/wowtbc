@@ -18,8 +18,8 @@
 
 
 #include "StdAfx.h"
-#include "Setup.h"
-#include "EAS/EasyFunctions.h"
+#include "./Setup.h"
+#include #include "./EAS/EasyFunctions.h"
 
 class Quest_Grimoire_Business : public QuestScript
 {

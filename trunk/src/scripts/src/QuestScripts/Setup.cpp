@@ -18,7 +18,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+#include "./Setup.h"
 #define SKIP_ALLOCATOR_SHARING 1
 #include <ScriptSetup.h>
 
@@ -33,6 +33,7 @@ extern "C" SCRIPT_DECL void _exp_script_register(ScriptMgr* mgr)
 	SetupDruid(mgr);
 	SetupPaladin(mgr);
 	SetupWarrior(mgr);
+	SetupMage(mgr);
 
 //	###		Proffessions Quests	###
 	SetupFirstAid(mgr);
