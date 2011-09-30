@@ -928,6 +928,128 @@ public:
 	}
 };
 
+// NPCS NEEDED FOR TAXIPATHS IN HELLFIRE, (ATTEMPT :) BT DJHENGHIZ)
+
+#define TAXI_BRACK                      19401 // Wing Commander Brack
+#define TAXI_DABIREE            19409 // Wing Commander Dabir'ee
+#define TAXI_WINDBELLOW         20235 // Gryphoneer Windbellow
+#define TAXI_LEAFBEARD          20236 // Gryphoneer Leafbeard
+
+//GOSSIPS
+#define GOSSIP_MISSIONA         "I am ready To Bomb The Abyssal Shelf."
+#define GOSSIP_MISSIONB         "I am ready To Bomb The GateWays."
+#define GOSSIP_BEACHHEAD        "Please, fly Me to the Beach Head."
+#define GOSSIP_SHATTPOINT       "Fly me to Shattered Point!"
+#define GOSSIP_SPINERIDGE       "Fly me to Spinebreaker Ridge!"
+#define GOSSIP_HONORPOINT       "Fly me to Honor Point!"
+
+class SCRIPT_DECL HellFire_FlightGossip : public GossipScript
+{
+public:
+    void GossipHello(Object* pObject, Player* Plr, bool AutoSend)
+	{
+        GossipMenu *Menu;
+                
+		switch(pObject->GetEntry())
+		{
+			case TAXI_BRACK:
+			{
+				objmgr.CreateGossipMenuForPlayer(&Menu, pObject->GetGUID(), 40002, Plr);
+				if (Plr->GetQuestLogForEntry(10162) || Plr->GetQuestLogForEntry(10347))
+				{
+					Menu->AddItem(0, GOSSIP_MISSIONA, 1);
+				}
+
+				if (Plr->GetQuestLogForEntry(10129))
+				{
+					Menu->AddItem(0, GOSSIP_MISSIONB,2);
+				}
+
+				Menu->AddItem(0, GOSSIP_SPINERIDGE, 3);
+			}break;
+			case TAXI_DABIREE:
+			{
+				objmgr.CreateGossipMenuForPlayer(&Menu, pObject->GetGUID(), 40002, Plr);
+				if ( Plr->GetQuestLogForEntry(10146) )
+				{
+					Menu->AddItem(0, GOSSIP_MISSIONB,2);
+				}
+				
+				Menu->AddItem(0, GOSSIP_SHATTPOINT,4);
+			}break;         
+			case TAXI_WINDBELLOW:
+ 			{
+				objmgr.CreateGossipMenuForPlayer(&Menu, pObject->GetGUID(), 40002, Plr);
+				if ( Plr->GetQuestLogForEntry(10163) || Plr->GetQuestLogForEntry(10346) )
+				{
+						Menu->AddItem( 0, GOSSIP_MISSIONA,              1);
+				}
+				
+				Menu->AddItem( 0, GOSSIP_HONORPOINT,    5);
+			}break;
+			case TAXI_LEAFBEARD:
+			{
+				objmgr.CreateGossipMenuForPlayer(&Menu, pObject->GetGUID(), 40002, Plr);
+				Menu->AddItem( 0, GOSSIP_SHATTPOINT,    4);                             
+			}break;
+		}
+
+        if(AutoSend)
+            Menu->SendTo(Plr);
+    }
+
+	void GossipSelectOption(Object* pObject, Player* Plr, uint32 Id, uint32 IntId, const char * Code)
+    {
+		Creature* pCreature = (pObject->GetTypeId()==TYPEID_UNIT)?(TO_CREATURE(pObject)):NULL;
+		if(!pCreature)
+			return;
+
+        switch(IntId)
+        {
+			case 1: //Mission: The Abyssal Shelf ( GOSSIP_MISSIONA )
+			{       
+				//We need Horde / Alliance Check
+				if ( Plr->GetTeam() == 1)
+				{
+					TaxiPath * taxipath = sTaxiMgr.GetTaxiPath(587);
+                    Plr->TaxiStart(taxipath, 18712, 0);
+				}
+				else
+				{
+					TaxiPath * taxipath = sTaxiMgr.GetTaxiPath(589);
+					Plr->TaxiStart(taxipath, 18736, 0);
+				}
+			}break;
+			case 2:
+			{
+				if ( Plr->GetTeam() == 1)
+					pCreature->CastSpell(Plr, 33659, true); //Gateways Murket and Shaadraz H
+				else
+					pCreature->CastSpell(Plr, 33768, true); // Gateways Murket and Shaadraz A                
+			}break;
+			case 3: //SPINEBRIDGE
+			{
+				pCreature->CastSpell(Plr, 34578, true); // Taxi - Reaver's Fall to Spinebreaker Ridge
+			}break;
+			case 4:
+			{       
+				if(pCreature->GetEntry() == TAXI_DABIREE) 
+					pCreature->CastSpell(Plr, 35069, true); // Taxi - Hellfire Peninsula - Expedition Point to Shatter Point
+				if(pCreature->GetEntry() == TAXI_LEAFBEARD) 
+					pCreature->CastSpell(Plr, 35066, true); // Taxi - Hellfire Peninsula - Beach Head to Shatter Point
+			}break;
+			case 5: 
+			{
+				pCreature->CastSpell(Plr, 35065, true); // Taxi - Hellfire Peninsula - Shatter Point to Beach Head
+			}break;
+		}
+    }
+
+    void Destroy()
+	{
+        delete this;
+	}
+};
 
 void SetupHellfirePeninsula(ScriptMgr * mgr)
 {
@@ -983,4 +1105,11 @@ void SetupHellfirePeninsula(ScriptMgr * mgr)
 	QuestScript *DarkTidingsAllianceQuest = (QuestScript*) new DarkTidingsAlliance();
 	mgr->register_quest_script(9587, DarkTidingsHordeQuest);
 	mgr->register_quest_script(9588, DarkTidingsHordeQuest);
+
+	// dailies
+	GossipScript * HellfireFlightGossip = (GossipScript*) new HellFire_FlightGossip;
+	mgr->register_gossip_script(TAXI_BRACK,                 HellfireFlightGossip);  // http://www.wowhead.com/?npc=19401
+    mgr->register_gossip_script(TAXI_DABIREE,               HellfireFlightGossip);  // http://www.wowhead.com/?npc=19409
+	mgr->register_gossip_script(TAXI_WINDBELLOW,    HellfireFlightGossip);  // http://www.wowhead.com/?npc=20235
+	mgr->register_gossip_script(TAXI_LEAFBEARD,             HellfireFlightGossip);  // http://www.wowhead.com/?npc=20236
 }
