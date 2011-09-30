@@ -18,7 +18,7 @@
 
 #include "StdAfx.h"
 #include "./Setup.h"
-#include #include "./EAS/EasyFunctions.h"
+#include "./EAS/EasyFunctions.h"
 
 #define BALOS_FRIENDLY_TIMER 120
 class BalosJackenQAI : public CreatureAIScript
