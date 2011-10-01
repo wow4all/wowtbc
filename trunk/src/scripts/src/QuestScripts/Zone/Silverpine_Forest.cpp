@@ -19,7 +19,7 @@
 
 #include "StdAfx.h"
 #include "../Setup.h"
-#include "./EAS/EasyFunctions.h"
+#include "../EAS/EasyFunctions.h"
 
 // Prove Your Worth
 class ProveYourWorthQAI : public CreatureAIScript
