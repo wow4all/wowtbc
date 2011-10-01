@@ -17,6 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <string>
 #ifndef	QUEST_SCRIPTS_Setup_H
 #define QUEST_SCRIPTS_Setup_H
 
