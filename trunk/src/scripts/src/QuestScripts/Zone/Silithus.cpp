@@ -18,7 +18,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Setup.h"
+#include "../Setup.h"
 
 // quest #8304 - Dearest Natalia
 class SCRIPT_DECL DearestNatalia1 : public GossipScript

@@ -20,7 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Setup.h"
+#include "../Setup.h"
 
 static LocationExtra ProspectorAnvilwardWaypoints[] = {
 	{ 9294.834f, -6681.092f, 22.428f, 1.284f, 0 },

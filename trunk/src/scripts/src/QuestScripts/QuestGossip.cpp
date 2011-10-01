@@ -17,7 +17,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+#include "../Setup.h"
 #include "./EAS/EasyFunctions.h"
 
 class Lady_Jaina : public GossipScript
