@@ -476,7 +476,7 @@
 		<Filter
 			Name="BufferPools"
 			>
-				<File
+			<File
 				RelativePath="..\..\src\arcemu-world\BufferPools\BufferPools.cpp"
 				>
 			</File>
@@ -630,6 +630,14 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\arcemu-world\CommonScheduleThread.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\arcemu-world\CommonScheduleThread.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\arcemu-world\Container.cpp"
 			>
 		</File>
@@ -670,21 +678,13 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\src\arcemu-world\CommonScheduleThread.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\arcemu-world\CommonScheduleThread.h"
-			>
-		</File>
-		<File
 			RelativePath="..\..\src\arcemu-world\debugcmds.cpp"
 			>
 		</File>
-    <File
-      RelativePath="..\..\src\arcemu-world\Definitions.h"
-      >
-    </File>
+		<File
+			RelativePath="..\..\src\arcemu-world\Definitions.h"
+			>
+		</File>
 		<File
 			RelativePath="..\..\src\arcemu-world\DuelHandler.cpp"
 			>
@@ -740,8 +740,8 @@
 		<File
 			RelativePath="..\..\src\arcemu-world\GMTicket.cpp"
 			>
-    </File>
-    <File
+		</File>
+		<File
 			RelativePath="..\..\src\arcemu-world\GMTicketCommands.cpp"
 			>
 		</File>
@@ -777,9 +777,9 @@
 			RelativePath="..\..\src\arcemu-world\HonorHandler.h"
 			>
 		</File>
-    <File
-      RelativePath="..\..\src\arcemu-world\InstanceCommands.cpp"
-    >
+		<File
+			RelativePath="..\..\src\arcemu-world\InstanceCommands.cpp"
+			>
 		</File>
 		<File
 			RelativePath="..\..\src\arcemu-world\Item.cpp"
@@ -1023,6 +1023,10 @@
 		</File>
 		<File
 			RelativePath="..\..\src\arcemu-world\ReputationHandler.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\arcemu-world\resources.rc"
 			>
 		</File>
 		<File
@@ -1285,11 +1289,19 @@
 			RelativePath="..\..\src\arcemu-world\WorldSocket.h"
 			>
 		</File>
-	      <File
-			RelativePath="..\..\src\arcemu-world\resources.rc"
+		<File
+			RelativePath="..\..\src\arcemu-world\WorldStateManager.cpp"
 			>
 		</File>
-	     </Files>
+		<File
+			RelativePath="..\..\src\arcemu-world\WorldStateManager.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\arcemu-world\WorldStates.h"
+			>
+		</File>
+	</Files>
 	<Globals>
 	</Globals>
 </VisualStudioProject>
