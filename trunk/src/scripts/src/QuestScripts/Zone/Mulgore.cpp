@@ -17,7 +17,7 @@
  */
 
 #include "StdAfx.h"
-#include "./Setup.h"
+#include "Setup.h"
 #include "./EAS/EasyFunctions.h"
 
 bool InducingVision(uint32 i, Spell * pSpell)

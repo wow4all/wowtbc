@@ -25,7 +25,7 @@
 Edits by : FenixGman
 **********************/
 #include "StdAfx.h"
-#include "./Setup.h"
+#include "Setup.h"
 #include "./EAS/EasyFunctions.h"
 
 bool CenarionMoondust(uint32 i, Spell* pSpell) // Body And Heart (Alliance)

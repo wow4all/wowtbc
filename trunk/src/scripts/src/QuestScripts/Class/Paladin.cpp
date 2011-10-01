@@ -18,7 +18,7 @@
  */
 
 #include "StdAfx.h"
-#include "./Setup.h"
+#include "Setup.h"
 
 bool SymbolOfLife(uint32 i, Spell* pSpell) // Alliance ress. quests
 {
