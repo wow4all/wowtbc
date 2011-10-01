@@ -21,7 +21,7 @@
 
 #include "StdAfx.h"
 #include "../Setup.h"
-#include "./EAS/EasyFunctions.h"
+#include "../EAS/EasyFunctions.h"
 
 class DraeneiFishingNet : public GossipScript
 {
