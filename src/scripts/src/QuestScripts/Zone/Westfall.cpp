@@ -17,7 +17,7 @@
  */
 
 #include "StdAfx.h"
-#include "./Setup.h"
+#include "Setup.h"
 #include "./EAS/EasyFunctions.h"
 
 class TheDefiasBrotherhood : public QuestScript

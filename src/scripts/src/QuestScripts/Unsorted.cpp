@@ -18,7 +18,7 @@
 
 
 #include "StdAfx.h"
-#include "./Setup.h"
+#include "Setup.h"
 #include "./EAS/EasyFunctions.h"
 
 class Quest_Grimoire_Business : public QuestScript
