@@ -17,7 +17,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+#include "../Setup.h"
 #ifdef WIN32
 #pragma warning(disable:4305)		// warning C4305: 'argument' : truncation from 'double' to 'float'
 #endif

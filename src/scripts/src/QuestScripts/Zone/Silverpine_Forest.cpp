@@ -18,7 +18,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+#include "../Setup.h"
 #include "./EAS/EasyFunctions.h"
 
 // Prove Your Worth

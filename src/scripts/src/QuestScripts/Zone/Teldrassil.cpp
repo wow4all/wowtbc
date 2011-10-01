@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "Setup.h"
+#include "../Setup.h"
 
 class Zenn_Foulhoof : public QuestScript 
 { 

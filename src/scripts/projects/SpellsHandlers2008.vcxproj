@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>SunSpellHandlers</ProjectName>
+    <ProjectName>SpellHandlers</ProjectName>
     <ProjectGuid>{21CCA237-B55E-4882-B3E3-4A0321315CB3}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>

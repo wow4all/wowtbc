@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>SunMiscScripts</ProjectName>
+    <ProjectName>MiscScripts</ProjectName>
     <ProjectGuid>{495CDEBE-E216-485B-B2F1-2FC0BD9DAE7D}</ProjectGuid>
     <RootNamespace>SunMiscScripts</RootNamespace>
     <Keyword>Win32Proj</Keyword>

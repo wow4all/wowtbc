@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>SunInstanceScripts</ProjectName>
+    <ProjectName>InstanceScripts</ProjectName>
     <ProjectGuid>{EE39B48B-C598-4AAF-9EF0-199402933EE5}</ProjectGuid>
     <RootNamespace>SunInstanceScripts</RootNamespace>
     <Keyword>Win32Proj</Keyword>
