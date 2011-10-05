@@ -234,7 +234,7 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Brutallus
-//#define Spawn Blaze 23259 should spawn when he casts burn on a random member at there location at least it does on trinitycore temp spawn for like 10-20 seconds
+//#define CN_Blaze 23259 should spawn when he casts burn on a random member at there location at least it does on trinitycore temp spawn for like 10-20 seconds
 #define CN_BRUTALLUS			24882
 #define BRUTALLUS_METEOR_SLASH	45150
 #define BRUTALLUS_BURN			45141
@@ -242,13 +242,15 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 #define BRUTALLUS_BERSERK		26662
 #define FIRE_WALL				43113
 #define CN_FELMYST				25038
+#define SPELL_DUAL_WIELD        2459
+
 
 class BrutallusAI : public MoonScriptBossAI
 {
     MOONSCRIPT_FACTORY_FUNCTION(BrutallusAI, MoonScriptBossAI);
 	BrutallusAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
 	{
-	    _unit->MechanicsDispels[ DISPEL_MECHANIC_CHARM ] = 1;
+	        _unit->MechanicsDispels[ DISPEL_MECHANIC_CHARM ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_FEAR ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_ROOT ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_SLEEP ] = 1;
@@ -276,6 +278,14 @@ class BrutallusAI : public MoonScriptBossAI
 		AddEmote( Event_OnTaunt, "I live for this!", Text_Yell, 12469 );
 		AddEmote( Event_OnDied, "Gah! Well done... Now... this gets... interesting...", Text_Yell, 12471 );
 	}
+
+        void OnCombatStart(Unit* mTarget)
+        {
+ 
+          _unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_DUAL_WIELD), true);
+ 
+        };      
+
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1010,6 +1020,8 @@ class EntropiusAI : public MoonScriptBossAI
 		ParentClass::OnDied(mKiller);
 	}
 };
+
+
 
 
 
