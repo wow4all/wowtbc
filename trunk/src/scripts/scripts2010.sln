@@ -1,16 +1,16 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SunInstanceScripts", "projects\InstanceScripts2008.vcxproj", "{EE39B48B-C598-4AAF-9EF0-199402933EE5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SunInstanceScripts", "projects\InstanceScripts2010.vcxproj", "{EE39B48B-C598-4AAF-9EF0-199402933EE5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SunSpellHandlers", "projects\SpellsHandlers2008.vcxproj", "{21CCA237-B55E-4882-B3E3-4A0321315CB3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SunSpellHandlers", "projects\SpellsHandlers2010.vcxproj", "{21CCA237-B55E-4882-B3E3-4A0321315CB3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SunGossipScripts", "projects\GossipScripts2008.vcxproj", "{9F200BBC-57C3-4F0C-8BB5-F9053E4BB4B3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SunGossipScripts", "projects\GossipScripts2010.vcxproj", "{9F200BBC-57C3-4F0C-8BB5-F9053E4BB4B3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerStatusPlugin", "projects\ServerStatusPlugin2008.vcxproj", "{FF551ECC-D127-4997-8C5B-85D2CE3E7A53}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerStatusPlugin", "projects\ServerStatusPlugin2010.vcxproj", "{FF551ECC-D127-4997-8C5B-85D2CE3E7A53}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SunQuestScripts", "projects\Quest2008.vcxproj", "{1A080CA7-D19A-4129-972C-89E816E6DEC0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SunQuestScripts", "projects\Quest2010.vcxproj", "{1A080CA7-D19A-4129-972C-89E816E6DEC0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SunMiscScripts", "projects\Misc2008.vcxproj", "{495CDEBE-E216-485B-B2F1-2FC0BD9DAE7D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SunMiscScripts", "projects\Misc2010.vcxproj", "{495CDEBE-E216-485B-B2F1-2FC0BD9DAE7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
