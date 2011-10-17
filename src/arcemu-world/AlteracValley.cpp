@@ -1853,7 +1853,6 @@ void AlteracValley::Herald(const char *format, ...)
 	va_end(ap);
 	msglen = strlen(msgbuf);
 
-	uint8 databuf[512];
 	WorldPacket data(SMSG_MESSAGECHAT, 512);
 
 	data << uint8(CHAT_MSG_MONSTER_YELL);
