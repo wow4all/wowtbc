@@ -259,9 +259,14 @@ class BrutallusAI : public MoonScriptBossAI
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_KNOCKOUT ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_POLYMORPH ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_BANISH ] = 1;
-	    
 		
-		AddSpell( BRUTALLUS_METEOR_SLASH, Target_Current, 35, 1, 16 );
+		_unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_DUAL_WIELD), true);
+		_unit->SetFloatValue(OBJECT_END + 0x0042, 6000);
+                _unit->SetFloatValue(OBJECT_END + 0x0043, 7500);
+		
+		      
+
+	        AddSpell( BRUTALLUS_METEOR_SLASH, Target_Current, 35, 1, 16 );
 		AddSpell( BRUTALLUS_BURN, Target_RandomPlayer, 50, 0, 30 );
 		AddSpell( BRUTALLUS_STOMP, Target_Current, 25, 0, 9 );
 
@@ -278,14 +283,18 @@ class BrutallusAI : public MoonScriptBossAI
 		AddEmote( Event_OnTaunt, "I live for this!", Text_Yell, 12469 );
 		AddEmote( Event_OnDied, "Gah! Well done... Now... this gets... interesting...", Text_Yell, 12471 );
 	}
-
-        void OnCombatStart(Unit* mTarget)
+	
+	//Seems to be breaking the script :/ 
+	/*    void OnReset(Unit* mTarget) 
         {
  
           _unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_DUAL_WIELD), true);
+		  _unit->SetFloatValue(OBJECT_END + 0x0042, 6000);
+          _unit->SetFloatValue(OBJECT_END + 0x0043, 7500);
  
-        };      
+        };*/
 
+        
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
