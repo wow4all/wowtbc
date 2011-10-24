@@ -5008,12 +5008,6 @@ void Unit::EmoteExpire()
 	sEventMgr.RemoveEvents(this, EVENT_UNIT_EMOTE);
 }
 
-
-uint32 Unit::GetResistance(uint32 type)
-{
-	return GetUInt32Value(UNIT_FIELD_RESISTANCES+type);
-}
-
 void Unit::MoveToWaypoint(uint32 wp_id)
 {
 	if(this->m_useAI && this->GetAIInterface() != NULL)

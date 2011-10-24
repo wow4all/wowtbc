@@ -51,7 +51,7 @@ ClusterInterface::~ClusterInterface()
 string ClusterInterface::GenerateVersionString()
 {
 	char str[200];
-	snprintf(str, 200, "ArcEmu r%u/%s-%s-%s", g_getRevision(), CONFIG, PLATFORM_TEXT, ARCH);
+	snprintf(str, 200, "WoWEmu r%u/%s-%s-%s", g_getRevision(), CONFIG, PLATFORM_TEXT, ARCH);
 	return string(str);
 }
 
