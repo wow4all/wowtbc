@@ -301,6 +301,7 @@ void WorldSession::LoadAccountDataProc(QueryResult * result)
 			d = new char[len+1];
 			memcpy(d, data, len+1);
 			SetAccountData(i, d, true, (uint32)len);
+			delete [] d;
 		}
 	}
 }
@@ -861,11 +862,11 @@ void WorldSession::FullLogin(Player * plr)
 
 	// Send revision (if enabled)
 #ifdef WIN32
-	_player->BroadcastMessage("Powered by: %sBfx-SummitEmu %s r%u/%s-Vengeance-core-%s %s(Please report ALL bugs to https://tbcgaming.com/forum/)", MSG_COLOR_WHITE, BUILD_TAG,
-		BUILD_REVISION, CONFIG, ARCH, MSG_COLOR_LIGHTBLUE);		
+	_player->BroadcastMessage("World Server %s r%u/%s %s", BUILD_TAG,
+		BUILD_REVISION, CONFIG, ARCH);		
 #else
-	_player->BroadcastMessage("Powered by: %sBfx-SummitEmu %s r%u/%s-%s %s(Please report ALL bugs to https://tbcgaming.com/forum/)", MSG_COLOR_WHITE, BUILD_TAG,
-		BUILD_REVISION, PLATFORM_TEXT, ARCH, MSG_COLOR_LIGHTBLUE);
+	_player->BroadcastMessage("World Server %s r%u/%s %s", BUILD_TAG,
+		BUILD_REVISION, PLATFORM_TEXT, ARCH);	
 #endif
 
 	if(sWorld.SendStatsOnJoin || HasGMPermissions() )

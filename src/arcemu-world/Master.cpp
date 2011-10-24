@@ -20,7 +20,7 @@
 
 #include "StdAfx.h"
 
-#define BANNER "ArcEmu %s r%u/%s-%s-%s :: World Server"
+#define BANNER "WoWEmu %s r%u/%s-%s-%s :: World Server"
 
 #ifndef WIN32
 #include <sched.h>
@@ -177,11 +177,8 @@ bool Master::Run(int argc, char ** argv)
 	}
 
 	printf(BANNER, BUILD_TAG, BUILD_REVISION, CONFIG, PLATFORM_TEXT, ARCH);
-#ifdef REPACK
-	printf("\nSummitemu: %s | Bloodfangx: %s | %s\n", REPACK, REPACK_AUTHOR, REPACK_WEBSITE);
-#endif
 	Log.Color(TBLUE);
-	printf("\nCopyright (C) 2008 Summit. http://tbcgaming.com\n");
+	printf("\nCopyright (C) 2011-2012 WoWEmu. Visit %http://tbcgaming.com\n");
 	printf("This program is free software: you can redistribute it and/or modify\n");
 	printf("it under the terms of the GNU Affero General Public License as published by\n");
 	printf("the Free Software Foundation, either version 3 of the License, or\n");
@@ -190,36 +187,6 @@ bool Master::Run(int argc, char ** argv)
 	printf("but WITHOUT ANY WARRANTY; without even the implied warranty of\n");
 	printf("MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n");
 	printf("GNU Affero General Public License for more details.\n");
-	printf("                                                \n");
-	printf("                     ``````                     \n");
-	printf("    Summitemu!        `/o/::-:/-                   \n"); 
-	printf("                   oho/-.-:yN-                  \n"); 
-	printf("                    os+/-.:::                   \n"); 
-	printf("                    :ysyoo+:`                   \n"); 
-	printf("					`ohdys/.                    \n"); 
-	printf("                     oyho/-`   ``               \n"); 
-	printf("                   `shyo+:./ssmdsyo:`           \n"); 
-	printf("                    .shss+:yNMMNNMNmms.         \n"); 
-	printf("                    :ysss+:mNMMMMNNmmds.        \n"); 
-	printf("                `-//sssoo/:NMNMMMNMNNdy-        \n"); 
-	printf("    -`/`       `omhyyhyyyshNMMNNNMMMNmy:        \n"); 
-	printf("    :/::-`     `sdmdmmNMNMMMMMMNMNNNNms-        \n"); 
-	printf("     /+++/-.....shdmmNMMNMMMMMMMMMNNNd+         \n");
-	printf("     ./+oshyhhhddmhdmNMMMMMMMMMMMMNNds.         \n"); 
-	printf("       `:/:.`````.:+ymmNMMNMMMNMMNNd/           \n"); 
-	printf("                     -+shmNNMMMNmhy/            \n"); 
-	printf("                          `..-ods:.             \n");
-	printf("                               o:.`             \n");
-	printf("                               :-.              \n");
-	printf("                              `/-...            \n"); 
-	printf("    Introducing the emu!     --``-/:`           \n"); 
-	printf("                           .:/+:-.-::.          \n"); 
-	printf("                          `.-///:-.`            \n");
-	printf(" Website: http://www.Summitemu.org     			\n");
-	printf(" Forums: http://www.Summitemu.org/forum/          \n");
-	printf(" Credits: http://www.Summitemu.org/forum        \n");
-	printf(" SVN:                   \n");
-	printf(" Have fun!                                      \n");
 	Log.Line();
 #ifdef REPACK
 	Log.Color(TRED);
