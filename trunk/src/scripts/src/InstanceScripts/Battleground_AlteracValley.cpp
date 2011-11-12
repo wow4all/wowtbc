@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "Setup.h"
+#include "../Base/ai.h"
 
 #define CN_VANNDAR_STORMPIKE 11948
 #define CN_DREKTHAR 11946

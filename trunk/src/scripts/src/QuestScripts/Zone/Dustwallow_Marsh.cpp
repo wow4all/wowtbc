@@ -15,12 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include "StdAfx.h"
-#include "../Setup.h"
-#include "../EAS/EasyFunctions.h"
+#include "../../Base/EAS/EasyFunctions.h"
 
-#define BALOS_FRIENDLY_TIMER 120
+const int BALOS_FRIENDLY_TIMER = 120;
+
 class BalosJackenQAI : public CreatureAIScript
 {
 public:

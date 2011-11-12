@@ -18,25 +18,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#include "../Setup.h"
+#include "StdAfx.h"
+#include "../../Base/Base.h"
+#include "../../Base/EAS/EasyFunctions.h"
 
 bool CrystalOfDeepShadows(uint32 i, Spell* pSpell) // Becoming a Shadoweave Tailor
 {
-  if(!pSpell->u_caster->IsPlayer())
-    return true;
+	if(!pSpell->u_caster->IsPlayer())
+		return true;
 
-  Player* plr = TO_PLAYER(pSpell->u_caster);
-  QuestLogEntry *qle = plr->GetQuestLogForEntry(10833);
+	Player* plr = TO_PLAYER(pSpell->u_caster);
+	QuestLogEntry *qle = plr->GetQuestLogForEntry(10833);
   
-  if(qle == NULL)
-    return true;
+	if(qle == NULL)
+		return true;
 
-  qle->SetMobCount(0, 1);
-  qle->SendUpdateAddKill(0);
-  qle->UpdatePlayerFields();
+	qle->SetMobCount(0, 1);
+	qle->SendUpdateAddKill(0);
+	qle->UpdatePlayerFields();
 
-  return true;
+	return true;
 }
 // Infiltrating Dragonmaw Fortress Quest
 class InfiltratingDragonmawFortressQAI : public CreatureAIScript
@@ -100,7 +101,7 @@ bool ToLegionHold(uint32 i, Aura* pAura, bool apply)
 	if( pAura == NULL )
 		return true;
 
-	Player* pPlayer = pAura->GetPlayerCaster();
+	Player* pPlayer = (Player*)pAura->GetCaster();
 	if( pPlayer == NULL )
 		return true;
 
@@ -133,7 +134,7 @@ bool ToLegionHold(uint32 i, Aura* pAura, bool apply)
 		GameObject* pGameObject = pPlayer->GetMapMgr()->GetInterface()->GetGameObjectNearestCoords(pPlayer->GetPositionX(), pPlayer->GetPositionY(), pPlayer->GetPositionZ(), 184834);
 		if ( pGameObject != NULL )
 		{
-			pGameObject->Despawn(60000, 0);
+			pGameObject->Despawn(60000);
 			pPlayer->UpdateNearbyGameObjects();
 		}
 	}
@@ -159,7 +160,7 @@ bool ToLegionHold(uint32 i, Aura* pAura, bool apply)
 
 //WP Coords Wait Times
 struct WPWaitTimes{
-	LocationExtra mCoords; 
+	Coords mCoords; 
 	uint32 WaitTime;
 };
 const WPWaitTimes DeathbringerJovaanWP[] =
@@ -182,7 +183,7 @@ public:
 
 		for (int i = 1; i < 5; ++i)
 		{
-			AddWaypoint(CreateWaypoint(i, DeathbringerJovaanWP[i].WaitTime, DeathbringerJovaanWP[i].mCoords.addition, DeathbringerJovaanWP[i].mCoords));
+			AddWaypoint(CreateWaypoint(i, DeathbringerJovaanWP[i].WaitTime, DeathbringerJovaanWP[i].mCoords.mAddition, DeathbringerJovaanWP[i].mCoords));
 		}	
 	}
 	
@@ -365,20 +366,4 @@ void SetupShadowmoon(ScriptMgr * mgr)
 	mgr->register_creature_script(21864, &KneepadsQAI::Create);
 	mgr->register_creature_script(CN_DEATHBRINGER_JOVAAN, &DeathbringerJovaanAI::Create);
 	mgr->register_creature_script(CN_WARBRINGER_RAZUUN, &WarbringerRazuunAI::Create);
-	mgr->register_creature_script(CN_ENSLAVED_NETHERWING_DRAKE, &EnslavedNetherwingDrakeAI::Create);
-
-	mgr->register_gameobject_script(185156, &KarynakuChains::Create);
-
-	mgr->register_dummy_aura(37097, &ToLegionHold);
-	mgr->register_dummy_aura(38502, &EatenRecently);
-	
-	mgr->register_dummy_spell(39094, &CrystalOfDeepShadows);
-	mgr->register_dummy_spell(38439, &Carcass);
-	mgr->register_dummy_spell(38762, &ForceofNeltharakuSpell);
-
-	GossipScript * NeltharakusTaleGossip = new NeltharakusTale_Gossip;
-	mgr->register_gossip_script(21657, NeltharakusTaleGossip);
-	
-	GossipScript * FlanisSwiftwingGossip = new FlanisSwiftwing_Gossip;
-	mgr->register_gossip_script(21727, FlanisSwiftwingGossip); //Add Flanis' Pack
 }

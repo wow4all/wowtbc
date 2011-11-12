@@ -18,7 +18,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+#include "../Base/ai.h"
 
 /************************************************************************/
 /* Event_DarkPortal.cpp Script - Created by M4ksiu						*/

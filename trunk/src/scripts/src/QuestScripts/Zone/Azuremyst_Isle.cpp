@@ -18,10 +18,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include "StdAfx.h"
-#include "../Setup.h"
-#include "../EAS/EasyFunctions.h"
+#include "../../Base/EAS/EasyFunctions.h"
 
 class DraeneiFishingNet : public GossipScript
 {
@@ -342,7 +340,7 @@ bool HealingTheLake(uint32 i, Spell* pSpell)
 void SetupAzuremystIsle( ScriptMgr * mgr )
 {
 	mgr->register_item_gossip_script( 23654, CREATE_GOSSIPSCRIPT( DraeneiFishingNet ) );
-	mgr->register_quest_script( 9539, CREATE_QUESTSCRIPT( TotemofCoo ) );
+	mgr->register_quest_script( 9539, CREATE_QUESTSCRIPT(TotemofCoo)  );
 	mgr->register_quest_script( 9540, CREATE_QUESTSCRIPT( TotemofTikti ));
 	mgr->register_quest_script( 9541, CREATE_QUESTSCRIPT( TotemofYor ) );
 	mgr->register_quest_script( 9542, CREATE_QUESTSCRIPT( TotemofVark ) );

@@ -22,7 +22,6 @@
     <ProjectName>collision</ProjectName>
     <ProjectGuid>{4A9E210A-3B0B-4076-BE06-778692E5CB93}</ProjectGuid>
     <RootNamespace>collision</RootNamespace>
-    <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

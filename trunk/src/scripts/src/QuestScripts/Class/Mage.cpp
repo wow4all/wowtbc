@@ -16,10 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include "StdAfx.h"
-#include "../Setup.h"
-#include "../EAS/EasyFunctions.h"
+#include "../../Base/EAS/EasyFunctions.h"
+
+const uint8 MAX_AURAS = 56;				// 40 buff slots + 16 debuff slots.
+const uint8 MAX_POSITIVE_AURAS = 40;	// 40 buff slots
+const uint16 MAX_PASSIVE_AURAS = 281;		// passive aury = talenty + dalsi
 
 class FragmentedMagic : public CreatureAIScript
 {

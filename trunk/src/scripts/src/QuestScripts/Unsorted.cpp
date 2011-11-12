@@ -16,19 +16,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include "StdAfx.h"
-#include "./Setup.h"
-#include "./EAS/EasyFunctions.h"
+#include "../Base/EAS/EasyFunctions.h"
 
 class Quest_Grimoire_Business : public QuestScript
 {
 public:
-	void OnQuestStart(Player * mTarget, QuestLogEntry * qLogEntry)
+	void OnQuestStart(Player * pTarget, QuestLogEntry * qLogEntry)
 	{
-		if( mTarget == NULL || mTarget->GetMapMgr() == NULL || mTarget->GetMapMgr()->GetInterface() == NULL )
+		if(pTarget == NULL || pTarget->GetMapMgr() == NULL || pTarget->GetMapMgr()->GetInterface() == NULL)
 			return;
-		sEAS.SpawnCreature(mTarget, 22911, 3279.67f, 4640.77f, 216.526f, 1.3516f, 2*60*1000);
+		sEAS.SpawnCreature(pTarget, 22911, 3279.67f, 4640.77f, 216.526f, 1.3516f, 2*60*1000);
 	}
 
 };

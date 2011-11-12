@@ -17,7 +17,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+
 
 // Skorn Whitecloud
 #define GOSSIP_SKORN_WHITECLOUD    "Tell me a story, Skorn."

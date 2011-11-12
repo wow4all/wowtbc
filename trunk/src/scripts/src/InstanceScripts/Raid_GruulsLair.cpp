@@ -18,8 +18,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
-#include "Base.h"
+#include "../Base/Base.h"
 
 /************************************************************************/
 /* Raid_GruulsLair.cpp Script											*/

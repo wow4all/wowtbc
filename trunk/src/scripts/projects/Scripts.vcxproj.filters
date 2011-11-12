@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\src\InstanceScripts\Battleground_AlteracValley.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\ZoneZangarmarsh.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Event_DarkPortal.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_Arcatraz.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_AuchenaiCrypts.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_BlackMorass.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_BlackrockDepths.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_BlackrockSpire.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_BloodFurnace.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_Botanica.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_Deadmines.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_DireMaul.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_HellfireRamparts.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_MagistersTerrace.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_ManaTombs.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_Mauradon.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_OldHillsbradFoothills.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_RagefireChasm.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_RazorfenDowns.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_ScarletMonastery.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_Scholomance.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_SethekkHalls.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_ShadowfangKeep.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_ShadowLabyrinth.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_TheMechanar.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_TheShatteredHalls.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_TheSlavePens.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_TheSteamvault.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_TheStockade.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_TheUnderbog.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_Uldaman.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Instance_WailingCaverns.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_BlackTemple.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_BlackwingLair.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_CoT_BattleOfMountHyjal.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_GruulsLair.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_Karazhan.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_Magtheridons_Lair.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_MoltenCore.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_Naxxramas.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_OnyxiasLair.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_SerpentshrineCavern.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_SunwellPlateau.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_TheEye.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_WorldBosses.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_ZulAman.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\Raid_ZulGurub.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\ZoneHellfirePeninsula.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\ZoneTerokkarForest.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\QuestGossip.cpp">
+      <Filter>QuestScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\QuestHooks.cpp">
+      <Filter>QuestScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Unsorted.cpp">
+      <Filter>QuestScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Class\Druid.cpp">
+      <Filter>QuestScripts\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Class\Mage.cpp">
+      <Filter>QuestScripts\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Class\Paladin.cpp">
+      <Filter>QuestScripts\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Class\Warrior.cpp">
+      <Filter>QuestScripts\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Profession\First_Aid.cpp">
+      <Filter>QuestScripts\Profession</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Arathi_Highlands.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Azshara.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Azuremyst_Isle.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\BladeEdge_Mountains.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Blasted_Lands.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Bloodmyst_Isle.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Darkshore.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Desolace.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Dustwallow_Marsh.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Eastern_Plaguelands.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\EversongWoods.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Ghostlands.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Hellfire_Peninsula.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Hillsbrad_Foothills.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Isle_of_Quel_Danas.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Loch_Modan.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Mulgore.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Nagrand.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Netherstorm.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Old_Hillsbrad_Foothills.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Redridge_Mountains.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Shadowmoon_Valley.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Silithus.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Silvermoon_City.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Silverpine_Forest.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Stormwind.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Stranglethorn_Vale.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Tanaris.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Teldrassil.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Terrokar_Forest.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\The_Barrens.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Thousand_Needles.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Tirisfal_Glades.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\UnGoro_Crater.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Westfall.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuestScripts\Zone\Zangarmarsh.cpp">
+      <Filter>QuestScripts\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GossipScripts\Gossip_Battlemaster.cpp">
+      <Filter>ExtraScripts\GossipScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GossipScripts\Gossip_Trainer.cpp">
+      <Filter>ExtraScripts\GossipScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GossipScripts\Gossip_DarkmoonFaire.cpp">
+      <Filter>ExtraScripts\GossipScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GossipScripts\Gossip_Guard.cpp">
+      <Filter>ExtraScripts\GossipScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GossipScripts\Gossip_Innkeepers.cpp">
+      <Filter>ExtraScripts\GossipScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GossipScripts\Gossip_Moonglade.cpp">
+      <Filter>ExtraScripts\GossipScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GossipScripts\Gossip_Mulgore.cpp">
+      <Filter>ExtraScripts\GossipScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GossipScripts\Gossip_Shattrath.cpp">
+      <Filter>ExtraScripts\GossipScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GossipScripts\Gossip_Stormwind.cpp">
+      <Filter>ExtraScripts\GossipScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GossipScripts\Gossip_Tanaris.cpp">
+      <Filter>ExtraScripts\GossipScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MiscScripts\Creatures.cpp">
+      <Filter>ExtraScripts\MiscScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MiscScripts\DarkmoonFaireObjects.cpp">
+      <Filter>ExtraScripts\MiscScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MiscScripts\GameObjects.cpp">
+      <Filter>ExtraScripts\MiscScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MiscScripts\QuelDanasPortal.cpp">
+      <Filter>ExtraScripts\MiscScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MiscScripts\RandomScripts.cpp">
+      <Filter>ExtraScripts\MiscScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Base\Base.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Setup.cpp" />
+    <ClCompile Include="..\src\InstanceScripts\kil_jaeden.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\InstanceScripts\Event_DarkPortal.h">
+      <Filter>InstanceScripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\InstanceScripts\Molten Core\Raid_Molten_Core.h">
+      <Filter>InstanceScripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\InstanceScripts\zadefines.h">
+      <Filter>InstanceScripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Base.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Setup.h" />
+    <ClInclude Include="..\src\Base\EAS\EasyFunctions.h">
+      <Filter>Base\EAS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\ai.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="InstanceScripts">
+      <UniqueIdentifier>{9f97a85a-bbe8-4aff-a166-02469dbbc8c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QuestScripts">
+      <UniqueIdentifier>{2a86c065-b74b-43c4-b4ef-b216820e623b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QuestScripts\Class">
+      <UniqueIdentifier>{7040a6b9-e69d-4111-9e06-b4c280998f9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QuestScripts\Profession">
+      <UniqueIdentifier>{c6cbdd92-ac9f-42d7-bb0a-572d1258b1a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QuestScripts\Zone">
+      <UniqueIdentifier>{e0241d55-a0d3-4006-a288-170a7e22b3d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExtraScripts">
+      <UniqueIdentifier>{9ff84af5-0e17-4c4e-9447-10e7572d6c48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExtraScripts\GossipScripts">
+      <UniqueIdentifier>{519f75ba-f412-4ab8-8c60-7fa6f2df6148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExtraScripts\MiscScripts">
+      <UniqueIdentifier>{ad3089e5-dbaf-42c3-9c35-64656268e913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{8e652be0-a007-4ab7-9f96-0da1eb7537cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\EAS">
+      <UniqueIdentifier>{4fe6cf14-86ee-4ca9-ac4c-e5d25deadf07}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

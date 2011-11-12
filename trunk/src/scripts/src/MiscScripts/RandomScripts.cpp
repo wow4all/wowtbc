@@ -16,9 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include "StdAfx.h"
-#include "Setup.h"
 
 void GuardsOnSalute(Player * pPlayer, Unit * pUnit)
 {
@@ -53,7 +51,7 @@ void GuardsOnWave(Player * pPlayer, Unit * pUnit)
 	}
 }
 
-void OnEmote(Player * pPlayer, uint32 Emote, Unit * pUnit)
+void PlayerEmote(Player * pPlayer, uint32 Emote, Unit * pUnit)
 {
 	pUnit = pPlayer->GetMapMgr()->GetUnit(pPlayer->GetSelection());
 	if (!pUnit || !pUnit->isAlive() || pUnit->GetAIInterface()->GetNextTarget())
@@ -78,5 +76,5 @@ void OnEmote(Player * pPlayer, uint32 Emote, Unit * pUnit)
 
 void SetupRandomScripts(ScriptMgr * mgr)
 {	// Register Hook Event here
-	mgr->register_hook(SERVER_HOOK_EVENT_ON_EMOTE, (void *)&OnEmote);
+	mgr->register_hook(SERVER_HOOK_EVENT_ON_EMOTE, (void *)&PlayerEmote);
 }

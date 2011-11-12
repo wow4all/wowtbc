@@ -18,7 +18,7 @@
 */
 
 #include "StdAfx.h"
-#include "Setup.h"
+
 
 //Crimson Hammersmith
 class CrimsonHammersmith : public CreatureAIScript

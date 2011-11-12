@@ -21,12 +21,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-/**********************
-Edits by : FenixGman
-**********************/
+
 #include "StdAfx.h"
-#include "../Setup.h"
-#include "../EAS/EasyFunctions.h"
+#include "../../Base/EAS/EasyFunctions.h"
 
 bool CenarionMoondust(uint32 i, Spell* pSpell) // Body And Heart (Alliance)
 {

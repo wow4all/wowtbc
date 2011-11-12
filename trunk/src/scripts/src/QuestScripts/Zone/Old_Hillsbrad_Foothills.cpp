@@ -1,10 +1,8 @@
 #include "StdAfx.h"
-#include "../Setup.h"
-#include "../EAS/EasyFunctions.h"
+#include "../../Base/EAS/EasyFunctions.h"
 
-uint32 numBarrel = 0;
-
-#define GO_FIRE 183816
+uint8 numBarrel = 0;
+const uint32 GO_FIRE = 183816;
 
 struct Coords
 {
@@ -13,6 +11,7 @@ struct Coords
 	float z;
 	float o;
 };
+
 static Coords Fires[] =
 {
 	{2160.68f, 235.382f, 53.8946f, 3.5555f},
@@ -42,30 +41,34 @@ class LodgesAblaze : public GameObjectAIScript
 {
 public:
 	LodgesAblaze(GameObject* goinstance) : GameObjectAIScript(goinstance) {}
-	static GameObjectAIScript *Create(GameObject * GO) {
+
+	static GameObjectAIScript *Create(GameObject * GO) 
+	{
 		return new LodgesAblaze(GO);
 	}
 
 	void OnActivate(Player * pPlayer)	
 	{
-	  QuestLogEntry *qle = pPlayer->GetQuestLogForEntry(10283);
-  
-	  if(qle == NULL)
-		return;
+		QuestLogEntry *qle = pPlayer->GetQuestLogForEntry(10283);
+		if(qle == NULL)
+			return;
 
-	  if (++numBarrel == 5)
-	  {
-		qle->SetMobCount(0, qle->GetMobCount(0)+1);
-		qle->SendUpdateAddKill(0);
-		qle->UpdatePlayerFields();
-		GameObject *obj = NULL;
-		for(uint8 i = 0; i < 21; i++)
+		if (++numBarrel == 5)
 		{
-			obj = sEAS.SpawnGameobject(pPlayer, GO_FIRE, Fires[i].x, Fires[i].y, Fires[i].z, Fires[i].o, 1);
-			sEAS.GameobjectDelete(obj, 10*60*1000);
+			qle->SetMobCount(0, qle->GetMobCount(0)+1);
+			qle->SendUpdateAddKill(0);
+			qle->UpdatePlayerFields();
+
+			GameObject *obj = NULL;
+
+			for(uint8 i = 0; i < 21; i++)
+			{
+				obj = sEAS.SpawnGameobject(pPlayer, GO_FIRE, Fires[i].x, Fires[i].y, Fires[i].z, Fires[i].o, 1);
+				sEAS.GameobjectDelete(obj, 10*60*1000);
+			}
+
+			numBarrel = 0;
 		}
-		numBarrel = 0;
-	  }
 	}
 };
 

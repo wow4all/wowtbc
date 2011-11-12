@@ -18,8 +18,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
-#include "../QuestScripts/EAS/EasyFunctions.h"
+#include "../Base/EAS/EasyFunctions.h"
 
 class OrbOfCommand : public GameObjectAIScript
 {

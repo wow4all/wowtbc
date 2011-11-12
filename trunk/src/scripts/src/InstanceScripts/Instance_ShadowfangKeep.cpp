@@ -18,7 +18,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+
 
 /*********************************************************************************/
 /* Instance_ShadowfangKeep.cpp Script											*/
