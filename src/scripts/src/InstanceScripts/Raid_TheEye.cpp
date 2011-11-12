@@ -19,8 +19,8 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
-#include "Base.h"
+#include "../Base/ai.h"
+#include "../Base/Base.h"
 
 /************************************************************************/
 /* Raid_TheEye.cpp Script												*/

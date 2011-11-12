@@ -18,7 +18,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+#include "../Base/ai.h"
 
 /************************************************************************/
 /* Raid_WorldBosses.cpp Script                                          */

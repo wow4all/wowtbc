@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include "StdAfx.h"
 
-#include <string>
 #ifndef INSTANCE_SCRIPTS_SETUP_H
 #define INSTANCE_SCRIPTS_SETUP_H
 
@@ -25,7 +25,6 @@
 //void SetupAlteracValleyBattleground(ScriptMgr * mgr);
 //void SetupAQ40(ScriptMgr * mgr);
 void SetupKJScript(ScriptMgr * mgr);
-void SetupTrainerScript(ScriptMgr * mgr);
 void SetupArcatraz(ScriptMgr * mgr);
 void SetupAuchenaiCrypts(ScriptMgr * mgr);
 //void SetupBlackMorass(ScriptMgr * mgr);
@@ -76,39 +75,75 @@ void SetupSunwellPlateau(ScriptMgr* pScriptMgr);
 void SetupZulAman(ScriptMgr * mgr);
 //Events
 void SetupEventDarkPortal(ScriptMgr * mgr);
-//other
-//void SetupGenericAI(ScriptMgr * mgr);
 
-struct SP_AI_Spell{
-	SpellEntry *info;		// spell info
-	char targettype;		// 0-self , 1-attaking target, ....
-	bool instant;			// does it is instant or not?
-	float perctrigger;		// % of the cast of this spell in a total of 100% of the attacks
-	int attackstoptimer;	// stop the creature from attacking
-	int soundid;			// sound id from DBC
-	std::string speech;		// text displaied when spell was casted
-	uint32 cooldown;		// spell cooldown
-	uint32 casttime;		// "time" left to cast spell
-	uint32 reqlvl;			// required level ? needed?
-	float hpreqtocast;		// ? needed?
-	float mindist2cast;		// min dist from caster to victim to perform cast (dist from caster >= mindist2cast)
-	float maxdist2cast;		// max dist from caster to victim to perform cast (dist from caster <= maxdist2cast)
-	int minhp2cast;			// min hp amount of victim to perform cast on it (health >= minhp2cast)
-	int maxhp2cast;			// max hp amount of victim to perform cast on it (health <= maxhp2cast)
-};
+//	###		Classes Quests	###
+void SetupDruid(ScriptMgr * mgr);
+void SetupPaladin(ScriptMgr * mgr);
+void SetupWarrior(ScriptMgr * mgr);
+void SetupMage(ScriptMgr * mgr);
 
-enum
-{
-	TARGET_SELF,
-	TARGET_VARIOUS,
-	TARGET_ATTACKING,
-	TARGET_DESTINATION,
-	TARGET_SOURCE,
-	TARGET_RANDOM_FRIEND,	// doesn't work yet
-	TARGET_RANDOM_SINGLE,
-	TARGET_RANDOM_DESTINATION,
+//	###		Proffessions Quests	###
+void SetupFirstAid(ScriptMgr * mgr);
 
-	//.....add
-};
+//	###		Zones Quests	###
+void SetupArathiHighlands(ScriptMgr * mgr);
+void SetupAzshara(ScriptMgr * mgr);
+void SetupAzuremystIsle(ScriptMgr * mgr);
+void SetupBladeEdgeMountains(ScriptMgr * mgr);
+void SetupBlastedLands(ScriptMgr * mgr);
+void SetupBloodmystIsle(ScriptMgr * mgr);
+//void SetupDarkshore(ScriptMgr * mgr)
+void SetupDesolace(ScriptMgr * mgr);
+void SetupDustwallowMarsh(ScriptMgr * mgr);
+void SetupEasternPlaguelands(ScriptMgr * mgr);
+void SetupGhostlands(ScriptMgr * mgr);
+void SetupHellfirePeninsula(ScriptMgr * mgr);
+void SetupHillsbradFoothills(ScriptMgr * mgr);
+void SetupIsleOfQuelDanas(ScriptMgr * mgr);
+void SetupLochModan(ScriptMgr * mgr);
+void SetupMulgore(ScriptMgr * mgr);
+void SetupNagrand(ScriptMgr * mgr);
+void SetupNetherstorm(ScriptMgr * mgr);
+void SetupOldHillsbrad(ScriptMgr * mgr);
+void SetupRedrigeMountains(ScriptMgr * mgr);
+void SetupShadowmoon(ScriptMgr * mgr);
+void SetupSilvermoonCity(ScriptMgr * mgr);
+void SetupSilverpineForest(ScriptMgr * mgr);
+//void SetupZulAnmanTimedEvent(ScriptMgr * mgr);
+void SetupStormwind(ScriptMgr * mgr);
+void SetupStranglethornVale(ScriptMgr * mgr);
+void SetupTanaris(ScriptMgr * mgr);
+void SetupTerrokarForest(ScriptMgr * mgr);
+void SetupThousandNeedles(ScriptMgr * mgr);
+void SetupTirisfalGlades(ScriptMgr * mgr);
+//void SetupUndercity(ScriptMgr * mgr);
+void SetupUnGoro(ScriptMgr * mgr);
+void SetupWestfall(ScriptMgr * mgr);
+void SetupZangarmarsh(ScriptMgr * mgr);
+void SetupTeldrassil(ScriptMgr *mgr);
+//	###		Misc	###
+void SetupQuestGossip(ScriptMgr * mgr);
+void SetupQuestHooks(ScriptMgr * mgr);
+void SetupUnsorted(ScriptMgr * mgr);
+
+// Gossip scripts
+void SetupInnkeepers(ScriptMgr * mgr);
+//void SetupReplicaNPC(ScriptMgr* mgr);
+void SetupGuardGossip(ScriptMgr * mgr);
+void SetupTrainerScript(ScriptMgr * mgr);
+void SetupMulgoreGossip(ScriptMgr * mgr);
+void SetupShattrathGossip(ScriptMgr * mgr);
+void SetupTanarisGossip(ScriptMgr * mgr);
+void SetupMoongladeScript(ScriptMgr * mgr);
+void SetupStormwindGossip(ScriptMgr * mgr);
+void SetupDarkmoonFaireGossip(ScriptMgr * mgr);
+void SetupDarkmoonFaireBarker(ScriptMgr * mgr);
+
+// Misc scripts
+void SetupGoHandlers(ScriptMgr * mgr);
+void SetupQDGoHandlers(ScriptMgr * mgr);
+void SetupRandomScripts(ScriptMgr * mgr);
+void SetupMiscCreatures(ScriptMgr * mgr);
+void SetupDarkmoonFaireObjects(ScriptMgr * mgr);
 
 #endif

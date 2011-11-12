@@ -18,7 +18,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+
 
 /************************************************************************/
 /* Raid_OnyxiasLair.cpp Script by DK			                        */

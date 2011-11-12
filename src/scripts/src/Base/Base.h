@@ -21,7 +21,6 @@
 #define _INSTANCE_SCRIPTS_BASE_H_
 
 #include "StdAfx.h"
-#include "./Setup.h"
 
 #include <string>
 #include <vector>

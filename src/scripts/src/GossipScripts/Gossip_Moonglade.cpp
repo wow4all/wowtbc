@@ -17,7 +17,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+
 
 // Trenton Lighthammer
 #define GOSSIP_SILVA_FILNAVETH    "I'd like to fly to Rut'theran Village."

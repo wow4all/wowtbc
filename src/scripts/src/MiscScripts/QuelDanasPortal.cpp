@@ -18,7 +18,7 @@
 */
 
 #include "StdAfx.h"
-#include "Setup.h"
+
 
 class PortalEffectSunwellIsle : public GameObjectAIScript
   {

@@ -17,7 +17,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+
 
 // Archmage Malin
 #define GOSSIP_ARCHMAGE_MALIN    "Can you send me to Theramore? I have an urgent message for Lady Jaina from Highlord Bolvar."

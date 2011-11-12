@@ -15,9 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include "StdAfx.h"
-#include "../Setup.h"
+
 #ifdef WIN32
 #pragma warning(disable:4305)		// warning C4305: 'argument' : truncation from 'double' to 'float'
 #endif

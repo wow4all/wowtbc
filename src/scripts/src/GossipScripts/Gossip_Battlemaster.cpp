@@ -18,7 +18,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+
 
 class WarsongGulchBattlemaster : public GossipScript
 {

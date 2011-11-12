@@ -17,7 +17,7 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
+
 
 // Trenton Lighthammer
 #define GOSSIP_TRENTON_LIGHTHAMMER    "Tell me more, Trenton."

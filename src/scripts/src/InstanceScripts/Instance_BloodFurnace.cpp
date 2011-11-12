@@ -18,8 +18,8 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
-#include "Base.h"
+#include "../Base/Base.h"
+#include "../Base/ai.h"
 
 /************************************************************************/
 /* Instance_BloodFurnace.cpp Script		                                */
