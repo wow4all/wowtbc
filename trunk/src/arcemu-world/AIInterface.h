@@ -49,13 +49,13 @@
 
 #define HACKY_SERVER_CLIENT_POS_SYNC
 
+class MapMgr;
 class Object;
 class Creature;
 class Unit;
 class Player;
 class WorldSession;
 class SpellCastTargets;
-
 
 enum AIType
 {
@@ -196,32 +196,6 @@ bool isGuard(uint32 id);
 bool isNeutralGuard(uint32 id);
 uint32 getGuardId(uint32 id);
 
-/*
-#if ENABLE_SHITTY_STL_HACKS == 1
-typedef HM_NAMESPACE::hash_map<Unit*, int32> TargetMap;
-#else
-namespace HM_NAMESPACE
-{
-	template <>
-	struct hash<Unit*>
-	{
-		union __vp {
-			size_t s;
-			Unit* p;
-		};
-
-		size_t operator()(Unit* __x) const
-		{
-			__vp vp;
-			vp.p = __x;
-			return vp.s;
-		}
-	};
-};
-
-typedef HM_NAMESPACE::hash_map<Unit*, int32, HM_NAMESPACE::hash<Unit*> > TargetMap;
-#endif
-*/
 typedef HM_NAMESPACE::hash_map<uint64, int32> TargetMap;
 
 typedef std::set<Unit*> AssistTargetSet;
@@ -374,18 +348,12 @@ public:
 	ARCEMU_INLINE void AddStopTime(uint32 Time) { m_moveTimer += Time; }
 	ARCEMU_INLINE void SetNextSpell(AI_Spell * sp) { m_nextSpell = sp; }
 	Unit* GetNextTarget();
-	void SetNextTarget (Unit *nextTarget);
-	void SetNextTarget (uint64 nextTarget); 
-
-	/*ARCEMU_INLINE void ResetProcCounts()
+	ARCEMU_INLINE void SetNextTarget(Unit *nextTarget)
 	{
-		AI_Spell * sp;
-		for(list<AI_Spell*>::iterator itr = m_spells.begin(); itr != m_spells.end(); ++itr)
-				{
-					sp = *itr;
-					sp->procCount =sp->procCountDB;
-				}
-	}*/
+		uint64 targetGUID = (nextTarget  != NULL) ? nextTarget->GetGUID() : NULL;
+		m_nextTarget = targetGUID; 
+		m_Unit->SetUInt64Value(UNIT_FIELD_TARGET, m_nextTarget);
+	}
 
 	Creature * m_formationLinkTarget;
 	float m_formationFollowDistance;
@@ -453,6 +421,7 @@ protected:
 //	Unit *gracefull_hit_on_target;
 	Unit *m_Unit;
 	Unit *m_PetOwner;
+	MapMgr* m_mapMgr;
 	float FollowDistance;
 	float FollowDistance_backup;
 	float m_fallowAngle;
