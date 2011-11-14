@@ -62,7 +62,6 @@ public:
 	void WaypointCreate(Creature *pCreature, float x, float y, float z, float o, uint32 waittime, uint32 flags, uint32 modelid)
 	{
 		PrintMessage("Function call: WaypointCreate()");
-
 		if(pCreature == NULL)
 			return;
 
@@ -113,20 +112,9 @@ public:
 		if(pThis == NULL)
 			return NULL;
       
-		CreatureProto *p = CreatureProtoStorage.LookupEntry(entry);
-    
-		if(p == NULL)
-			return NULL;
-
-		Creature *pCreature = pThis->GetMapMgr()->CreateCreature(entry);
-		pCreature->spawnid = 0;
-		pCreature->m_spawn = 0;
-		pCreature->Load(p, posX, posY, posZ);
-		pCreature->SetMapId(pThis->GetMapId());
-		pCreature->SetOrientation(posO);
-		pCreature->Despawn(duration, 0);
-		pCreature->SetInstanceID(pThis->GetInstanceID());
-		pCreature->PushToWorld(pThis->GetMapMgr());
+		Creature* pCreature = pThis->GetMapMgr()->GetInterface()->SpawnCreature(entry, posX, posY, posZ, posO, true, false, 0, 0);
+		if(duration > 0 && pThis != NULL)
+			pCreature->Despawn(duration, 0);
 
 		return pCreature;
 	}
@@ -238,35 +226,29 @@ public:
 		if(plr == NULL)
 			return false;
 
-		ItemPrototype *proto = ItemPrototypeStorage.LookupEntry(entry);
-		SlotResult slotresult = plr->GetItemInterface()->FindFreeInventorySlot(proto);
-
+		SlotResult slotresult = plr->GetItemInterface()->FindFreeInventorySlot(NULL);
 		if(!slotresult.Result)
 		{
 			plr->GetItemInterface()->BuildInventoryChangeError(NULL, NULL, INV_ERR_INVENTORY_FULL);
 			return false;
 		}
-		else
+
+		Item *pItem = objmgr.CreateItem(entry, plr);
+		Item *stack = plr->GetItemInterface()->FindItemLessMax(entry, count, false);
+
+		if(stack == NULL)
 		{
-			Item *pItem = objmgr.CreateItem(entry, plr);
-			Item *stack = plr->GetItemInterface()->FindItemLessMax(entry, count, false);
-
-			if(stack == NULL)
-			{
-				plr->GetItemInterface()->AddItemToFreeSlot(pItem);
-				plr->GetSession()->SendItemPushResult(pItem, false, true, true, true, slotresult.ContainerSlot, slotresult.Slot, 1);
-				return true;
-			}
-
-			stack->SetCount(stack->GetUInt32Value(ITEM_FIELD_STACK_COUNT) + count);
-			stack->m_isDirty = true;
-      
-			plr->GetSession()->SendItemPushResult(stack, false, true, true, false, plr->GetItemInterface()->GetBagSlotByGuid(stack->GetGUID()), 0xFFFFFFFF, 1);
-       
+			plr->GetItemInterface()->AddItemToFreeSlot(pItem);
+			plr->GetSession()->SendItemPushResult(pItem, false, true, true, true, slotresult.ContainerSlot, slotresult.Slot, 1);
 			return true;
 		}
 
-		return false;
+		stack->SetCount(stack->GetUInt32Value(ITEM_FIELD_STACK_COUNT) + count);
+		stack->m_isDirty = true;
+      
+		plr->GetSession()->SendItemPushResult(stack, false, true, true, false, plr->GetItemInterface()->GetBagSlotByGuid(stack->GetGUID()), 0xFFFFFFFF, 1);
+       
+		return true;
 	}
   
 	ARCEMU_INLINE void EventCastSpell(Unit* caster, Unit* target, uint32 spellid, uint32 time)
