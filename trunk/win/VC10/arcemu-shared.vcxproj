@@ -79,7 +79,7 @@
     <PreBuildEvent>
       <Message>Extracting SVN revision...</Message>
       <Command>cd $(SolutionDir)\..\src\arcemu-shared
-RevisionExtractor.exe
+
 </Command>
     </PreBuildEvent>
     <ClCompile>
