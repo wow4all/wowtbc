@@ -57,8 +57,8 @@
 #define WORLDSTATE_OLD_HILLSBRAND                               2436
 /*Black Morass*/                               
 #define WORLD_STATE_BLACK_MORASS                                2541
-#define WORLD_STATE_BLACK_MORASS _SHIELD                        2540
-#define WORLD_STATE_BLACK_MORASS _RIFT                          2784
+#define WORLD_STATE_BLACK_MORASS_SHIELD                         2540
+#define WORLD_STATE_BLACK_MORASS_RIFT                           2784
 
 
 
