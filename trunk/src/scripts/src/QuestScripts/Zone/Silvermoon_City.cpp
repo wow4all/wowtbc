@@ -33,7 +33,7 @@ public:
 		if(qle == NULL)
 			return;
 
-		Creature *zelemar = sEAS.SpawnCreature(pPlayer, 17830, pPlayer->GetPositionX()+5, pPlayer->GetPositionY()+5, pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
+		Creature *zelemar = EAS::SpawnCreature(pPlayer, 17830, pPlayer->GetPositionX()+5, pPlayer->GetPositionY()+5, pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
 		zelemar->Despawn(6*60*1000, 0);
 	}
 };
@@ -77,7 +77,7 @@ public:
 
 			case 1:
 			{
-				sEAS.AddItem(24226, plr);
+				EAS::AddItem(24226, plr);
 				return;
 			}break;
 		}

@@ -109,8 +109,8 @@ public:
     if(!mKiller->IsPlayer())
       return;
 
-    GameObject *go = sEAS.SpawnGameobject(static_cast<Player*>(mKiller), 177241, _unit->GetPositionX(), _unit->GetPositionY(), _unit->GetPositionZ(), _unit->GetOrientation(), 1);
-    sEAS.GameobjectDelete(go, 60000);
+    GameObject *go = EAS::SpawnGameobject(static_cast<Player*>(mKiller), 177241, _unit->GetPositionX(), _unit->GetPositionY(), _unit->GetPositionZ(), _unit->GetOrientation(), 1);
+    EAS::GameobjectDelete(go, 60000);
   }
 };
 

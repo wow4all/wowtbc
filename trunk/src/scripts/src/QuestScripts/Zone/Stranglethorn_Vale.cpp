@@ -63,7 +63,7 @@ public:
 				doctor->CastSpell(doctor, dbcSpell.LookupEntry(12380), true);
 				if(!plr == NULL || plr->GetMapMgr() == NULL || plr->GetMapMgr()->GetInterface() == NULL)
 					return;
-				Creature *firstenemy = sEAS.SpawnCreature(plr, 1511, -13770.5, -6.79, 42.8, 5.7 , 0);
+				Creature *firstenemy = EAS::SpawnCreature(plr, 1511, -13770.5, -6.79, 42.8, 5.7 , 0);
 				firstenemy->GetAIInterface()->MoveTo(-13727.8, -26.2, 46.15, 4.07);
 				firstenemy->Despawn(10*60*1000, 0);
 			}break;
@@ -89,7 +89,7 @@ public:
 			Player* mPlayer = static_cast< Player* >( mKiller );
 			if(mPlayer == NULL || mPlayer->GetMapMgr() == NULL || mPlayer->GetMapMgr()->GetInterface() == NULL)
 				return;
-			Creature * beka1 = sEAS.SpawnCreature(mPlayer, 1516, -13770.5, -6.79, 42.8, 5.7 , 0);
+			Creature * beka1 = EAS::SpawnCreature(mPlayer, 1516, -13770.5, -6.79, 42.8, 5.7 , 0);
 			beka1->GetAIInterface()->MoveTo(-13727.8, -26.2, 46.15, 4.07);
 			beka1->Despawn(10*60*1000, 0);
 		}
@@ -100,7 +100,7 @@ public:
 			{
 				if(mPlayer == NULL || mPlayer->GetMapMgr() == NULL || mPlayer->GetMapMgr()->GetInterface() == NULL)
 					return;
-				Creature * beka1 = sEAS.SpawnCreature(mPlayer, 1516, -13770.5, -6.79, 42.8, 5.7 , 0);
+				Creature * beka1 = EAS::SpawnCreature(mPlayer, 1516, -13770.5, -6.79, 42.8, 5.7 , 0);
 				beka1->GetAIInterface()->MoveTo(-13727.8, -26.2, 46.15, 4.07);
 				beka1->Despawn(10*60*1000, 0);
 			}
@@ -121,7 +121,7 @@ public:
 			Player* mPlayer = static_cast< Player* >( mKiller );
 			if(mPlayer == NULL || mPlayer->GetMapMgr() == NULL || mPlayer->GetMapMgr()->GetInterface() == NULL)
 				return;
-			Creature * beka1 = sEAS.SpawnCreature(mPlayer, 1514, -13770.5, -6.79, 42.8, 5.7, 0);
+			Creature * beka1 = EAS::SpawnCreature(mPlayer, 1514, -13770.5, -6.79, 42.8, 5.7, 0);
 			beka1->GetAIInterface()->MoveTo(-13727.8, -26.2, 46.15, 4.07);
 			beka1->Despawn(10*60*1000, 0);
 		}
@@ -132,7 +132,7 @@ public:
 			{
 				if(mPlayer == NULL || mPlayer->GetMapMgr() == NULL || mPlayer->GetMapMgr()->GetInterface() == NULL)
 					return;
-				Creature * beka1 = sEAS.SpawnCreature(mPlayer, 1514, -13770.5, -6.79, 42.8, 5.7, 0);
+				Creature * beka1 = EAS::SpawnCreature(mPlayer, 1514, -13770.5, -6.79, 42.8, 5.7, 0);
 				beka1->GetAIInterface()->MoveTo(-13727.8, -26.2, 46.15, 4.07);
 				beka1->Despawn(10*60*1000, 0);
 			}
@@ -310,21 +310,21 @@ class FacingNegolash : public QuestScript
 
 		for(uint8 i = 0; i < 9; i++)
 		{
-			obj = sEAS.SpawnGameobject(pPlayer, GO_MEAT, MeatSpawnPoints[i].x, MeatSpawnPoints[i].y, MeatSpawnPoints[i].z, MeatSpawnPoints[i].o, 1);
-			sEAS.GameobjectDelete(obj, 2*60*1000);
+			obj = EAS::SpawnGameobject(pPlayer, GO_MEAT, MeatSpawnPoints[i].x, MeatSpawnPoints[i].y, MeatSpawnPoints[i].z, MeatSpawnPoints[i].o, 1);
+			EAS::GameobjectDelete(obj, 2*60*1000);
 		}
 		for(uint8 i = 0; i < 5; i++)
 		{
-			obj = sEAS.SpawnGameobject(pPlayer, GO_BOTTLE, BottleSpawnPoints[i].x, BottleSpawnPoints[i].y, BottleSpawnPoints[i].z, BottleSpawnPoints[i].o, 1);
-			sEAS.GameobjectDelete(obj, 2*60*1000);
+			obj = EAS::SpawnGameobject(pPlayer, GO_BOTTLE, BottleSpawnPoints[i].x, BottleSpawnPoints[i].y, BottleSpawnPoints[i].z, BottleSpawnPoints[i].o, 1);
+			EAS::GameobjectDelete(obj, 2*60*1000);
 		}
 		for(uint8 i = 0; i < 3; i++)
 		{
-			obj = sEAS.SpawnGameobject(pPlayer, GO_BREAD, BreadSpawnPoints[i].x, BreadSpawnPoints[i].y, BreadSpawnPoints[i].z, BreadSpawnPoints[i].o, 1);
-			sEAS.GameobjectDelete(obj, 2*60*1000);
+			obj = EAS::SpawnGameobject(pPlayer, GO_BREAD, BreadSpawnPoints[i].x, BreadSpawnPoints[i].y, BreadSpawnPoints[i].z, BreadSpawnPoints[i].o, 1);
+			EAS::GameobjectDelete(obj, 2*60*1000);
 		}	
      	
-		Creature *Negolash = sEAS.SpawnCreature(pPlayer, 1494, -14657.400391, 155.115997, 4.081050, 0.353429);
+		Creature *Negolash = EAS::SpawnCreature(pPlayer, 1494, -14657.400391, 155.115997, 4.081050, 0.353429);
 		Negolash->GetAIInterface()->MoveTo(-14647.526367, 143.710052, 1.164550, 1.909);
 	}
 };

@@ -26,7 +26,8 @@ public:
 	{
 		if(pTarget == NULL || pTarget->GetMapMgr() == NULL || pTarget->GetMapMgr()->GetInterface() == NULL)
 			return;
-		sEAS.SpawnCreature(pTarget, 22911, 3279.67f, 4640.77f, 216.526f, 1.3516f, 2*60*1000);
+
+		EAS::SpawnCreature(pTarget, 22911, 3279.67f, 4640.77f, 216.526f, 1.3516f, 2*60*1000);
 	}
 
 };
@@ -50,7 +51,7 @@ public:
 	{
 		if( mTarget == NULL || mTarget->GetMapMgr() == NULL || mTarget->GetMapMgr()->GetInterface() == NULL )
 			return;
-		sEAS.SpawnCreature(mTarget, 20216, 2687.46f, 5541.14f, -1.93669f, 3.52847f, 2*60*1000);
+		EAS::SpawnCreature(mTarget, 20216, 2687.46f, 5541.14f, -1.93669f, 3.52847f, 2*60*1000);
 	}
 
 };
@@ -62,7 +63,7 @@ public:
 	{
 		if( mTarget == NULL || mTarget->GetMapMgr() == NULL || mTarget->GetMapMgr()->GetInterface() == NULL )
 			return;
-		sEAS.SpawnCreature(mTarget, 11980, -4177.39f, 376.289f, 117.78f, 2.7381f, 2*60*1000);
+		EAS::SpawnCreature(mTarget, 11980, -4177.39f, 376.289f, 117.78f, 2.7381f, 2*60*1000);
 	}
 
 };

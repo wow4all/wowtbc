@@ -82,7 +82,7 @@ public:
 		if(qle == NULL)
 			return;
 
-		Creature *magneto = sEAS.SpawnCreature(pPlayer, 21729, _gameobject->GetPositionX(), _gameobject->GetPositionY(), _gameobject->GetPositionZ(), 0, 0);
+		Creature *magneto = EAS::SpawnCreature(pPlayer, 21729, _gameobject->GetPositionX(), _gameobject->GetPositionY(), _gameobject->GetPositionZ(), 0, 0);
 		if (magneto != NULL)
 		{
 			magneto->Despawn(5*60*1000, 0);
@@ -107,7 +107,7 @@ public:
 		if(qle == NULL)
 			return;
 
-		Creature *whelp = sEAS.SpawnCreature(pPlayer, 20021, _gameobject->GetPositionX(), _gameobject->GetPositionY(), _gameobject->GetPositionZ(), 0, 0);
+		Creature *whelp = EAS::SpawnCreature(pPlayer, 20021, _gameobject->GetPositionX(), _gameobject->GetPositionY(), _gameobject->GetPositionZ(), 0, 0);
 		if (whelp != NULL)
 		{
 			whelp->Despawn(5*60*1000, 0);
@@ -183,7 +183,7 @@ public:
 		{
 			if(obelisk1->GetUInt32Value(GAMEOBJECT_STATE) == 0 && obelisk2->GetUInt32Value(GAMEOBJECT_STATE) == 0 && obelisk3->GetUInt32Value(GAMEOBJECT_STATE) == 0 && obelisk4->GetUInt32Value(GAMEOBJECT_STATE) == 0 && obelisk5->GetUInt32Value(GAMEOBJECT_STATE) == 0)
 			{
-				sEAS.SpawnCreature(pPlayer, 19963, 2943.59, 4779.05, 284.49, 1.89, 60*5*1000 );
+				EAS::SpawnCreature(pPlayer, 19963, 2943.59, 4779.05, 284.49, 1.89, 60*5*1000 );
 			}
 		}
 		TimedEvent *te = TimedEvent::Allocate(this, new CallbackP1<LegionObelisk, Player*>(this, &LegionObelisk::ResetGO, pPlayer), 0, 10000, 1);
@@ -227,7 +227,7 @@ bool CreatingThePendant(uint32 i, Spell * pSpell)
 		return true;
 
 	uint32 entry = 21767;
-	sEAS.SpawnCreature(plr, entry, plr->GetPositionX(), plr->GetPositionY(), plr->GetPositionZ(), 5*60*1000);
+	EAS::SpawnCreature(plr, entry, plr->GetPositionX(), plr->GetPositionY(), plr->GetPositionZ(), 5*60*1000);
 
 	return true;
 }

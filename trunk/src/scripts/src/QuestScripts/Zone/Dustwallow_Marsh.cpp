@@ -110,17 +110,17 @@ public:
 		creat->GetAIInterface()->setMoveType(11);
 		creat->GetAIInterface()->StopMovement(3000);
 		
-		sEAS.CreateCustomWaypointMap(creat);
-		sEAS.WaypointCreate(creat,-4036.163818f, -3383.940918f, 38.977619f, 2.181819f, 0, 56, 5375);
-		sEAS.WaypointCreate(creat,-4037.754639f, -3376.272461f, 37.400284f, 0.002337f, 0, 56, 5375);
-		sEAS.WaypointCreate(creat,-4028.081787f, -3376.667969f, 38.152534f, 5.775016f, 0, 56, 5375);
-		sEAS.WaypointCreate(creat,-4018.655029f, -3382.780518f, 38.244286f, 5.688624f, 0, 56, 5375);
-		sEAS.WaypointCreate(creat,-4018.655029f, -3382.780518f, 38.244286f, 5.688624f, 11000, 256, 5375);
-		sEAS.WaypointCreate(creat,-4028.081787f, -3376.667969f, 38.152534f, 5.775016f, 0, 256, 5375);
-		sEAS.WaypointCreate(creat,-4037.754639f, -3376.272461f, 37.400284f, 0.002337f, 0, 256, 5375);
-		sEAS.WaypointCreate(creat,-4036.163818f, -3383.940918f, 38.977619f, 2.181819f, 0, 256, 5375);
-		sEAS.WaypointCreate(creat,-4036.1638f, -3383.9409f, 38.9776f, -1.3662f, 0, 256, 5375);
-		sEAS.WaypointCreate(creat,-4032.5759f, -3393.6271f, 38.9960f, 1.8883f, 0, 256, 5375);
+		EAS::CreateCustomWaypointMap(creat);
+		EAS::WaypointCreate(creat,-4036.163818f, -3383.940918f, 38.977619f, 2.181819f, 0, 56, 5375);
+		EAS::WaypointCreate(creat,-4037.754639f, -3376.272461f, 37.400284f, 0.002337f, 0, 56, 5375);
+		EAS::WaypointCreate(creat,-4028.081787f, -3376.667969f, 38.152534f, 5.775016f, 0, 56, 5375);
+		EAS::WaypointCreate(creat,-4018.655029f, -3382.780518f, 38.244286f, 5.688624f, 0, 56, 5375);
+		EAS::WaypointCreate(creat,-4018.655029f, -3382.780518f, 38.244286f, 5.688624f, 11000, 256, 5375);
+		EAS::WaypointCreate(creat,-4028.081787f, -3376.667969f, 38.152534f, 5.775016f, 0, 256, 5375);
+		EAS::WaypointCreate(creat,-4037.754639f, -3376.272461f, 37.400284f, 0.002337f, 0, 256, 5375);
+		EAS::WaypointCreate(creat,-4036.163818f, -3383.940918f, 38.977619f, 2.181819f, 0, 256, 5375);
+		EAS::WaypointCreate(creat,-4036.1638f, -3383.9409f, 38.9776f, -1.3662f, 0, 256, 5375);
+		EAS::WaypointCreate(creat,-4032.5759f, -3393.6271f, 38.9960f, 1.8883f, 0, 256, 5375);
 	}
 
 	void SumDemon(Creature *creat)

@@ -41,14 +41,14 @@ public:
 		creat->SendChatMessage(CHAT_MSG_MONSTER_SAY, LANG_UNIVERSAL, "Okay let's do!");
 		creat->SetUInt32Value(UNIT_NPC_FLAGS, 0);
 
-		sEAS.CreateCustomWaypointMap(creat);
-		sEAS.WaypointCreate(creat,-5753.780762f, -3433.290039f, 301.628387f, 4.834769f, 0, 256, 1417);
-		sEAS.WaypointCreate(creat,-5744.062500f, -3476.653564f, 302.269287f, 5.580896f, 0, 256, 1417);
-		sEAS.WaypointCreate(creat,-5674.703125f, -3543.583984f, 303.273682f, 4.775867f, 0, 256, 1417);
-		sEAS.WaypointCreate(creat,-5670.187500f, -3595.618164f, 311.888153f, 4.791576f, 0, 256, 1417);
-		sEAS.WaypointCreate(creat,-5664.515625f, -3687.601563f, 317.954590f, 4.131842f, 0, 256, 1417);
-		sEAS.WaypointCreate(creat,-5705.745117f, -3755.254150f, 321.452118f, 4.457779f, 0, 256, 1417);
-		sEAS.WaypointCreate(creat,-5711.766113f, -3778.145752f, 322.827942f, 4.473486f, 0, 256, 1417);
+		EAS::CreateCustomWaypointMap(creat);
+		EAS::WaypointCreate(creat,-5753.780762f, -3433.290039f, 301.628387f, 4.834769f, 0, 256, 1417);
+		EAS::WaypointCreate(creat,-5744.062500f, -3476.653564f, 302.269287f, 5.580896f, 0, 256, 1417);
+		EAS::WaypointCreate(creat,-5674.703125f, -3543.583984f, 303.273682f, 4.775867f, 0, 256, 1417);
+		EAS::WaypointCreate(creat,-5670.187500f, -3595.618164f, 311.888153f, 4.791576f, 0, 256, 1417);
+		EAS::WaypointCreate(creat,-5664.515625f, -3687.601563f, 317.954590f, 4.131842f, 0, 256, 1417);
+		EAS::WaypointCreate(creat,-5705.745117f, -3755.254150f, 321.452118f, 4.457779f, 0, 256, 1417);
+		EAS::WaypointCreate(creat,-5711.766113f, -3778.145752f, 322.827942f, 4.473486f, 0, 256, 1417);
 	}
 };
 
@@ -64,7 +64,7 @@ public:
 		{
 			_unit->SendChatMessage(CHAT_MSG_MONSTER_SAY, LANG_UNIVERSAL, "Thanks, I'm outta here!");
 			_unit->Despawn(5000,1000);
-			sEAS.DeleteWaypoints(_unit);
+			EAS::DeleteWaypoints(_unit);
 			if(_unit->m_escorter == NULL)
 				return;
 			Player* plr = _unit->m_escorter;

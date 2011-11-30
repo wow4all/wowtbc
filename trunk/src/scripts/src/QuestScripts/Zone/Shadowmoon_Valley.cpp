@@ -122,7 +122,7 @@ bool ToLegionHold(uint32 i, Aura* pAura, bool apply)
 
 		pPlayer->SetDisplayId(20366 );
 		pPlayer->Root();
-		Creature* pJovaan = sEAS.SpawnCreature( pPlayer, 21633, -3310.743896f, 2951.929199f, 171.132538f, 5.054039f, 0 );	// Spawn Jovaan
+		Creature* pJovaan = EAS::SpawnCreature( pPlayer, 21633, -3310.743896f, 2951.929199f, 171.132538f, 5.054039f, 0 );	// Spawn Jovaan
 		if ( pJovaan != NULL )
 		{
 			pJovaan->SetUInt64Value( UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_2 );

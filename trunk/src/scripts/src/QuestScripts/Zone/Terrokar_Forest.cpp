@@ -64,11 +64,11 @@ public:
 	if(!plr->GetQuestLogForEntry(10896))
 	  return;
 	
-	sEAS.SpawnCreature(plr, 22419, _unit->GetPositionX()+RandomFloat(3.0f), _unit->GetPositionY()+RandomFloat(3.0f), _unit->GetPositionZ(), RandomFloat(1.0f), 60*200);
-	sEAS.SpawnCreature(plr, 22419, _unit->GetPositionX()+RandomFloat(3.0f), _unit->GetPositionY()+RandomFloat(3.0f), _unit->GetPositionZ(), RandomFloat(1.0f), 60*200);
-	sEAS.SpawnCreature(plr, 22419, _unit->GetPositionX()+RandomFloat(3.0f), _unit->GetPositionY()+RandomFloat(3.0f), _unit->GetPositionZ(), RandomFloat(1.0f), 60*200);
-	sEAS.SpawnCreature(plr, 22419, _unit->GetPositionX()+RandomFloat(3.0f), _unit->GetPositionY()+RandomFloat(3.0f), _unit->GetPositionZ(), RandomFloat(1.0f), 60*200);
-	sEAS.SpawnCreature(plr, 22419, _unit->GetPositionX()+RandomFloat(3.0f), _unit->GetPositionY()+RandomFloat(3.0f), _unit->GetPositionZ(), RandomFloat(1.0f), 60*200);
+	EAS::SpawnCreature(plr, 22419, _unit->GetPositionX()+RandomFloat(3.0f), _unit->GetPositionY()+RandomFloat(3.0f), _unit->GetPositionZ(), RandomFloat(1.0f), 60*200);
+	EAS::SpawnCreature(plr, 22419, _unit->GetPositionX()+RandomFloat(3.0f), _unit->GetPositionY()+RandomFloat(3.0f), _unit->GetPositionZ(), RandomFloat(1.0f), 60*200);
+	EAS::SpawnCreature(plr, 22419, _unit->GetPositionX()+RandomFloat(3.0f), _unit->GetPositionY()+RandomFloat(3.0f), _unit->GetPositionZ(), RandomFloat(1.0f), 60*200);
+	EAS::SpawnCreature(plr, 22419, _unit->GetPositionX()+RandomFloat(3.0f), _unit->GetPositionY()+RandomFloat(3.0f), _unit->GetPositionZ(), RandomFloat(1.0f), 60*200);
+	EAS::SpawnCreature(plr, 22419, _unit->GetPositionX()+RandomFloat(3.0f), _unit->GetPositionY()+RandomFloat(3.0f), _unit->GetPositionZ(), RandomFloat(1.0f), 60*200);
   }
 };
 
@@ -119,7 +119,7 @@ public:
 			break;
 		}
 
-		Creature *creat = sEAS.SpawnCreature(plr, spawn, _unit->GetPositionX(), _unit->GetPositionY(), _unit->GetPositionZ(), 1*60*1000);
+		Creature *creat = EAS::SpawnCreature(plr, spawn, _unit->GetPositionX(), _unit->GetPositionY(), _unit->GetPositionZ(), 1*60*1000);
 
 		if(spawn != 22459)
 			return;
@@ -169,7 +169,7 @@ bool Fumping(uint32 i, Aura* pAura, bool apply)
       break;
   }
 
-  Creature *creat = sEAS.SpawnCreature(plr, entry, plr->GetPositionX(), plr->GetPositionY(), plr->GetPositionZ(), 5*60*1000);
+  Creature *creat = EAS::SpawnCreature(plr, entry, plr->GetPositionX(), plr->GetPositionY(), plr->GetPositionZ(), 5*60*1000);
   
   if(entry == 22483) //Sand Gnomes ;)
     creat->SendChatMessage(CHAT_MSG_MONSTER_SAY, LANG_UNIVERSAL, "YIEEEEEEEAA!");
@@ -210,7 +210,7 @@ bool TheBigBoneWorm(uint32 i, Aura* pAura, bool apply)
 		break;
 	}
 
-	Creature *creat = sEAS.SpawnCreature(plr, entry, plr->GetPositionX(), plr->GetPositionY(), plr->GetPositionZ(), 5*60*1000);
+	Creature *creat = EAS::SpawnCreature(plr, entry, plr->GetPositionX(), plr->GetPositionY(), plr->GetPositionZ(), 5*60*1000);
 
 	if(entry == 22483) //Sand Gnomes ;)
 		creat->SendChatMessage(CHAT_MSG_MONSTER_SAY, LANG_UNIVERSAL, "YIEEEEEEEAA!");
@@ -264,8 +264,8 @@ bool ShatariTorch(uint32 i, Spell* pSpell)
     qle->SetMobCount(0, qle->GetMobCount(0)+1);
     qle->SendUpdateAddKill(0);
 
-    obj = sEAS.SpawnGameobject(plr, 183816, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 1);
-    sEAS.GameobjectDelete(obj, 1*60*1000);
+    obj = EAS::SpawnGameobject(plr, 183816, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 1);
+    EAS::GameobjectDelete(obj, 1*60*1000);
   } 
   else if(target->GetEntry() == 21846)
   {
@@ -275,8 +275,8 @@ bool ShatariTorch(uint32 i, Spell* pSpell)
     qle->SetMobCount(1, qle->GetMobCount(1)+1);
     qle->SendUpdateAddKill(1);
 
-    obj = sEAS.SpawnGameobject(plr, 183816, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 1);
-    sEAS.GameobjectDelete(obj, 1*60*1000);
+    obj = EAS::SpawnGameobject(plr, 183816, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 1);
+    EAS::GameobjectDelete(obj, 1*60*1000);
   }
   else 
     return true; 
@@ -357,7 +357,7 @@ bool EvilDrawsNear(uint32 i, Spell * pSpell)
 
   uint32 entry = 22441;
 
-  Creature *creat = sEAS.SpawnCreature(plr, entry, plr->GetPositionX(), plr->GetPositionY(), plr->GetPositionZ(), 5*60*1000);
+  Creature *creat = EAS::SpawnCreature(plr, entry, plr->GetPositionX(), plr->GetPositionY(), plr->GetPositionZ(), 5*60*1000);
 
   return true;
 }

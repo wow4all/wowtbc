@@ -208,6 +208,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Base\Base.cpp" />
+    <ClCompile Include="..\src\Base\EAS\EasyFunctions.cpp" />
     <ClCompile Include="..\src\GossipScripts\Gossip_Battlemaster.cpp" />
     <ClCompile Include="..\src\GossipScripts\Gossip_DarkmoonFaire.cpp" />
     <ClCompile Include="..\src\GossipScripts\Gossip_Guard.cpp" />

@@ -239,7 +239,7 @@ public:
 		if(qle == NULL)
 			return;
 
-		Creature *naga = sEAS.SpawnCreature(pPlayer, 16292, 7938, -7632, 114, 3.05, 0);
+		Creature *naga = EAS::SpawnCreature(pPlayer, 16292, 7938, -7632, 114, 3.05, 0);
 		naga->Despawn(6*60*1000, 0);
 	}
 };

@@ -583,7 +583,7 @@ public:
 		if(bird)
 			return;
 
-		bird = sEAS.SpawnCreature(pPlayer, 19055, pPlayer->GetPositionX(), pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
+		bird = EAS::SpawnCreature(pPlayer, 19055, pPlayer->GetPositionX(), pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
 		bird->Despawn(5*60*1000, 0);
 		return;
 	}
@@ -660,8 +660,8 @@ public:
 		if(!pPlayer)
 			return;
 
-		GameObject *barel = sEAS.SpawnGameobject(pPlayer, 177491, pPlayer->GetPositionX(), pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 1);
-		sEAS.GameobjectDelete(barel, 2*60*1000);
+		GameObject *barel = EAS::SpawnGameobject(pPlayer, 177491, pPlayer->GetPositionX(), pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 1);
+		EAS::GameobjectDelete(barel, 2*60*1000);
 	}
 };
 
@@ -682,7 +682,7 @@ public:
 		if(qle == NULL)
 			  return;
 
-		Creature *naga = sEAS.SpawnCreature(pPlayer, 12369, 246.741, 2953.3, 5.8631, 1.078, 0);
+		Creature *naga = EAS::SpawnCreature(pPlayer, 12369, 246.741, 2953.3, 5.8631, 1.078, 0);
 		naga->Despawn(6*60*1000, 0);
 		return;
 	}
@@ -705,23 +705,23 @@ public:
 		if(qle == NULL)
 			return;
 
-		Creature *pirate1 = sEAS.SpawnCreature(pPlayer, 7899, pPlayer->GetPositionX()+RandomFloat(5.0f), pPlayer->GetPositionY()+RandomFloat(5.0f), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
+		Creature *pirate1 = EAS::SpawnCreature(pPlayer, 7899, pPlayer->GetPositionX()+RandomFloat(5.0f), pPlayer->GetPositionY()+RandomFloat(5.0f), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
 		pirate1->Despawn(6*60*1000, 0);
 
-		Creature *pirate2 = sEAS.SpawnCreature(pPlayer, 7899, pPlayer->GetPositionX()-RandomFloat(5.0f), pPlayer->GetPositionY()+RandomFloat(5.0f), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
+		Creature *pirate2 = EAS::SpawnCreature(pPlayer, 7899, pPlayer->GetPositionX()-RandomFloat(5.0f), pPlayer->GetPositionY()+RandomFloat(5.0f), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
 		pirate2->Despawn(6*60*1000, 0);
 
-		Creature *pirate3 = sEAS.SpawnCreature(pPlayer, 7901, pPlayer->GetPositionX()+RandomFloat(5.0f), pPlayer->GetPositionY()-RandomFloat(5.0f), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
+		Creature *pirate3 = EAS::SpawnCreature(pPlayer, 7901, pPlayer->GetPositionX()+RandomFloat(5.0f), pPlayer->GetPositionY()-RandomFloat(5.0f), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
 		pirate3->Despawn(6*60*1000, 0);
 
-		Creature *pirate4 = sEAS.SpawnCreature(pPlayer, 7901, pPlayer->GetPositionX()+RandomFloat(5.0f), pPlayer->GetPositionY()+RandomFloat(5.0f), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
+		Creature *pirate4 = EAS::SpawnCreature(pPlayer, 7901, pPlayer->GetPositionX()+RandomFloat(5.0f), pPlayer->GetPositionY()+RandomFloat(5.0f), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
 		pirate4->Despawn(6*60*1000, 0);
 
-		Creature *pirate5 = sEAS.SpawnCreature(pPlayer, 7902, pPlayer->GetPositionX()-RandomFloat(5.0f), pPlayer->GetPositionY()-RandomFloat(5.0f), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
+		Creature *pirate5 = EAS::SpawnCreature(pPlayer, 7902, pPlayer->GetPositionX()-RandomFloat(5.0f), pPlayer->GetPositionY()-RandomFloat(5.0f), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
 		pirate5->Despawn(6*60*1000, 0);
 
-		GameObject *gobj = sEAS.SpawnGameobject(pPlayer, 142194, pPlayer->GetPositionX()+5, pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 1);
-		sEAS.GameobjectDelete(gobj, 10*60*1000);
+		GameObject *gobj = EAS::SpawnGameobject(pPlayer, 142194, pPlayer->GetPositionX()+5, pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 1);
+		EAS::GameobjectDelete(gobj, 10*60*1000);
 	}
 };
 
@@ -746,7 +746,7 @@ public:
 		if(shaghost)
 			return;
 
-		Creature *shaghostspawn = sEAS.SpawnCreature(pPlayer, 9136, pPlayer->GetPositionX(), pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
+		Creature *shaghostspawn = EAS::SpawnCreature(pPlayer, 9136, pPlayer->GetPositionX(), pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
 		shaghostspawn->Despawn(2*60*1000, 0);
 	}
 };
@@ -768,7 +768,7 @@ public:
 		if(qle == NULL)
 			return;
 
-		Creature *demon = sEAS.SpawnCreature(pPlayer, 11876, -348.231, 1763.85, 138.371, 4.42728, 0);
+		Creature *demon = EAS::SpawnCreature(pPlayer, 11876, -348.231, 1763.85, 138.371, 4.42728, 0);
 		demon->Despawn(6*60*1000, 0);
 			return;
 	}
@@ -851,7 +851,7 @@ public:
 		if(qle == NULL)
 			return;
 
-		Creature *razormaw = sEAS.SpawnCreature(pPlayer, 17592, -1203.8, -12424.7, 95.36, 4.7, 0);
+		Creature *razormaw = EAS::SpawnCreature(pPlayer, 17592, -1203.8, -12424.7, 95.36, 4.7, 0);
 		razormaw->Despawn(6*60*1000, 0);
 	}
 };
@@ -874,7 +874,7 @@ public:
 			return;
 
 		if(pPlayer->GetItemInterface()->GetItemCount(11470, 0) < 1)
-			sEAS.AddItem(11470, pPlayer);
+			EAS::AddItem(11470, pPlayer);
 	}
 };
 
@@ -906,7 +906,7 @@ public:
 				return;
 		}
 
-		Creature *grenkaspawn = sEAS.SpawnCreature(pPlayer, 4490, pPlayer->GetPositionX(), pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
+		Creature *grenkaspawn = EAS::SpawnCreature(pPlayer, 4490, pPlayer->GetPositionX(), pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
 		grenkaspawn->Despawn(6*60*1000, 0);
 	}
 };
@@ -928,7 +928,7 @@ public:
 		if(qle == NULL)
 			return;
 
-		Creature *exarch = sEAS.SpawnCreature(pPlayer, 22452, -3365.9, 5143.19, -9.00132, 3.05, 0);
+		Creature *exarch = EAS::SpawnCreature(pPlayer, 22452, -3365.9, 5143.19, -9.00132, 3.05, 0);
 		exarch->Despawn(6*60*1000, 0);
 	}
 };
@@ -976,7 +976,7 @@ public:
 		if(qle == NULL)
 			return;
 
-		Creature *xandivious = sEAS.SpawnCreature(pPlayer, 15623, pPlayer->GetPositionX()+5, pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
+		Creature *xandivious = EAS::SpawnCreature(pPlayer, 15623, pPlayer->GetPositionX()+5, pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0);
 		xandivious->Despawn(6*60*1000, 0);
 	}
 };
@@ -1003,7 +1003,7 @@ public:
 
 		gobj->Despawn(6*60*1000);
 
-		Creature *spike = sEAS.SpawnCreature(pPlayer, 21319, 1315.54, 6688.33, -18, 0.001, 0);
+		Creature *spike = EAS::SpawnCreature(pPlayer, 21319, 1315.54, 6688.33, -18, 0.001, 0);
 		spike->Despawn(5*60*1000, 0);
 	}
 };
@@ -1060,7 +1060,7 @@ public:
 				qle->UpdatePlayerFields();
 			}
 		}
-		sEAS.GameobjectDelete(_gameobject, 30*1000);
+		EAS::GameobjectDelete(_gameobject, 30*1000);
 
 	}
 };
