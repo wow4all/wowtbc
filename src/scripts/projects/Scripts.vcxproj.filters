@@ -332,6 +332,9 @@
     <ClCompile Include="..\src\InstanceScripts\kil_jaeden.cpp">
       <Filter>InstanceScripts</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Base\EAS\EasyFunctions.cpp">
+      <Filter>Base\EAS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\InstanceScripts\Event_DarkPortal.h">

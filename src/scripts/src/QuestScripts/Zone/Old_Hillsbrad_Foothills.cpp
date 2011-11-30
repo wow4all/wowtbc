@@ -63,8 +63,8 @@ public:
 
 			for(uint8 i = 0; i < 21; i++)
 			{
-				obj = sEAS.SpawnGameobject(pPlayer, GO_FIRE, Fires[i].x, Fires[i].y, Fires[i].z, Fires[i].o, 1);
-				sEAS.GameobjectDelete(obj, 10*60*1000);
+				obj = EAS::SpawnGameobject(pPlayer, GO_FIRE, Fires[i].x, Fires[i].y, Fires[i].z, Fires[i].o, 1);
+				EAS::GameobjectDelete(obj, 10*60*1000);
 			}
 
 			numBarrel = 0;

@@ -39,10 +39,10 @@ bool CenarionMoondust(uint32 i, Spell* pSpell) // Body And Heart (Alliance)
 	  return true;
   }
 
-  lunaclaw = sEAS.SpawnCreature(p_caster, 12138, pos[0], pos[1], pos[2], pos[3], 0);
+  lunaclaw = EAS::SpawnCreature(p_caster, 12138, pos[0], pos[1], pos[2], pos[3], 0);
   lunaclaw->GetAIInterface()->SetNextTarget(p_caster);
 
-  sEAS.MoveToPlayer(p_caster, lunaclaw);
+  EAS::MoveToPlayer(p_caster, lunaclaw);
 
   return true;
 }
@@ -61,10 +61,10 @@ bool CenarionLunardust(uint32 i, Spell* pSpell) // Body And Heart (Horde)
 	  return true;
   }
 
-  lunaclaw = sEAS.SpawnCreature(p_caster, 12138, pos[0], pos[1], pos[2], pos[3], 0);
+  lunaclaw = EAS::SpawnCreature(p_caster, 12138, pos[0], pos[1], pos[2], pos[3], 0);
   lunaclaw->GetAIInterface()->SetNextTarget(p_caster);
 
-  sEAS.MoveToPlayer(p_caster, lunaclaw);
+  EAS::MoveToPlayer(p_caster, lunaclaw);
 
   return true;
 }
@@ -86,7 +86,7 @@ public:
 
 			if(plr == NULL || plr->GetMapMgr() == NULL || plr->GetMapMgr()->GetInterface() == NULL)
 				return;
-	sEAS.SpawnCreature(plr, 12144, _unit->GetPositionX(), _unit->GetPositionY(), _unit->GetPositionZ(), 0, 1*60*1000);
+	EAS::SpawnCreature(plr, 12144, _unit->GetPositionX(), _unit->GetPositionY(), _unit->GetPositionZ(), 0, 1*60*1000);
   }
 };
 
@@ -342,9 +342,9 @@ bool CurativeAnimalSalve(uint32 i, Spell* pSpell) // Curing the Sick
 		target->Despawn(0, 3*60*1000);
 
 		if(entry == 12298) // Sickly Deer
-			sEAS.SpawnCreature(caster, 12298, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 2*60*1000); // Cured Deer
+			EAS::SpawnCreature(caster, 12298, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 2*60*1000); // Cured Deer
 		else // Sickly Gazelle
-			sEAS.SpawnCreature(caster, 12297, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 2*60*1000); // Cured Gazelle
+			EAS::SpawnCreature(caster, 12297, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 2*60*1000); // Cured Gazelle
 
 		qle->SetMobCount(0, qle->GetMobCount(0)+1);
 		qle->SendUpdateAddKill(0);

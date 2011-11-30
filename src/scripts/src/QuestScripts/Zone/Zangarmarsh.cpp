@@ -142,7 +142,7 @@ public:
 		case 3:
 			if(!Plr->GetItemInterface()->GetItemCount(24573, true))
 			{
-				sEAS.AddItem(24573, Plr);
+				EAS::AddItem(24573, Plr);
 				if(Plr->GetItemInterface()->GetItemCount(24573, true))
 					SendQuickMenu(9231);
 			}

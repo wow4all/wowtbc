@@ -149,10 +149,10 @@ public:
 					pQuest->SendUpdateAddKill( 0 );
 					pQuest->UpdatePlayerFields();
 
-					GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -819.77f, 2029.09f, 55.6082f, 0, 4 );
+					GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -819.77f, 2029.09f, 55.6082f, 0, 4 );
      				if ( pGameobject != NULL )
 					{
-						sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+						EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 					}
 
 					return;
@@ -169,10 +169,10 @@ public:
 					pQuest->SendUpdateAddKill( 1 );
 					pQuest->UpdatePlayerFields();
 	
-					GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -1150.53f, 2109.92f, 84.4204f, 0, 4 );
+					GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -1150.53f, 2109.92f, 84.4204f, 0, 4 );
 	     			if ( pGameobject != NULL )
 					{
-						sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+						EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 					}
 
 					return;
@@ -189,10 +189,10 @@ public:
 					pQuest->SendUpdateAddKill( 2 );
 					pQuest->UpdatePlayerFields();
 	
-					GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -893.499f, 1919.27f, 81.6449f, 0, 4 );
+					GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -893.499f, 1919.27f, 81.6449f, 0, 4 );
 	     			if ( pGameobject != NULL )
 					{
-						sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+						EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 					}
 	
 					return;
@@ -209,10 +209,10 @@ public:
 					pQuest->SendUpdateAddKill( 3 );
 					pQuest->UpdatePlayerFields();
 	
-					GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -977.713f, 1879.500f, 110.892f, 0, 4 );
+					GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -977.713f, 1879.500f, 110.892f, 0, 4 );
 	     			if ( pGameobject != NULL )
 					{
-						sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+						EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 					}
 	
 					return;
@@ -254,40 +254,40 @@ bool ZethGorMustBurnHorde(uint32 i, Spell* pSpell)
 				pQuest->UpdatePlayerFields();
 	
 				GameObject *pGameobject = NULL;
-				pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -1129.08f, 1921.77f, 94.0074f, 0, 4 );
+				pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -1129.08f, 1921.77f, 94.0074f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
-	     		pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -1135.00f, 1944.05f, 84.7084f, 0, 4 );
+	     		pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -1135.00f, 1944.05f, 84.7084f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
-	     		pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -1152.01f, 1945.00f, 102.901f, 0, 4 );
+	     		pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -1152.01f, 1945.00f, 102.901f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
-	     		pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -1159.60f, 1958.76f, 83.0412f, 0, 4 );
+	     		pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -1159.60f, 1958.76f, 83.0412f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
-	     		pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -1126.17f, 1880.96f, 95.065f, 0, 4 );
+	     		pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -1126.17f, 1880.96f, 95.065f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
-	     		pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -1185.79f, 1968.29f, 90.931f, 0, 4 );
+	     		pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -1185.79f, 1968.29f, 90.931f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
 				return true;
@@ -304,10 +304,10 @@ bool ZethGorMustBurnHorde(uint32 i, Spell* pSpell)
 				pQuest->SendUpdateAddKill( 1 );
 				pQuest->UpdatePlayerFields();
 	
-				GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -938.034f, 1924.153f, 73.590f, 0, 4 );
+				GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -938.034f, 1924.153f, 73.590f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
 				return true;
@@ -324,10 +324,10 @@ bool ZethGorMustBurnHorde(uint32 i, Spell* pSpell)
 				pQuest->SendUpdateAddKill( 2 );
 				pQuest->UpdatePlayerFields();
 	
-				GameObject * pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -1152.10f, 2066.20f, 72.959f, 0, 4 );
+				GameObject * pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -1152.10f, 2066.20f, 72.959f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
 				return true;
@@ -344,10 +344,10 @@ bool ZethGorMustBurnHorde(uint32 i, Spell* pSpell)
 				pQuest->SendUpdateAddKill( 3 );
 				pQuest->UpdatePlayerFields();
 	
-				GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -1058.85f, 2010.95f, 68.776f, 0, 4 );
+				GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -1058.85f, 2010.95f, 68.776f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
 				return true;
@@ -384,10 +384,10 @@ bool LayingWasteToTheUnwantedAlliance(uint32 i, Spell* pSpell)
 				pQuest->SendUpdateAddKill( 0 );
 				pQuest->UpdatePlayerFields();
 	
-				GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -157.916f, 2517.71f, 58.5508f, 0, 4 );
+				GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -157.916f, 2517.71f, 58.5508f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
 				return true;
@@ -404,10 +404,10 @@ bool LayingWasteToTheUnwantedAlliance(uint32 i, Spell* pSpell)
 				pQuest->SendUpdateAddKill( 1 );
 				pQuest->UpdatePlayerFields();
 	
-				GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -152.527f, 2661.99f, 60.8123f, 0, 4 );
+				GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -152.527f, 2661.99f, 60.8123f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
 				return true;
@@ -424,10 +424,10 @@ bool LayingWasteToTheUnwantedAlliance(uint32 i, Spell* pSpell)
 				pQuest->SendUpdateAddKill( 2 );
 				pQuest->UpdatePlayerFields();
 	
-				GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -177.916f, 2773.75f, 48.636f, 0, 4 );
+				GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -177.916f, 2773.75f, 48.636f, 0, 4 );
 				if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
 				return true;
@@ -444,10 +444,10 @@ bool LayingWasteToTheUnwantedAlliance(uint32 i, Spell* pSpell)
 				pQuest->SendUpdateAddKill( 3 );
 				pQuest->UpdatePlayerFields();
 	
-				GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -166.0f, 2818.0f, 29.0f, 0, 4 );
+				GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -166.0f, 2818.0f, 29.0f, 0, 4 );
 	     		if ( pGameobject != NULL )
 				{
-	     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+	     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 				}
 
 				return true;
@@ -486,10 +486,10 @@ bool BurnItUp(uint32 i, Spell* pSpell)
 			pQuest->SendUpdateAddKill( 0 );
 			pQuest->UpdatePlayerFields();
 			
-			GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, -300.0f, 2407.0f, 50.0f, 0, 4 );
+			GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, -300.0f, 2407.0f, 50.0f, 0, 4 );
 			if ( pGameobject != NULL )
 			{
-     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 			}
 
 			return true;
@@ -505,10 +505,10 @@ bool BurnItUp(uint32 i, Spell* pSpell)
 			pQuest->SendUpdateAddKill( 1 );
 			pQuest->UpdatePlayerFields();
 			
-			GameObject *pGameobject = sEAS.SpawnGameobject(pPlayer, 183816, -350.0f, 2708.0f, 35.0f, 0, 4);
+			GameObject *pGameobject = EAS::SpawnGameobject(pPlayer, 183816, -350.0f, 2708.0f, 35.0f, 0, 4);
 			if ( pGameobject != NULL )
 			{
-     			sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+     			EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 			}
 
 			return true;
@@ -534,7 +534,7 @@ bool CleansingtheWater(uint32 i, Spell* pSpell)
 	if ( pQuest == NULL )
 		return true;
 
-	Creature *pAggonis = sEAS.SpawnCreature( pPlayer, 17000, 428.15f, 3461.73f, 63.40f, 0, 0 );
+	Creature *pAggonis = EAS::SpawnCreature( pPlayer, 17000, 428.15f, 3461.73f, 63.40f, 0, 0 );
 	if ( pAggonis != NULL )
 	{
 		pAggonis->Despawn( 6 * 60 * 1000, 0 );
@@ -810,7 +810,7 @@ bool FuryOfTheDreghoodElders(uint32 i, Spell* pSpell)
 
 	//pPlayer->BroadcastMessage("blaah");	// Really blizzlike?
 	static_cast< Creature* >( pUnit )->Despawn( 0, 3 * 60 * 1000 );
-	sEAS.SpawnCreature( pPlayer, 20680, pUnit->GetPositionX(), pUnit->GetPositionY(), pUnit->GetPositionZ(), pUnit->GetOrientation(), 5 * 60 * 1000 );
+	EAS::SpawnCreature( pPlayer, 20680, pUnit->GetPositionX(), pUnit->GetPositionY(), pUnit->GetPositionZ(), pUnit->GetOrientation(), 5 * 60 * 1000 );
 
 	return true;
 }
@@ -830,7 +830,7 @@ bool ASpiritGuide(uint32 i, Spell* pSpell)
   	if ( pQuest == NULL )
     	return true;
   
-  	Creature *pSpiritWolf = sEAS.SpawnCreature( pPlayer, 17077, pPlayer->GetPositionX(), pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0 );
+  	Creature *pSpiritWolf = EAS::SpawnCreature( pPlayer, 17077, pPlayer->GetPositionX(), pPlayer->GetPositionY(), pPlayer->GetPositionZ(), pPlayer->GetOrientation(), 0 );
   	if ( pSpiritWolf == NULL )
 		return true;
 
@@ -880,10 +880,10 @@ bool AnAmbitiousPlan(uint32 i, Spell* pSpell)
 	pTarget->GetAIInterface()->SetAIState( STATE_IDLE );
 	pTarget->Despawn( 0, 0 );
 
-	GameObject *pGameobject = sEAS.SpawnGameobject( pPlayer, 183816, SSx, SSy, SSz, 0, 1 );
+	GameObject *pGameobject = EAS::SpawnGameobject( pPlayer, 183816, SSx, SSy, SSz, 0, 1 );
 	if ( pGameobject != NULL )
 	{
-		sEAS.GameobjectDelete( pGameobject, 1 * 60 * 1000 );
+		EAS::GameobjectDelete( pGameobject, 1 * 60 * 1000 );
 		pPlayer->UpdateNearbyGameObjects();
 	}
 

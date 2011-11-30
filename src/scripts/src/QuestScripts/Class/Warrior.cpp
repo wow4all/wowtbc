@@ -72,7 +72,7 @@ public:
 						return;
 				}
 
-				whirlwind = sEAS.SpawnCreature(plr, 6239, plr->GetPositionX()+7, plr->GetPositionY()+7, plr->GetPositionZ(), plr->GetOrientation(), 0);
+				whirlwind = EAS::SpawnCreature(plr, 6239, plr->GetPositionX()+7, plr->GetPositionY()+7, plr->GetPositionZ(), plr->GetOrientation(), 0);
 				whirlwind->Despawn(5*60*1000, 0);
 			}break;
 		}

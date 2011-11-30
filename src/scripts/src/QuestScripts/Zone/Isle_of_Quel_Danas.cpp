@@ -126,7 +126,7 @@ bool OrbOfMurlocControl(uint32 i, Spell* pSpell)
 		uint32 newcount = qle->GetMobCount(0) + 1;
 		qle->SetMobCount(0, newcount);
 		qle->SendUpdateAddKill(0);		
-		Creature *FreedGreengill = sEAS.SpawnCreature(plr, 25085, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 0);
+		Creature *FreedGreengill = EAS::SpawnCreature(plr, 25085, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 0);
 		FreedGreengill->Despawn(6*60*1000, 0);
 		target->Despawn(0, 6*60*1000);
 		qle->UpdatePlayerFields();
@@ -198,8 +198,8 @@ bool ShipBombing(uint32 i, Spell* pSpell)
 				qle->UpdatePlayerFields();
 				for(uint8 i = 0; i < 2; i++)
 				{
-					obj = sEAS.SpawnGameobject(plr, GO_FIRE, SinlorenFire[i].x, SinlorenFire[i].y, SinlorenFire[i].z, SinlorenFire[i].o, 1);
-					sEAS.GameobjectDelete(obj, 2*60*1000);
+					obj = EAS::SpawnGameobject(plr, GO_FIRE, SinlorenFire[i].x, SinlorenFire[i].y, SinlorenFire[i].z, SinlorenFire[i].o, 1);
+					EAS::GameobjectDelete(obj, 2*60*1000);
 				}
 			}
 		}
@@ -215,8 +215,8 @@ bool ShipBombing(uint32 i, Spell* pSpell)
 				qle->UpdatePlayerFields();
 				for(uint8 i = 0; i < 2; i++)
 				{
-					obj = sEAS.SpawnGameobject(plr, GO_FIRE, BloodoathFire[i].x, BloodoathFire[i].y, BloodoathFire[i].z, BloodoathFire[i].o, 1);
-					sEAS.GameobjectDelete(obj, 2*60*1000);
+					obj = EAS::SpawnGameobject(plr, GO_FIRE, BloodoathFire[i].x, BloodoathFire[i].y, BloodoathFire[i].z, BloodoathFire[i].o, 1);
+					EAS::GameobjectDelete(obj, 2*60*1000);
 				}
 			}
 		}
@@ -232,8 +232,8 @@ bool ShipBombing(uint32 i, Spell* pSpell)
 				qle->UpdatePlayerFields();
 				for(uint8 i = 0; i < 2; i++)
 				{
-					obj = sEAS.SpawnGameobject(plr, GO_FIRE, DawnchaserFire[i].x, DawnchaserFire[i].y, DawnchaserFire[i].z, DawnchaserFire[i].o, 1);
-					sEAS.GameobjectDelete(obj, 2*60*1000);
+					obj = EAS::SpawnGameobject(plr, GO_FIRE, DawnchaserFire[i].x, DawnchaserFire[i].y, DawnchaserFire[i].z, DawnchaserFire[i].o, 1);
+					EAS::GameobjectDelete(obj, 2*60*1000);
 				}
 			}
 		}

@@ -99,7 +99,7 @@ public:
     uint8 num = RandomUInt(5);
     for(int i=0; i<num; i++)
     {
-      Creature *cr = sEAS.SpawnCreature(p_caster, 16479, _unit->GetPositionX(), _unit->GetPositionY(), _unit->GetPositionZ(), 0, 1*60*1000);
+      Creature *cr = EAS::SpawnCreature(p_caster, 16479, _unit->GetPositionX(), _unit->GetPositionY(), _unit->GetPositionZ(), 0, 1*60*1000);
       SetWander(cr, p_caster);
     }
   }

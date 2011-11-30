@@ -90,8 +90,8 @@ public:
 			say+="!";
 			Dashel->SendChatMessage(CHAT_MSG_MONSTER_SAY, LANG_UNIVERSAL, say.c_str());
 		}
-		Creature *Thug1 = sEAS.SpawnCreature(mTarget, 4969, -8686.803711, 445.267792, 99.789223, 5.461184, 300000);
-		Creature *Thug2 = sEAS.SpawnCreature(mTarget, 4969, -8675.571289, 444.162262, 99.644737, 3.834103, 300000);
+		Creature *Thug1 = EAS::SpawnCreature(mTarget, 4969, -8686.803711, 445.267792, 99.789223, 5.461184, 300000);
+		Creature *Thug2 = EAS::SpawnCreature(mTarget, 4969, -8675.571289, 444.162262, 99.644737, 3.834103, 300000);
 	}
 };
 

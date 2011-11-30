@@ -39,11 +39,11 @@ public:
 	{
 		if(Plr == NULL || Plr->GetMapMgr() == NULL || Plr->GetMapMgr()->GetInterface() == NULL)
 			return;
-	  sEAS.SpawnCreature(Plr, 17102, Plr->GetPositionX(), Plr->GetPositionY(), Plr->GetPositionZ(), Plr->GetOrientation(), 3*60*1000);
+	  EAS::SpawnCreature(Plr, 17102, Plr->GetPositionX(), Plr->GetPositionY(), Plr->GetPositionZ(), Plr->GetOrientation(), 3*60*1000);
 	  return;
 	}
 
-	sEAS.AddItem(23614, Plr);
+	EAS::AddItem(23614, Plr);
 
 	qle->SendUpdateAddKill(1);
 	qle->UpdatePlayerFields();
@@ -61,7 +61,7 @@ public:
 		if( !mTarget || !mTarget->GetMapMgr() || !mTarget->GetMapMgr()->GetInterface() )
 			return;
 
-		Akida = sEAS.SpawnCreature( mTarget, 17379, -4183.043457f, -12511.419922f, 44.361786f, 6.05629f, 0 );
+		Akida = EAS::SpawnCreature( mTarget, 17379, -4183.043457f, -12511.419922f, 44.361786f, 6.05629f, 0 );
 		if( !Akida )
 			return;
 
@@ -73,15 +73,15 @@ public:
 
 		Akida->CastSpell( Akida, 25035, true); // Apparition Effect
 
-		sEAS.CreateCustomWaypointMap( Akida );
-		sEAS.WaypointCreate( Akida, -4174.025879f, -12512.800781f, 44.361458f, 2.827430f, 0, 256, 16995 );
-		sEAS.WaypointCreate( Akida, -4078.135986f, -12535.500977f, 43.066765f, 5.949394f, 0, 256, 16995 );
-		sEAS.WaypointCreate( Akida, -4040.495361f, -12565.537109f, 43.698250f, 5.592041f, 0, 256, 16995 );
-		sEAS.WaypointCreate( Akida, -4009.526367f, -12598.929688f, 53.168480f, 5.434962f, 0, 256, 16995 );
-		sEAS.WaypointCreate( Akida, -3981.581543f, -12635.541602f, 63.896046f, 5.332861f, 0, 256, 16995 );
-		sEAS.WaypointCreate( Akida, -3953.170410f, -12680.391602f, 75.433006f, 5.218981f, 0, 256, 16995 );
-		sEAS.WaypointCreate( Akida, -3924.324951f, -12741.846680f, 95.187035f, 5.124734f, 0, 256, 16995 );
-		sEAS.WaypointCreate( Akida, -3920.791260f, -12746.218750f, 96.887978f, 3.271200f, 0, 256, 16995 );
+		EAS::CreateCustomWaypointMap( Akida );
+		EAS::WaypointCreate( Akida, -4174.025879f, -12512.800781f, 44.361458f, 2.827430f, 0, 256, 16995 );
+		EAS::WaypointCreate( Akida, -4078.135986f, -12535.500977f, 43.066765f, 5.949394f, 0, 256, 16995 );
+		EAS::WaypointCreate( Akida, -4040.495361f, -12565.537109f, 43.698250f, 5.592041f, 0, 256, 16995 );
+		EAS::WaypointCreate( Akida, -4009.526367f, -12598.929688f, 53.168480f, 5.434962f, 0, 256, 16995 );
+		EAS::WaypointCreate( Akida, -3981.581543f, -12635.541602f, 63.896046f, 5.332861f, 0, 256, 16995 );
+		EAS::WaypointCreate( Akida, -3953.170410f, -12680.391602f, 75.433006f, 5.218981f, 0, 256, 16995 );
+		EAS::WaypointCreate( Akida, -3924.324951f, -12741.846680f, 95.187035f, 5.124734f, 0, 256, 16995 );
+		EAS::WaypointCreate( Akida, -3920.791260f, -12746.218750f, 96.887978f, 3.271200f, 0, 256, 16995 );
 	}
 
 	void OnQuestComplete(Player *mTarget, QuestLogEntry *qLogEntry)
@@ -103,7 +103,7 @@ public:
 		if( !mTarget || !mTarget->GetMapMgr() || !mTarget->GetMapMgr()->GetInterface() )
 			return;
 
-		Coo = sEAS.SpawnCreature( mTarget, 17391, -3926.974365f, -12752.285156f, 97.672722f, 4.926801f, 0 );
+		Coo = EAS::SpawnCreature( mTarget, 17391, -3926.974365f, -12752.285156f, 97.672722f, 4.926801f, 0 );
 		if( !Coo )
 			return;
 
@@ -115,9 +115,9 @@ public:
 		Coo->SendChatMessage( CHAT_MSG_MONSTER_SAY, LANG_UNIVERSAL, "Follow me!" );
 		Coo->SetUInt32Value( UNIT_NPC_FLAGS, 0 );
 
-		sEAS.CreateCustomWaypointMap( Coo );
-		sEAS.WaypointCreate( Coo, -3926.076660f, -12755.158203f, 99.080429f, 5.031188f, 0, 256, 16993 );
-		sEAS.WaypointCreate( Coo, -3924.019043f, -12763.895508f, 101.547874f, 5.212689f, 0, 256, 16993 );
+		EAS::CreateCustomWaypointMap( Coo );
+		EAS::WaypointCreate( Coo, -3926.076660f, -12755.158203f, 99.080429f, 5.031188f, 0, 256, 16993 );
+		EAS::WaypointCreate( Coo, -3924.019043f, -12763.895508f, 101.547874f, 5.212689f, 0, 256, 16993 );
 
 		TimedEvent * time1 = TimedEvent::Allocate( this, new CallbackP1<TotemofTikti, Creature*>( this, &TotemofTikti::CooAI1, Coo ), 0, 6000, 1);
 		TimedEvent * time2 = TimedEvent::Allocate( this, new CallbackP1<TotemofTikti, Creature*>( this, &TotemofTikti::CooAI2, Coo ), 0, 8750, 1);
@@ -171,7 +171,7 @@ public:
 		if( !mTarget || !mTarget->GetMapMgr() || !mTarget->GetMapMgr()->GetInterface() )
 			return;
 
-		Tikti = sEAS.SpawnCreature( mTarget, 17392, -3875.430664f, -13125.011719f, 6.822148f, 2.020735f, 0 );
+		Tikti = EAS::SpawnCreature( mTarget, 17392, -3875.430664f, -13125.011719f, 6.822148f, 2.020735f, 0 );
 		if( !Tikti )
 			return;
 
@@ -183,9 +183,9 @@ public:
 		Tikti->SendChatMessage( CHAT_MSG_MONSTER_SAY, LANG_UNIVERSAL, "Follow me!" );
 		Tikti->SetUInt32Value( UNIT_NPC_FLAGS, 0 );
 
-		sEAS.CreateCustomWaypointMap( Tikti );
-		sEAS.WaypointCreate( Tikti, -3881.700928f, -13111.898438f, 5.814010f, 1.855801f, 0, 256, 16999 );
-		sEAS.WaypointCreate( Tikti, -3886.341553f, -13098.914063f, 3.964841f, 1.855801f, 0, 256, 16999 );
+		EAS::CreateCustomWaypointMap( Tikti );
+		EAS::WaypointCreate( Tikti, -3881.700928f, -13111.898438f, 5.814010f, 1.855801f, 0, 256, 16999 );
+		EAS::WaypointCreate( Tikti, -3886.341553f, -13098.914063f, 3.964841f, 1.855801f, 0, 256, 16999 );
 
 		TimedEvent * time1 = TimedEvent::Allocate( this, new CallbackP1<TotemofYor, Creature*>( this, &TotemofYor::TiktiAI1, Tikti ), 0, 15000, 1);
 		TimedEvent * time2 = TimedEvent::Allocate( this, new CallbackP1<TotemofYor, Creature*>( this, &TotemofYor::TiktiAI2, Tikti ), 0, 18000, 1);
@@ -233,7 +233,7 @@ public:
 		if( !mTarget || !mTarget->GetMapMgr() || !mTarget->GetMapMgr()->GetInterface() )
 			return;
 
-		Yor = sEAS.SpawnCreature( mTarget, 17393, -4634.246582f, -13071.686523f, -14.755350f, 1.569997f, 0 );
+		Yor = EAS::SpawnCreature( mTarget, 17393, -4634.246582f, -13071.686523f, -14.755350f, 1.569997f, 0 );
 		if( !Yor )
 			return;
 	
@@ -246,10 +246,10 @@ public:
 		snprintf((char*)msg, 256, "Come, %s . Let us leave the water together, purified.", mTarget->GetName() );
 		Yor->SendChatMessage( CHAT_MSG_MONSTER_SAY, LANG_UNIVERSAL, msg );
 
-		sEAS.CreateCustomWaypointMap( Yor );
-		sEAS.WaypointCreate( Yor, -4650.081055f, -13016.692383f, 1.776296f, 2.021601f, 0, 256, 16393 );
-		sEAS.WaypointCreate( Yor, -3886.341553f, -13098.914063f, 3.964841f, 1.855801f, 1000, 256, 16393 );
-		sEAS.WaypointCreate( Yor, -4677.421387f, -12983.874023f, 0.833827f, 2.335760f, 0, 256, 16393 ); // Should look player
+		EAS::CreateCustomWaypointMap( Yor );
+		EAS::WaypointCreate( Yor, -4650.081055f, -13016.692383f, 1.776296f, 2.021601f, 0, 256, 16393 );
+		EAS::WaypointCreate( Yor, -3886.341553f, -13098.914063f, 3.964841f, 1.855801f, 1000, 256, 16393 );
+		EAS::WaypointCreate( Yor, -4677.421387f, -12983.874023f, 0.833827f, 2.335760f, 0, 256, 16393 ); // Should look player
 
 		TimedEvent * time1 = TimedEvent::Allocate( this, new CallbackP1<TotemofVark, Creature*>( this, &TotemofVark::YorAI1, Yor ), 0, 15500, 1);
 		TimedEvent * time2 = TimedEvent::Allocate( this, new CallbackP1<TotemofVark, Creature*>( this, &TotemofVark::YorAI2, Yor ), 0, 26500, 1);

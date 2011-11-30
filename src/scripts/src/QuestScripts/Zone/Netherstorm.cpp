@@ -55,7 +55,7 @@ bool TheArchmageStaff(uint32 i, Spell * pSpell)
 	if(!qle)
 		return true;
 
-	sEAS.SpawnCreature(plr, 19493, plr->GetPositionX(), plr->GetPositionY(), plr->GetPositionZ(),0, 0);
+	EAS::SpawnCreature(plr, 19493, plr->GetPositionX(), plr->GetPositionY(), plr->GetPositionZ(),0, 0);
 	return true;
 }
 
@@ -99,8 +99,8 @@ bool TheFleshLies(uint32 i, Spell * pSpell)
 		qle->SetMobCount(0, qle->GetMobCount(0)+1);
 		qle->SendUpdateAddKill(0);
 		
-		obj = sEAS.SpawnGameobject(plr, 183816, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 1);
-		sEAS.GameobjectDelete(obj, 1*30*1000);
+		obj = EAS::SpawnGameobject(plr, 183816, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), target->GetOrientation(), 1);
+		EAS::GameobjectDelete(obj, 1*30*1000);
 	}
 	target->Despawn(2000, 60*1000);
 	plr->UpdateNearbyGameObjects();
