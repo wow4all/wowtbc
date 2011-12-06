@@ -147,7 +147,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>ws2_32.lib;libmysql.lib;libeay32.lib;dbghelp.lib;zlib.lib;pcre.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\extras\collision\collision_dll\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\user\Desktop\tbce\TbcE\extras\arcemu-windows-libraries</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
@@ -476,7 +476,7 @@
   <ItemGroup>
     <ResourceCompile Include="..\..\src\arcemu-world\resources.rc" />
   </ItemGroup>
- <ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\extras\arcemu-windows-libraries\Sources\VC100-pcre.vcxproj">
       <Project>{311f016d-f785-47ef-b032-5350397f16b6}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -497,4 +497,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-  </Project>
+</Project>

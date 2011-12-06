@@ -131,7 +131,7 @@
     <Link>
       <AdditionalDependencies>arcemu-world.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../../bin/release/script_bin/Scripts.dll</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\bin\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\user\Desktop\tbce\TbcE\extras\arcemu-windows-libraries</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>../../../bin/release/script_bin/Scripts.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
