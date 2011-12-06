@@ -188,7 +188,7 @@
     <Link>
       <AdditionalDependencies>ws2_32.lib;msvcrt.lib;libmysql_release_win32.lib;libeay32_win32.lib;dbghelp.lib;zlib_release_win32.lib;pcre_release_win32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)arcemu-logonserver.exe</OutputFile>
-      <AdditionalLibraryDirectories>..\..\extras\arcemu-windows-libraries\VC\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\user\Desktop\tbce\TbcE\extras\arcemu-windows-libraries</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)arcemu-logonserver.pdb</ProgramDatabaseFile>
@@ -289,8 +289,8 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\arcemu-logonserver\resources.rc" />
-	</ItemGroup>
-	<ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\extras\arcemu-windows-libraries\Sources\VC100-pcre.vcxproj">
       <Project>{311f016d-f785-47ef-b032-5350397f16b6}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
