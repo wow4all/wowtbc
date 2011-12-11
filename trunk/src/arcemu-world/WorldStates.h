@@ -53,15 +53,19 @@
 #define WORLDSTATE_WSG_MAX_SCORE								0x641
 
 /* Instance World States */
+
 /*OLD_HILLSBRAND*/
 #define WORLDSTATE_OLD_HILLSBRAND                               2436
+
 /*Black Morass*/                               
 #define WORLD_STATE_BLACK_MORASS                                2541
 #define WORLD_STATE_BLACK_MORASS_SHIELD                         2540
 #define WORLD_STATE_BLACK_MORASS_RIFT                           2784
 
-
-
+/* Hyjal Summit */
+#define WORLD_STATE_WAVES                                       2842
+#define WORLD_STATE_ENEMY                                       2453
+#define WORLD_STATE_ENEMYCOUNT                                  2454
 
 /**
  * AB World States
