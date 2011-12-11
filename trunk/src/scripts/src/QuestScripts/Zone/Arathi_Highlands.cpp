@@ -18,14 +18,33 @@
 #include "StdAfx.h"
 #include "../../Base/EAS/EasyFunctions.h"
 
+static EAS::EASWaypoint wpData[] =
+{ 
+    { -2078.054443f, -2091.207764f, 9.526212f,  4.770276f, 0, 256, 4049 },
+    { -2076.626465f, -2109.960449f, 14.320494f, 4.821321f, 0, 256, 4049 },
+    { -2072.851074f, -2123.574219f, 18.482662f, 5.623996f, 0, 256, 4049 },
+    { -2063.878906f, -2132.617920f, 21.430487f, 5.512474f, 0, 256, 4049 },
+    { -2051.495117f, -2145.205811f, 20.500065f, 5.481060f, 0, 256, 4049 },
+    { -2044.748291f, -2152.411377f, 20.158432f, 5.437863f, 0, 256, 4049 },
+    { -2044.748291f, -2152.411377f, 20.158432f, 5.437863f, 0, 256, 4049 },
+    { -2044.748291f, -2152.411377f, 20.158432f, 5.437863f, 0, 256, 4049 },
+    { -2044.748291f, -2152.411377f, 20.158432f, 5.437863f, 0, 256, 4049 },
+    { -2044.748291f, -2152.411377f, 20.158432f, 5.437863f, 0, 256, 4049 },
+    { -2051.495117f, -2145.205811f, 20.500065f, 5.481060f, 0, 256, 4049 },
+    { -2063.878906f, -2132.617920f, 21.430487f, 5.512474f, 0, 256, 4049 },
+    { -2072.851074f, -2123.574219f, 18.482662f, 5.623996f, 0, 256, 4049 },
+    { -2076.626465f, -2109.960449f, 14.320494f, 4.821321f, 0, 256, 4049 },
+    { -2078.054443f, -2091.207764f, 9.526212f,  4.770276f, 0, 256, 4049 } 
+};
+
 class SunkenTreasure : public QuestScript 
 { 
 public:
-
 	void OnQuestStart( Player * mTarget, QuestLogEntry * qLogEntry)
 	{
 		if( mTarget == NULL || mTarget->GetMapMgr() == NULL || mTarget->GetMapMgr()->GetInterface() == NULL )
 			return;
+
 		float SSX = mTarget->GetPositionX();
 		float SSY = mTarget->GetPositionY();
 		float SSZ = mTarget->GetPositionZ();
@@ -39,22 +58,12 @@ public:
 		creat->SendChatMessage(CHAT_MSG_MONSTER_SAY, LANG_UNIVERSAL, "Defend Me!");
 		creat->SetUInt32Value(UNIT_NPC_FLAGS, 0);
 
-		EAS::CreateCustomWaypointMap(creat);
-		EAS::WaypointCreate(creat,-2078.054443f, -2091.207764f, 9.526212f, 4.770276f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2076.626465f, -2109.960449f, 14.320494f, 4.821321f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2072.851074f, -2123.574219f, 18.482662f, 5.623996f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2063.878906f, -2132.617920f, 21.430487f, 5.512474f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2051.495117f, -2145.205811f, 20.500065f, 5.481060f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2044.748291f, -2152.411377f, 20.158432f, 5.437863f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2044.748291f, -2152.411377f, 20.158432f, 5.437863f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2044.748291f, -2152.411377f, 20.158432f, 5.437863f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2044.748291f, -2152.411377f, 20.158432f, 5.437863f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2044.748291f, -2152.411377f, 20.158432f, 5.437863f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2051.495117f, -2145.205811f, 20.500065f, 5.481060f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2063.878906f, -2132.617920f, 21.430487f, 5.512474f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2072.851074f, -2123.574219f, 18.482662f, 5.623996f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2076.626465f, -2109.960449f, 14.320494f, 4.821321f, 0, 256, 4049);
-		EAS::WaypointCreate(creat,-2078.054443f, -2091.207764f, 9.526212f, 4.770276f, 0, 256, 4049);
+        using namespace EAS;
+		CreateCustomWaypointMap(creat);
+
+        uint8 length = arr_length(wpData) - 1;
+        for(uint8 i = 0; i < length; i++)
+            WaypointCreate(creat, &wpData[i]);
 	}
 };
 
