@@ -49,6 +49,12 @@ EAS::WaypointCreate(Creature *pCreature, float x, float y,
 }
 
 void 
+EAS::WaypointCreate(Creature *pCreature, EASWaypoint * pWPData)
+{
+    WaypointCreate(pCreature, pWPData->x, pWPData->y, pWPData->z, pWPData->o, pWPData->waitTime, pWPData->flags, pWPData->modelId);
+}
+
+void 
 EAS::MoveToPlayer(Player *plr, Creature *creat)
 {
 	PrintMessage("Function call: MoveToPlayer()");

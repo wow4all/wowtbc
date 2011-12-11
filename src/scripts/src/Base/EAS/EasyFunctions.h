@@ -31,6 +31,8 @@
 #pragma warning(disable:4305) // warning C4305: 'argument' : truncation from 'double' to 'float'
 #pragma warning(disable:4267) // warning C4267: '=' : conversion from 'size_t' to 'uint32', possible loss of data
 
+#define arr_length(a) sizeof(a)/sizeof(*a)
+
 #define CREATE_QUESTSCRIPT(cl) (QuestScript*)new cl
 #define CREATE_GOSSIPSCRIPT(cl) (GossipScript*)new cl
 #define CREATE_GAMEOBJECT_SCRIPT(cl) &cl::Create
@@ -38,10 +40,22 @@
 
 namespace EASY_FUNCTIONS
 {
+    struct EASWaypoint
+    {
+        float x;
+        float y;
+        float z;
+        float o; 
+        uint32 waitTime;
+        uint32 flags;
+        uint32 modelId;
+    };
+
 	void PrintMessage(const char *text, ...);
 
 	void WaypointCreate(Creature *pCreature, float x, float y, float z, float o, uint32 waittime, uint32 flags, uint32 modelId);
-	void MoveToPlayer(Player *plr, Creature *creat);
+    void WaypointCreate(Creature *pCreature, EASWaypoint * pWPData);
+    void MoveToPlayer(Player *plr, Creature *creat);
 	void CreateCustomWaypointMap(Creature *creat);
 	void DeleteWaypoints(Creature *creat);
 	void DeleteSpawned(Creature *creat);
@@ -58,6 +72,6 @@ namespace EASY_FUNCTIONS
 	}
 }
 
-#define EAS EASY_FUNCTIONS
+namespace EAS = EASY_FUNCTIONS;
 
 #endif
