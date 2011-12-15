@@ -4817,13 +4817,19 @@ float Player::GetDefenseChance(uint32 opLevel)
 float Player::GetDodgeChance()
 {
 	uint32 pClass = (uint32)getClass();
-	float chance;
-	
-	// base dodge chance
-	chance = baseDodge[pClass];
+	float chance = 0.0f;
+    uint32 level = getLevel();
 
-	// dodge from agility
-	chance += float( GetUInt32Value( UNIT_FIELD_STAT1 ) / dodgeRatio[getLevel()-1][pClass] );
+    if( level > PLAYER_LEVEL_CAP )
+        level = PLAYER_LEVEL_CAP;
+	
+	gtFloat *baseCrit = dbcMeleeCritBase.LookupEntry( pClass - 1 );
+    gtFloat *CritPerAgi = dbcMeleeCrit.LookupEntry( level - 1 + ( pClass - 1 ) * 100 );
+    uint32 agi = GetStat( STAT_AGILITY );
+
+    float tmp = 100.0f * ( baseCrit->val + agi * CritPerAgi->val );
+    tmp *= crit_to_dodge[pClass];
+    chance += tmp;
 
 	// dodge from dodge rating
 	chance += CalcRating( PLAYER_RATING_MODIFIER_DODGE );
