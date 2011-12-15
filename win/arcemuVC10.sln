@@ -34,6 +34,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pcre", "..\extras\arcemu-wi
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scripts", "..\src\scripts\projects\Scripts.vcxproj", "{EE39B48B-C598-4AAF-9EF0-199402933EE5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1DC6C4DA-A028-41F3-877D-D5400C594F88} = {1DC6C4DA-A028-41F3-877D-D5400C594F88}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,7 +69,6 @@ Global
 		{6E15F06D-5546-474D-BB42-39848DEF77E0}.Release|Win32.ActiveCfg = Release|Win32
 		{6E15F06D-5546-474D-BB42-39848DEF77E0}.Release|Win32.Build.0 = Release|Win32
 		{6E15F06D-5546-474D-BB42-39848DEF77E0}.Release|x64.ActiveCfg = Release|x64
-		{6E15F06D-5546-474D-BB42-39848DEF77E0}.Release|x64.Build.0 = Release|x64
 		{4A9E210A-3B0B-4076-BE06-778692E5CB93}.Debug|Win32.ActiveCfg = Debug|Win32
 		{4A9E210A-3B0B-4076-BE06-778692E5CB93}.Debug|Win32.Build.0 = Debug|Win32
 		{4A9E210A-3B0B-4076-BE06-778692E5CB93}.Debug|x64.ActiveCfg = Debug|x64
@@ -98,7 +100,6 @@ Global
 		{EE39B48B-C598-4AAF-9EF0-199402933EE5}.Release|Win32.ActiveCfg = Release|Win32
 		{EE39B48B-C598-4AAF-9EF0-199402933EE5}.Release|Win32.Build.0 = Release|Win32
 		{EE39B48B-C598-4AAF-9EF0-199402933EE5}.Release|x64.ActiveCfg = Release|x64
-		{EE39B48B-C598-4AAF-9EF0-199402933EE5}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
