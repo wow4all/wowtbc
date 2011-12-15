@@ -54,7 +54,7 @@ namespace EASY_FUNCTIONS
 	void PrintMessage(const char *text, ...);
 
 	void WaypointCreate(Creature *pCreature, float x, float y, float z, float o, uint32 waittime, uint32 flags, uint32 modelId);
-    void WaypointCreate(Creature *pCreature, EASWaypoint * pWPData);
+    void WaypointCreate(Creature *pCreature, EASWaypoint * pWpData);
     void MoveToPlayer(Player *plr, Creature *creat);
 	void CreateCustomWaypointMap(Creature *creat);
 	void DeleteWaypoints(Creature *creat);
