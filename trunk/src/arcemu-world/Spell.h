@@ -1947,6 +1947,25 @@ public:
     void SendCastSuccess(const uint64& guid);
 
     bool duelSpell;
+	
+	////////////////////////////////////////////////////////////////////////////////
+		//bool DuelSpellNoMoreValid()
+		//  Tells if the Spell was being casted while dueling but now the duel is over
+		//
+		//Return Value
+		//  Returns true if Spell is now invalid because the duel is over.
+		//  Returns false if Spell is valid.
+		//
+		///////////////////////////////////////////////////////////////////////////////
+		bool DuelSpellNoMoreValid()
+		{
+			if(duelSpell && (
+	            (p_caster != NULL && p_caster->GetDuelState() != DUEL_STATE_STARTED) ||
+	            (u_caster != NULL && u_caster->IsPet() && static_cast< Pet* >(u_caster)->GetPetOwner() && static_cast< Pet* >(u_caster)->GetPetOwner()->GetDuelState() != DUEL_STATE_STARTED)))
+				return true;
+			else
+				return false;
+		}
 
 	ARCEMU_INLINE void safe_cancel()
 	{
