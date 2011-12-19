@@ -2732,10 +2732,10 @@ bool Spell::TakePower()
 
 void Spell::HandleEffects(uint64 guid, uint32 i)
 {
-    if(event_GetInstanceID() == WORLD_INSTANCE ||
+    //if(event_GetInstanceID() == WORLD_INSTANCE || Bfx Commented out for time being
 		DuelSpellNoMoreValid())
 	{
-		DecRef();
+		//DecRef();
 		return;
 	}
 
