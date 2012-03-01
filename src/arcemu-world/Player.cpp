@@ -4889,7 +4889,7 @@ void Player::UpdateChances()
 	// dodge
 	tmp = GetDodgeChance();
 	tmp += defence_contribution;
-	tmp = min( max( tmp, 0.0f ), 40.0f );
+	tmp = min( max( tmp, 0.0f ), 100.0f );
 	SetFloatValue( PLAYER_DODGE_PERCENTAGE, tmp );
 
 	// block
@@ -4898,7 +4898,7 @@ void Player::UpdateChances()
 	{
 		tmp = GetBlockChance();
 		tmp += defence_contribution;
-		tmp = min( max( tmp, 0.0f ), 40.0f );
+		tmp = min( max( tmp, 0.0f ), 100.0f );
 	}
 	else
 		tmp = 0.0f;
@@ -4911,7 +4911,7 @@ void Player::UpdateChances()
 	{
 		tmp = GetParryChance();
 		tmp += defence_contribution;
-		tmp = min( max( tmp, 0.0f ), 40.0f );
+		tmp = min( max( tmp, 0.0f ), 100.0f );
 	}
 	else
 		tmp = 0.0f;
