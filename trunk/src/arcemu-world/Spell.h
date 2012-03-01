@@ -23,6 +23,7 @@
 
 #include "SpellFailure.h"
 #include "StdAfx.h"
+#include "Unit.h"
 
 class WorldSession;
 class Unit;
@@ -668,7 +669,7 @@ enum SpellCastFlags
     CAST_FLAG_AMMO               = 0x20 // load ammo display id (uint32) and ammo inventory type (uint32)
 };
 
-enum School
+/*enum School
 {
     SCHOOL_NORMAL = 0,
     SCHOOL_HOLY   = 1,
@@ -678,10 +679,10 @@ enum School
     SCHOOL_SHADOW = 5,
     SCHOOL_ARCANE = 6,
 	SCHOOL_COUNT   
-};
+};*/
 
 // converting schools for 2.4.0 client
-static const uint32 g_spellSchoolConversionTable[SCHOOL_ARCANE+1] = {
+static const uint32 g_spellSchoolConversionTable[SCHOOL_COUNT] = {
 	1,				// SCHOOL_NORMAL
 	2,				// SCHOOL_HOLY
 	4,				// SCHOOL_FIRE
@@ -2018,6 +2019,8 @@ protected:
 
 		return false;
 	}
+	
+	virtual int32 DoCalculateEffect(uint32 i, Unit* target, int32 value);
 
 private:
     TargetsList m_targetUnits[3];

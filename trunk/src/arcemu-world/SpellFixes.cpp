@@ -10241,6 +10241,8 @@ void ApplyNormalFixes()
 				break;
 			}
 		}
+		
+		ARCEMU_INLINE(sp->School < SCHOOL_COUNT);
 
 		/*
 		AURASTATE_FLAG_DODGE_BLOCK			= 1,        //1
