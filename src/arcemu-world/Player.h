@@ -839,6 +839,16 @@ public:
 	}
 	void CalcDamage();
 	uint32 GetMainMeleeDamage(uint32 AP_owerride); //i need this for windfury
+	int32 GetDamageDoneMod(uint32 school)
+		{
+			if(school >= SCHOOL_COUNT)
+				return 0;
+
+			return static_cast< int32 >(GetPosDamageDoneMod(school)) - static_cast< int32 >(GetNegDamageDoneMod(school));
+		}
+		
+	uint32 GetPosDamageDoneMod(uint32 school) { return GetUInt32Value(PLAYER_FIELD_MOD_DAMAGE_DONE_POS + school); }
+	uint32 GetNegDamageDoneMod(uint32 school) { return GetUInt32Value(PLAYER_FIELD_MOD_DAMAGE_DONE_NEG + school); }
 
     const uint64& GetSelection( ) const { return m_curSelection; }
 	const uint64& GetTarget( ) const { return m_curTarget; }

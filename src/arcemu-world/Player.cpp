@@ -9280,6 +9280,7 @@ void Player::CalcDamage()
 /////////////////MAIN HAND
 		float ap_bonus = GetAP()/14000.0f;
 		delta = (float)GetUInt32Value( PLAYER_FIELD_MOD_DAMAGE_DONE_POS ) - (float)GetUInt32Value( PLAYER_FIELD_MOD_DAMAGE_DONE_NEG );
+		delta = (float)GetPosDamageDoneMod(SCHOOL_NORMAL) - (float)GetNegDamageDoneMod(SCHOOL_NORMAL);
 
 		if(IsInFeralForm())
 		{

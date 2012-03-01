@@ -5118,6 +5118,339 @@ void UnapplyDiminishingReturnTimer(Unit * Target, SpellEntry * spell)
 	}
 }
 
+
+
+int32 Spell::DoCalculateEffect(uint32 i, Unit* target, int32 value)
+{
+	//2 switch: the first checking namehash, the second checking spell id. If the spell is still not handled in these 2 blocks of code,
+	//3rd block of checks is reached. bool handled is initialized as true and set to false in the default: case of each switch.
+	bool handled = true;
+
+	switch(GetProto()->NameHash)
+	{
+			// Causes Weapon Damage + Ammo + RAP * 0.1 + EffectBasePoints[0] and additional EffectBasePoints[1] if the target is dazed
+		case SPELL_HASH_STEADY_SHOT:
+			{
+				if(u_caster != NULL && i == 0)
+				{
+					if(p_caster != NULL)
+					{
+						Item* it;
+						it = p_caster->GetItemInterface()->GetInventoryItem(EQUIPMENT_SLOT_RANGED);
+						if(it)
+						{
+							float weapondmg = RandomFloat(1) * (it->GetProto()->Damage[0].Max - it->GetProto()->Damage[0].Min) + it->GetProto()->Damage[0].Min;
+							value += float2int32(GetProto()->EffectBasePoints[0] + weapondmg / (it->GetProto()->Delay / 1000.0f) * 2.8f);
+						}
+					}
+					if(target && target->IsDazed())
+						value += GetProto()->EffectBasePoints[1];
+					value += (uint32)(u_caster->GetRAP() * 0.1);
+				}
+				break;
+			}
+		case SPELL_HASH_REND:
+			{
+				if(p_caster != NULL)
+				{
+					Item* it;
+					it = p_caster->GetItemInterface()->GetInventoryItem(EQUIPMENT_SLOT_MAINHAND);
+					if(it)
+					{
+						if(it->GetProto()->Class == 2)
+						{
+							float avgwepdmg = (it->GetProto()->Damage[0].Min + it->GetProto()->Damage[0].Max) * 0.5f;
+							float wepspd = (it->GetProto()->Delay * 0.001f);
+							int32 dmg = float2int32((avgwepdmg) + p_caster->GetAP() / 14 * wepspd);
+
+							if(target && target->GetHealthPct() > 75)
+							{
+								dmg = float2int32(dmg + dmg * 0.35f);
+							}
+
+							value += dmg / 5;
+						}
+					}
+				}
+				break;
+			}
+		case SPELL_HASH_SLAM:
+			{
+				if(p_caster != NULL)
+				{
+					Item* mainHand;
+					mainHand = p_caster->GetItemInterface()->GetInventoryItem(EQUIPMENT_SLOT_MAINHAND);
+					float avgWeaponDmg = (mainHand->GetProto()->Damage[0].Max + mainHand->GetProto()->Damage[0].Min) / 2;
+					value += float2int32((GetProto()->EffectBasePoints[0] + 1) + avgWeaponDmg);
+				}
+				break;
+			}
+		case SPELL_HASH_EVISCERATE:
+			{
+				if(p_caster != NULL)
+					value += (uint32)(p_caster->GetAP() * 0.03f * p_caster->m_comboPoints);
+				break;
+			}
+		/*case SPELL_HASH_FEROCIOUS_BITE:
+			{
+				if(p_caster != NULL)
+				{
+					value += (uint32)((p_caster->GetAP() * 0.1526f) + (p_caster->GetPower(POWER_TYPE_ENERGY) * GetProto()->dmg_multiplier[i]));
+					p_caster->SetPower(POWER_TYPE_ENERGY, 0);
+				}
+				
+			}*/
+		case SPELL_HASH_VICTORY_RUSH:
+			{
+				//causing ${$AP*$m1/100} damage
+				if(u_caster != NULL && i == 0)
+					value = (value * u_caster->GetAP()) / 100;
+				break;
+			}
+		case SPELL_HASH_RAKE:
+			{
+				//Rake the target for ${$AP/100+$m1} bleed damage and an additional ${$m2*3+$AP*0.06} damage over $d.
+				if(u_caster != NULL)
+				{
+					float ap = float(u_caster->GetAP());
+					if(i == 0)
+						value += float2int32(ceilf(ap * 0.01f));	// / 100
+					else if(i == 1)
+						value += float2int32(ap * 0.06f);
+				}
+				break;
+			}
+		case SPELL_HASH_GARROTE:
+			{
+				// WoWWiki says +( 0.18 * attack power / number of ticks )
+				// Tooltip gives no specific reading, but says ", increased by your attack power.".
+				if(u_caster != NULL && i == 0)
+					value += (uint32) ceilf((u_caster->GetAP() * 0.07f) / 6);
+				break;
+			}
+		case SPELL_HASH_RUPTURE:
+			{
+				/*
+				1pt = Attack Power * 0.04 + x
+				2pt = Attack Power * 0.10 + y
+				3pt = Attack Power * 0.18 + z
+				4pt = Attack Power * 0.21 + a
+				5pt = Attack Power * 0.24 + b
+				*/
+				if(p_caster != NULL && i == 0)
+				{
+					int8 cp = p_caster->m_comboPoints;
+					value += (uint32) ceilf((u_caster->GetAP() * 0.04f * cp) / ((6 + (cp << 1)) >> 1));
+				}
+				break;
+			}
+		case SPELL_HASH_RIP:
+			{
+				if(p_caster != NULL)
+					value += float2int32(p_caster->GetAP() * 0.01f * p_caster->m_comboPoints);
+				break;
+			}
+		case SPELL_HASH_MONGOOSE_BITE:
+			{
+				// ${$AP*0.2+$m1} damage.
+				if(u_caster != NULL)
+					value += u_caster->GetAP() / 5;
+				break;
+			}
+		case SPELL_HASH_SWIPE:
+			{
+				// ${$AP*0.06+$m1} damage.
+				if(u_caster != NULL)
+					value += float2int32(u_caster->GetAP() * 0.06f);
+				break;
+			}
+		/*case SPELL_HASH_HAMMER_OF_THE_RIGHTEOUS:
+			{
+				if(p_caster != NULL)
+					//4x 1h weapon-dps ->  4*(mindmg+maxdmg)/speed/2 = 2*(mindmg+maxdmg)/speed
+					value = float2int32((p_caster->GetMinDamage() + p_caster->GetMaxDamage()) / (float(p_caster->GetBaseAttackTime(MELEE)) / 1000.0f)) << 1;
+				break;
+			}*/
+		case SPELL_HASH_BACKSTAB:  // Egari: spell 31220 is interfering with combopoints
+			{
+				if(i == 2)
+					return GetProto()->EffectBasePoints[i] + 1;
+				break;
+			}
+		case SPELL_HASH_GOUGE:
+			{
+				if(u_caster != NULL && i == 0)
+				{
+					if( GetProto()->Effect[i] == SPELL_EFFECT_SCHOOL_DAMAGE )
+						value += (uint32)ceilf(u_caster->GetAP() * 0.21f); //damage
+				}
+				break;
+			}
+		/*case SPELL_HASH_FAN_OF_KNIVES:  // rogue - fan of knives
+			{
+				if(p_caster != NULL)
+				{
+					Item* mit = p_caster->GetItemInterface()->GetInventoryItem(EQUIPMENT_SLOT_MAINHAND);
+					if(mit != NULL)
+					{
+						if(mit->GetProto()->Class == 2 && mit->GetProto()->SubClass == 15)   // daggers
+							value = 105;
+					}
+				}
+				break;
+			}*/
+		case SPELL_HASH_VAMPIRIC_EMBRACE:
+			{
+				value = value * (GetProto()->EffectBasePoints[i] + 1) / 100;
+				if(p_caster != NULL)
+				{
+					SM_FIValue(p_caster->SM_FMiscEffect, &value, GetProto()->SpellGroupType);
+					SM_PIValue(p_caster->SM_PMiscEffect, &value, GetProto()->SpellGroupType);
+				}
+				break;
+			}
+		case SPELL_HASH_SEAL_OF_RIGHTEOUSNESS:
+			{
+				if(p_caster != NULL)
+				{
+					Item* mit = p_caster->GetItemInterface()->GetInventoryItem(EQUIPMENT_SLOT_MAINHAND);
+					if(mit != NULL)
+						value = (p_caster->GetAP() * 22 + p_caster->GetPosDamageDoneMod(SCHOOL_HOLY) * 44) * mit->GetProto()->Delay / 1000000;
+				}
+				break;
+			}
+		//case SPELL_HASH_BLOOD_CORRUPTION:
+		case SPELL_HASH_HOLY_VENGEANCE:
+			{
+				if(p_caster != NULL)
+					value = (p_caster->GetAP() * 25 + p_caster->GetPosDamageDoneMod(SCHOOL_HOLY) * 13) / 1000;
+				break;
+			}
+		case SPELL_HASH_JUDGEMENT_OF_LIGHT:
+			{
+				if(u_caster != NULL)
+					value = u_caster->GetMaxHealth() * 2 / 100;
+				break;
+			}
+		case SPELL_HASH_JUDGEMENT_OF_WISDOM:
+			{
+				if(u_caster != NULL)
+					value = u_caster->GetBaseMana() * 2 / 100;
+				break;
+			}
+		case SPELL_HASH_JUDGEMENT:
+			{
+				if(p_caster != NULL)
+					value += (p_caster->GetAP() * 16 + p_caster->GetPosDamageDoneMod(SCHOOL_HOLY) * 25) / 100;
+				break;
+			}
+		case SPELL_HASH_JUDGEMENT_OF_RIGHTEOUSNESS:
+			{
+				if(p_caster != NULL)
+					value += (p_caster->GetAP() * 2 + p_caster->GetPosDamageDoneMod(SCHOOL_HOLY) * 32) / 100;
+				break;
+			}
+		case SPELL_HASH_JUDGEMENT_OF_VENGEANCE:
+		/*case SPELL_HASH_JUDGEMENT_OF_CORRUPTION:
+			{
+				if(p_caster != NULL)
+					value += (p_caster->GetAP() * 14 + p_caster->GetPosDamageDoneMod(SCHOOL_HOLY) * 22) / 100;
+				break;
+			}*/
+		case SPELL_HASH_ENVENOM:
+			{
+				if(p_caster != NULL && i == 0)
+				{
+					value *= p_caster->m_comboPoints;
+					value += (uint32)(p_caster->GetAP() * (0.09f * p_caster->m_comboPoints));
+					m_requiresCP = true;
+				}
+				break;
+			}
+		default:
+			{
+				//not handled in this switch
+				handled = false;
+				break;
+			}
+	}
+
+	if(!handled)
+	{
+		//it will be set to false in the default case of the switch.
+		handled = true;
+		switch(GetProto()->Id)
+		{
+			case 34123:  //Druid - Tree of Life
+				{
+					if(p_caster != NULL && i == 0)
+						//Heal is increased by 6%
+						value = float2int32(value * 1.06f);
+					break;
+				}
+			case 57669: //Replenishment
+			case 61782:
+				{
+					if(p_caster != NULL && i == 0 && target != NULL)
+						value = int32(0.002 * target->GetMaxPower(POWER_TYPE_MANA));
+					break;
+				}
+			default:
+				{
+					//not handled in this switch
+					handled = false;
+					break;
+				}
+		}
+
+		if(!handled)
+		{
+			if(GetProto()->c_is_flags & SPELL_FLAG_IS_POISON && u_caster != NULL)   // poison damage modifier
+			{
+				switch(GetProto()->NameHash)
+				{
+					//case SPELL_HASH_DEADLY_POISON_IX:
+					//case SPELL_HASH_DEADLY_POISON_VIII:
+					//case SPELL_HASH_DEADLY_POISON_VII:
+					//case SPELL_HASH_DEADLY_POISON_VI:
+					case SPELL_HASH_DEADLY_POISON_V:
+					case SPELL_HASH_DEADLY_POISON_IV:
+					case SPELL_HASH_DEADLY_POISON_III:
+					case SPELL_HASH_DEADLY_POISON_II:
+					case SPELL_HASH_DEADLY_POISON:
+						if(GetProto()->EffectApplyAuraName[i] == SPELL_AURA_PERIODIC_DAMAGE)
+							value += float2int32(u_caster->GetAP() * 0.03f);
+						break;
+					//case SPELL_HASH_INSTANT_POISON_IX:
+					//case SPELL_HASH_INSTANT_POISON_VIII:
+					//case SPELL_HASH_INSTANT_POISON_VII:
+					//case SPELL_HASH_INSTANT_POISON_VI:
+					case SPELL_HASH_INSTANT_POISON_V:
+					case SPELL_HASH_INSTANT_POISON_IV:
+					case SPELL_HASH_INSTANT_POISON_III:
+					case SPELL_HASH_INSTANT_POISON_II:
+					case SPELL_HASH_INSTANT_POISON:
+						if(GetProto()->Effect[i] == SPELL_EFFECT_SCHOOL_DAMAGE)
+							value += float2int32(u_caster->GetAP() * 0.10f);
+						break;
+					//case SPELL_HASH_WOUND_POISON_VII:
+					//case SPELL_HASH_WOUND_POISON_VI:
+					case SPELL_HASH_WOUND_POISON_V:
+					case SPELL_HASH_WOUND_POISON_IV:
+					case SPELL_HASH_WOUND_POISON_III:
+					case SPELL_HASH_WOUND_POISON_II:
+					case SPELL_HASH_WOUND_POISON:
+						if(GetProto()->Effect[i] == SPELL_EFFECT_SCHOOL_DAMAGE)
+							value += float2int32(u_caster->GetAP() * 0.04f);
+						break;
+				}
+			}
+		}
+	}
+
+	return value;
+};
+
 /// Calculate the Diminishing Group. This is based on a name hash.
 /// this off course is very hacky, but as its made done in a proper way
 /// I leave it here.
