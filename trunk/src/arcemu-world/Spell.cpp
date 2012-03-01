@@ -1353,7 +1353,9 @@ void Spell::AddStartCooldown()
 
 void Spell::cast(bool check)
 {
-	if(DuelSpellNoMoreValid())
+	if( duelSpell && (
+		( p_caster != NULL && p_caster->GetDuelState() != DUEL_STATE_STARTED ) ||
+		( u_caster != NULL && u_caster->IsPet() && static_cast< Pet* >( u_caster )->GetPetOwner() && static_cast< Pet* >( u_caster )->GetPetOwner()->GetDuelState() != DUEL_STATE_STARTED ) ) )
 	{
 		// Can't cast that!
 		SendInterrupted( SPELL_FAILED_TARGET_FRIENDLY );
@@ -2732,13 +2734,6 @@ bool Spell::TakePower()
 
 void Spell::HandleEffects(uint64 guid, uint32 i)
 {
-    //if(event_GetInstanceID() == WORLD_INSTANCE || Bfx Commented out for time being
-		DuelSpellNoMoreValid();
-	{
-		//DecRef();
-		return;
-	}
-
 	uint32 id;
 
 	if(guid == m_caster->GetGUID() || guid == 0)
