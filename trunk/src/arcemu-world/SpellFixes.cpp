@@ -11370,6 +11370,11 @@ void ApplyNormalFixes()
 		sp->maxstack = 3;
 	}
 	
+	//Lightning Capacitor 2
+	sp = dbcSpell.LookupEntryForced( 37658 );
+	if( sp != NULL )
+	sp->maxstack = 3;
+	
 	//Vessel of the Naaru
 	sp = dbcSpell.LookupEntryForced(45059);
 	if(sp != NULL)
@@ -17009,7 +17014,7 @@ void ApplyNormalFixes()
 			sp->procChance = 15;
 			sp->proc_interval = 45000;
 		}
-		
+	
 		// Skyfire Swiftness (Thundering Skyfire Diamond)
 		sp = dbcSpell.LookupEntryForced( 39958 );
 		if( sp != NULL )
