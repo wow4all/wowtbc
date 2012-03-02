@@ -204,6 +204,19 @@ class SelinFireheartAI : public MoonScriptCreatureAI
 	SpellDesc* FelExplosion;
 };
 
+class FelCrystal : public CreatureAIScript
+{
+public:
+    ADD_CREATURE_FACTORY_FUNCTION(FelCrystal);
+
+    FelCrystal(Creature* pCreature) : CreatureAIScript(pCreature)
+    {
+		_unit->GetAIInterface()->SetAllowedToEnterCombat(false);
+	}
+
+	
+};
+
 //Trash mobs
 
 //Coilskar Witch
@@ -536,5 +549,6 @@ void SetupMagistersTerrace(ScriptMgr* pScriptMgr)
 	pScriptMgr->register_creature_script(BOSS_APOKO, &ApokoAI::Create);
 	pScriptMgr->register_creature_script(BOSS_ZELFAN, &ZelfanAI::Create);
 	pScriptMgr->register_creature_script(BOSS_Kaelthas, &KaelThasMTAI::Create);
+	pScriptMgr->register_creature_script(TRASH_FelCrystal, &FelCrystal::Create);
 }
 
