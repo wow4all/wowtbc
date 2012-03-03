@@ -1155,6 +1155,19 @@ public:
 	bool jumping;
 	//Invisibility stuff
 	bool m_isGmInvisible;
+	enum ActiveMovementFlags
+    {
+      ACTIVE_MOVEMENT_MOVE_FORWARD = 0x01,
+      ACTIVE_MOVEMENT_MOVE_BACKWARD = 0x02,
+      ACTIVE_MOVEMENT_MOVE_STRAFE = 0x04,
+      ACTIVE_MOVEMENT_JUMP = 0x08,
+    };
+	
+	uint8 activeMoveFlags;
+	bool ascending;
+    float waterHeight;
+    float ascendStartHeight;
+    uint32 ascendStartTime;
 	
     /************************************************************************/
     /* Channel stuff                                                        */

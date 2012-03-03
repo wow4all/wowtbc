@@ -22,7 +22,7 @@
 UpdateMask Player::m_visibleUpdateMask;
 #define COLLISION_MOUNT_CHECK_INTERVAL 1000
 
-Player::Player( uint32 guid ) : m_mailBox(guid)
+Player::Player( uint32 guid ) : m_mailBox(guid), ascending(false), waterHeight(0.0f), activeMoveFlags(0)
 {
 	int i,j;
     
@@ -904,6 +904,28 @@ void Player::Update( uint32 p_time )
 				m_UnderwaterTime = m_UnderwaterMaxTime;
 				StopMirrorTimer(1);
 			}
+		}
+	}
+
+	// swimming bug fix
+	if (ascending == true && m_session->movement_info.flags & MOVEFLAG_SWIMMING)
+	{ // we are ascending in water
+		uint32 tDiff = getMSTime() - ascendStartTime + m_session->GetLatency();
+		
+		float curSpeed = m_flySpeed;
+		if (activeMoveFlags & ACTIVE_MOVEMENT_MOVE_FORWARD
+			|| activeMoveFlags & ACTIVE_MOVEMENT_MOVE_STRAFE)
+			curSpeed = m_swimSpeed;
+		else if (activeMoveFlags & ACTIVE_MOVEMENT_MOVE_BACKWARD)
+			curSpeed = m_backSwimSpeed + .5f;
+
+		float curHeight = ascendStartHeight + curSpeed * (tDiff / 1000.0f);
+		if (curHeight + 1.0f >= waterHeight)
+		{
+			WorldPacket data(SMSG_MOVE_SET_UNFLY, 13);
+			data << GetNewGUID();
+			data << uint32(5);
+			SendMessageToSet(&data, true);
 		}
 	}
 

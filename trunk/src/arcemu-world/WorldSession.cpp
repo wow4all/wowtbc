@@ -91,140 +91,140 @@ WorldSession::~WorldSession()
 
 int WorldSession::Update(uint32 InstanceID)
 {
-	m_currMsTime = getMSTime();
+m_currMsTime = getMSTime();
 
 #ifndef CLUSTERING
-	if(!((++_updatecount) % 2) && _socket)
-		_socket->UpdateQueuedPackets();
+if(!((++_updatecount) % 2) && _socket)
+_socket->UpdateQueuedPackets();
 #endif
 
-	WorldPacket *packet;
-	OpcodeHandler * Handler;
+WorldPacket *packet;
+OpcodeHandler * Handler;
 
-	if(InstanceID != instanceId)
-	{
-		// We're being updated by the wrong thread.
-		// "Remove us!" - 2
-		return 2;
-	}
+if(InstanceID != instanceId)
+{
+// We're being updated by the wrong thread.
+// "Remove us!" - 2
+return 2;
+}
 
-	// Socket disconnection.
-	if(!_socket)
-	{
-		// Check if the player is in the process of being moved. We can't delete him
-		// if we are.
-		if(_player && _player->m_beingPushed)
-		{
-			// Abort..
-			return 0;
-		}
+// Socket disconnection.
+if(!_socket)
+{
+// Check if the player is in the process of being moved. We can't delete him
+// if we are.
+if(_player && _player->m_beingPushed)
+{
+// Abort..
+return 0;
+}
 
-		if(!_logoutTime)
-			_logoutTime = m_currMsTime + PLAYER_LOGOUT_DELAY;
+if(!_logoutTime)
+_logoutTime = m_currMsTime + PLAYER_LOGOUT_DELAY;
 
 /*
-				if(_player && _player->DuelingWith)
-					_player->EndDuel(DUEL_WINNER_RETREAT);
-		
-				bDeleted = true;
-				LogoutPlayer(true);
-				// 1 - Delete session completely.
-				return 1;*/
-		
-	}
+if(_player && _player->DuelingWith)
+_player->EndDuel(DUEL_WINNER_RETREAT);
+bDeleted = true;
+LogoutPlayer(true);
+// 1 - Delete session completely.
+return 1;*/
 
-	while ((packet = _recvQueue.Pop()) != 0)
-	{
-		ASSERT(packet);
+}
 
-		if(packet->GetOpcode() >= NUM_MSG_TYPES)
-			sLog.outError("[Session] Received out of range packet with opcode 0x%.4X", packet->GetOpcode());
-		else
-		{
-			Handler = &WorldPacketHandlers[packet->GetOpcode()];
-			if(Handler->status == STATUS_LOGGEDIN && !_player && Handler->handler != 0)
-			{
-				sLog.outError("[Session] Received unexpected/wrong state packet with opcode %s (0x%.4X)",
-					LookupName(packet->GetOpcode(), g_worldOpcodeNames), packet->GetOpcode());
-			}
-			else
-			{
-				// Valid Packet :>
-				if(Handler->handler == 0)
-				{
-					sLog.outError("[Session] Received unhandled packet with opcode %s (0x%.4X)",
-						LookupName(packet->GetOpcode(), g_worldOpcodeNames), packet->GetOpcode());
-				}
-				else
-				{
-					(this->*Handler->handler)(*packet);
-				}
-			}
-		}
+while ((packet = _recvQueue.Pop()) != 0)
+{
+ASSERT(packet);
 
-		delete packet;
+if(packet->GetOpcode() >= NUM_MSG_TYPES)
+sLog.outError("[Session] Received out of range packet with opcode 0x%.4X", packet->GetOpcode());
+else
+{
+Handler = &WorldPacketHandlers[packet->GetOpcode()];
+if(Handler->status == STATUS_LOGGEDIN && !_player && Handler->handler != 0)
+{
+sLog.outError("[Session] Received unexpected/wrong state packet with opcode %s (0x%.4X)",
+LookupName(packet->GetOpcode(), g_worldOpcodeNames), packet->GetOpcode());
+}
+else
+{
+// Valid Packet :>
+if(Handler->handler == 0)
+{
+sLog.outError("[Session] Received unhandled packet with opcode %s (0x%.4X)",
+LookupName(packet->GetOpcode(), g_worldOpcodeNames), packet->GetOpcode());
+}
+else
+{
+//std::cout << "Received opcode " << LookupName(packet->GetOpcode(), g_worldOpcodeNames) << std::endl;
+(this->*Handler->handler)(*packet);
+}
+}
+}
 
-		if(InstanceID != instanceId)
-		{
-			// If we hit this -> means a packet has changed our map.
-			return 2;
-		}
+delete packet;
 
-		if( bDeleted )
-		{
-			return 1;
-		}
-	}
+if(InstanceID != instanceId)
+{
+// If we hit this -> means a packet has changed our map.
+return 2;
+}
 
-	if(InstanceID != instanceId)
-	{
-		// If we hit this -> means a packet has changed our map.
-		return 2;
-	}
+if( bDeleted )
+{
+return 1;
+}
+}
 
-	if( _logoutTime && (m_currMsTime >= _logoutTime) && instanceId == InstanceID)
-	{
-		// Check if the player is in the process of being moved. We can't delete him
-		// if we are.
-		if(_player && _player->m_beingPushed)
-		{
-			// Abort..
-			return 0;
-		}
+if(InstanceID != instanceId)
+{
+// If we hit this -> means a packet has changed our map.
+return 2;
+}
 
-		if( _socket == NULL )
-		{
-			bDeleted = true;
-			LogoutPlayer(true);
-			return 1;
-		}
-		else
-			LogoutPlayer(true);
-	}
+if( _logoutTime && (m_currMsTime >= _logoutTime) && instanceId == InstanceID)
+{
+// Check if the player is in the process of being moved. We can't delete him
+// if we are.
+if(_player && _player->m_beingPushed)
+{
+// Abort..
+return 0;
+}
 
-	if(m_lastPing + WORLDSOCKET_TIMEOUT < (uint32)UNIXTIME)
-	{
-		// Check if the player is in the process of being moved. We can't delete him
-		// if we are.
-		if(_player && _player->m_beingPushed)
-		{
-			// Abort..
-			return 0;
-		}
+if( _socket == NULL )
+{
+bDeleted = true;
+LogoutPlayer(true);
+return 1;
+}
+else
+LogoutPlayer(true);
+}
 
-		// ping timeout!
-		if( _socket != NULL )
-		{
-			Disconnect();
-			_socket = NULL;
-		}
+if(m_lastPing + WORLDSOCKET_TIMEOUT < (uint32)UNIXTIME)
+{
+// Check if the player is in the process of being moved. We can't delete him
+// if we are.
+if(_player && _player->m_beingPushed)
+{
+// Abort..
+return 0;
+}
 
-		m_lastPing = (uint32)UNIXTIME;		// Prevent calling this code over and over.
-		if(!_logoutTime)
-			_logoutTime = m_currMsTime + PLAYER_LOGOUT_DELAY;
-	}
+// ping timeout!
+if( _socket != NULL )
+{
+Disconnect();
+_socket = NULL;
+}
 
-	return 0;
+m_lastPing = (uint32)UNIXTIME; // Prevent calling this code over and over.
+if(!_logoutTime)
+_logoutTime = m_currMsTime + PLAYER_LOGOUT_DELAY;
+}
+
+return 0;
 }
 
 
