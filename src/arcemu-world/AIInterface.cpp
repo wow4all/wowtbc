@@ -2387,9 +2387,25 @@ void AIInterface::MoveTo(float x, float y, float z, float o)
 	m_nextPosY = y;
 	m_nextPosZ = z;
 
+/*	//Andy
+#ifdef COLLISION
+	float target_land_z=0.0f;
+	if( m_Unit->GetMapMgr() != NULL )
+	{
+		if(m_moveFly != true)
+		{
+			target_land_z = CollideInterface.GetHeight(m_Unit->GetMapId(), m_nextPosX, m_nextPosY, m_nextPosZ + 2.0f);
+			if( target_land_z == NO_WMO_HEIGHT )
+				target_land_z = m_Unit->GetMapMgr()->GetLandHeight(m_nextPosX, m_nextPosY);
+		}
+	}
+
+	if (m_nextPosZ > m_Unit->GetMapMgr()->GetWaterHeight(m_nextPosX, m_nextPosY) && target_land_z != 0.0f)
+		m_nextPosZ=target_land_z;
+#endif*/
 
 	if (m_creatureState == MOVING)
-	{ // to prevent movement stalls while chasing, we need to send the movement packet before the creature reaches its destination
+	{ // Dword: to prevent movement stalls while chasing, we need to send the movement packet before the creature reaches its destination
 		if (GetNextTarget()
 			&& m_Unit->GetDistanceSq(m_destinationX, m_destinationY, m_destinationZ) < 9.0f)
 		{ // a distance of 3 yards away from target destination seems to leave sufficient room for sending the packet
@@ -2967,9 +2983,7 @@ void AIInterface::_UpdateMovement(uint32 p_time)
 			//**** Process the Pending Move ****//
 			if(m_nextPosX != 0.0f && m_nextPosY != 0.0f)
 			{
-				
-				if (GetNextTarget() == 0)
-					UpdateMove();
+				UpdateMove();
 			}
 		}
 	}
