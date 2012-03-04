@@ -443,6 +443,54 @@ bool ChatHandler::HandleRatingsCommand( const char *args , WorldSession *m_sessi
 	return true;
 }
 
+bool ChatHandler::HandleStopXP(const char* args, WorldSession *m_session)
+{
+	Player * pPlr = NULL;
+	bool bGM = m_session->HasGMPermissions();
+	//enable GMs to stopXP on someone else
+	if(bGM)
+	{
+		Player * pPlr = getSelectedChar(m_session, true);
+		if(!pPlr)
+		{
+			pPlr = m_session->GetPlayer();
+			SystemMessage(m_session, "Auto-targeting self.");
+		}
+	}
+	if(!pPlr)
+		pPlr = m_session->GetPlayer();
+
+	if(!pPlr)
+		return false;
+	if(!pPlr->m_stopXP)
+	{
+		pPlr->m_stopXP = true;
+		if(bGM)
+		{
+			sGMLog.writefromsession(m_session, "disabled XP gaining for player %s", pPlr->GetName());
+			BlueSystemMessageToPlr(pPlr, "%s disabled XP gaining on you.", m_session->GetPlayer()->GetName());
+			GreenSystemMessage(m_session, "Disabled XP gaining on %s.", pPlr->GetName());
+			return true;
+		}
+		BlueSystemMessage(m_session, "Experience gaining is now OFF.");
+		BlueSystemMessage(m_session, "It will turn ON after using .StopXP again or logging out.");
+		return true;
+	}
+	else
+	{
+		pPlr->m_stopXP = false;
+		if(bGM)
+		{
+			sGMLog.writefromsession(m_session, "enabled XP gaining for player %s", pPlr->GetName());
+			BlueSystemMessageToPlr(pPlr, "%s enabled XP gaining on you.", m_session->GetPlayer()->GetName());
+			GreenSystemMessage(m_session, "Enabled XP gaining on %s.", pPlr->GetName());
+			return true;
+		}
+		BlueSystemMessage(m_session, "Experience gaining is now ON.");
+		return true;
+	}
+}
+
 
 
 

@@ -546,6 +546,9 @@ protected:
 
 	bool HandleFixScaleCommand(const char * args, WorldSession * m_session);
 	bool HandleAddTrainerSpellCommand( const char * args, WorldSession * m_session );
+	
+	//Bfx stop leveling on players (useful for custom content, twinks, etc.)
+	bool HandleStopXP(const char * args, WorldSession *m_session);
 };
 
 
