@@ -32,6 +32,7 @@ extern "C" SCRIPT_DECL void _exp_script_register(ScriptMgr* mgr)	// Comment any 
 	//SetupAlteracValleyBattleground(mgr);
 	//SetupAQ40(mgr);
 	SetupKJScript(mgr);
+	SetupDpsDummies(mgr);
 	SetupArcatraz(mgr);
 	SetupAuchenaiCrypts(mgr);
 	//SetupBlackMorass(mgr);
