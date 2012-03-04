@@ -692,6 +692,7 @@ void CommandTableStorage::Init()
 		{ "removesickness",  'm', &ChatHandler::HandleRemoveRessurectionSickessAuraCommand, "Removes ressurrection sickness from the target",                                                                                          NULL,                     0, 0, 0 },
 		{ "fixscale",        'm', &ChatHandler::HandleFixScaleCommand,                      "",                                                                                                                                        NULL,                     0, 0, 0 },
 		{ "addtrainerspell", 'm', &ChatHandler::HandleAddTrainerSpellCommand,               "",                                                                                                                                        NULL,                     0, 0, 0 },
+		{ "stopxp",			 '0', &ChatHandler::HandleStopXP,								"Stop gaining XP ON/OFF.",																												   NULL,					 0, 0, 0 },
 		{ NULL,              '0', NULL,                                                     "",                                                                                                                                        NULL,                     0, 0, 0 }
 	};
 	dupe_command_table(commandTable, _commandTable);

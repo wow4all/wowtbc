@@ -1955,6 +1955,8 @@ public:
 
 	void Social_TellFriendsOnline();
 	void Social_TellFriendsOffline();
+	
+	
 
 	/************************************************************************/
 	/* end social                                                           */
@@ -1968,6 +1970,9 @@ public:
 	int16 m_vampiricEmbrace;
 	int16 m_vampiricTouch;
 	void VampiricSpell(uint32 dmg, Unit* pTarget);
+	
+	
+	bool m_stopXP;
 };
 
 class SkillIterator

@@ -390,6 +390,7 @@ Player::Player( uint32 guid ) : m_mailBox(guid), ascending(false), waterHeight(0
 	m_mountCheckTimer = 0;
 	m_taxiMapChangeNode = 0;
 	this->OnLogin();
+	m_stopXP				= false;
 
 #ifdef ENABLE_COMPRESSED_MOVEMENT
 	m_movementBuffer.reserve(5000);
@@ -1530,6 +1531,9 @@ void Player::BuildEnumData( WorldPacket * p_data )
 void Player::GiveXP(uint32 xp, const uint64 &guid, bool allowbonus)
 {
 	if ( xp < 1 )
+		return;
+	
+	if(m_stopXP)
 		return;
 
 	if(getLevel() >= GetUInt32Value(PLAYER_FIELD_MAX_LEVEL))
