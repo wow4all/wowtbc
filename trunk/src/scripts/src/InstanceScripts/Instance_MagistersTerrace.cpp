@@ -18,7 +18,6 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
 #include "Base.h"
 
 
