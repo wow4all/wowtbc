@@ -35,6 +35,7 @@ void SetupPvPHellfirePeninsula(ScriptMgr * mgr);
 void SetupBlackrockSpire(ScriptMgr *mgr);
 void SetupBlackrockDepths(ScriptMgr * mgr);
 void SetupDpsDummies(ScriptMgr * mgr);
+void SetupMagistersTerrace(ScriptMgr * mgr);
 void SetupBotanica(ScriptMgr * mgr);
 void SetupDeadmines(ScriptMgr * mgr);
 void SetupDireMaul(ScriptMgr * mgr);

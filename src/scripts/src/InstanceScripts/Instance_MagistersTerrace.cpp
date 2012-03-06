@@ -18,7 +18,7 @@
  */
 
 #include "StdAfx.h"
-#include "Base.h"
+#include "../Base/Base.h"
 
 
 //MagisterTerrace Script 
@@ -302,7 +302,7 @@ class SunbladeMageGuardAI : public MoonScriptBossAI
 	SunbladeMageGuardAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
 	{
 		AddSpell(MAGE_GUARD_GLAVE_THROW, Target_Current, 60, 0, 25, 0, 5);
-		AddSpell(MAGE_GUARD_MAGIC_DAMPENING_FIELD, Target_RandomPlayer, 20, 1, 35, 0, 20);
+		AddSpell(MAGE_GUARD_MAGIC_DAMPENING_FIELD, Target_Self, 20, 1, 35, 0, 20);
 	}
 
 };
