@@ -451,6 +451,7 @@
     <ClInclude Include="..\..\src\arcemu-world\Spell.h" />
     <ClInclude Include="..\..\src\arcemu-world\SpellAuras.h" />
     <ClInclude Include="..\..\src\arcemu-world\SpellFailure.h" />
+    <ClInclude Include="..\..\src\arcemu-world\SpellTarget.h" />
     <ClInclude Include="..\..\src\arcemu-world\Stats.h" />
     <ClInclude Include="..\..\src\arcemu-world\StdAfx.h" />
     <ClInclude Include="..\..\src\arcemu-world\TaxiMgr.h" />

@@ -19,8 +19,7 @@
  */
  
 #include "StdAfx.h"
-#include "Setup.h"
-#include "Base.h"
+#include "../Base/ai.h"
  
 #define NPC_Dps_Dummy_Normal 87123
 #define NPC_Dps_Dummy_Heroic 87124

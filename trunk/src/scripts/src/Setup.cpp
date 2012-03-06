@@ -41,7 +41,6 @@ extern "C" SCRIPT_DECL void _exp_script_register(ScriptMgr* mgr)	// Comment any 
 	SetupPvPHellfirePeninsula(mgr);
 	SetupBlackrockDepths(mgr);
 	SetupBlackrockSpire(mgr);
-	SetupBloodFurnace(mgr);
 	SetupBotanica(mgr);
 	SetupDeadmines(mgr);
 	SetupDireMaul(mgr);
@@ -64,7 +63,7 @@ extern "C" SCRIPT_DECL void _exp_script_register(ScriptMgr* mgr)	// Comment any 
 	SetupUldaman(mgr);
 	SetupTheStockade(mgr);
 	SetupWailingCaverns(mgr);
-	//SetupMagistersTerrace(mgr);
+	SetupMagistersTerrace(mgr);
 	//Raids
 	SetupBlackTemple(mgr);
 	SetupBlackwingLair(mgr);
