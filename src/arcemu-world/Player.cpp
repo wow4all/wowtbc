@@ -7885,7 +7885,7 @@ void Player::RequestDuel(Player *pTarget)
 	pTarget->GetSession()->SendPacket(&data);
 }
 
-void Player::DuelCountdown()
+void Player::DuelCountdown() 
 {
 	if( DuelingWith == NULL )
 		return;
@@ -7907,15 +7907,20 @@ void Player::DuelCountdown()
 
 		SetDuelState( DUEL_STATE_STARTED );
 		DuelingWith->SetDuelState( DUEL_STATE_STARTED );
-
+        
+		//Health +mana And Cooldown Reset in Durotar And Elwynn Forest.
 		if(GetZoneId() == 14 || GetZoneId() == 12)
 		{
 			SetUInt32Value(UNIT_FIELD_HEALTH, GetUInt32Value(UNIT_FIELD_MAXHEALTH));
 			SetUInt32Value(UNIT_FIELD_POWER1, GetUInt32Value(UNIT_FIELD_MAXPOWER1));
 			DuelingWith->SetUInt32Value(UNIT_FIELD_HEALTH, DuelingWith->GetUInt32Value(UNIT_FIELD_MAXHEALTH));
 			DuelingWith->SetUInt32Value(UNIT_FIELD_POWER1, DuelingWith->GetUInt32Value(UNIT_FIELD_MAXPOWER1));
+			DuelingWith->BroadcastMessage("Cooldowns, health and mana Reset for %s ", DuelingWith->m_name);
 			ResetAllCooldowns();
 			DuelingWith->ResetAllCooldowns();
+			BroadcastMessage("Cooldowns, health and mana Reset for %s ", m_name);
+
+
 		}
 
 		sEventMgr.AddEvent( this, &Player::DuelBoundaryTest, EVENT_PLAYER_DUEL_BOUNDARY_CHECK, 500, 0, 0 );
