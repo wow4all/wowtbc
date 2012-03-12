@@ -17034,6 +17034,16 @@ void ApplyNormalFixes()
 			sp->proc_interval = 25000;
 			sp->EffectTriggerSpell[0] = 42084;
 		}
+		//Assassination Rogue 2 set bonus
+		sp = dbcSpell.LookupEntryForced( 37165 );
+		if( sp != NULL )
+		{   
+		    sp->ProcOnNameHash[1] = SPELL_HASH_CHEAP_SHOT | SPELL_HASH_KIDNEY_SHOT;
+			sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+			sp->procChance = 100;
+			sp->proc_interval = 25000;
+			sp->EffectTriggerSpell[0] = 37163;
+		}
 		//Ashtongue Talisman of Lethality handled in core already fixed x)
 		//sp = dbcSpell.LookupEntryForced( 40460 );
 		//if( sp != NULL )
@@ -17301,6 +17311,14 @@ void ApplyNormalFixes()
 			sp->procFlags = PROC_ON_CAST_SPELL;
 			sp->EffectTriggerSpell[0] = 37445;
 			sp->maxstack = 1;
+		}
+		
+		//Item: Assassination Armor
+		sp = dbcSpell.LookupEntryForced(37166);
+		if (sp != NULL)
+		{
+			sp->EffectSpellGroupRelation[0]=8519680;
+			sp->EffectSpellGroupRelation_high[0]=8;
 		}
 
 		// Band of the Eternal Champion
