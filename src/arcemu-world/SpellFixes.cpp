@@ -12509,6 +12509,7 @@ void ApplyNormalFixes()
 		// ROGUE								//
 		//////////////////////////////////////////
 
+
 		
 
 		//////////////////////////////////////////
@@ -14664,6 +14665,29 @@ void ApplyNormalFixes()
 	sp = dbcSpell.LookupEntryForced( 31238 ); 
 	if( sp != NULL )
 		sp->EffectSpellGroupRelation[0] = group_relation_rogue_find_weakness;
+		
+	   //rogue - Dirty Tricks 
+		sp = dbcSpell.LookupEntryForced( 14076 ); 
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation[0] = 16777216 | 128; // blind + sap
+			sp->EffectSpellGroupRelation[1] = 16777216 | 128; // blind + sap
+		}
+		sp = dbcSpell.LookupEntryForced( 14094 ); 
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation[0] = 16777216 | 128; // blind + sap
+			sp->EffectSpellGroupRelation[1] = 16777216 | 128; // blind + sap
+		}
+
+		//rogue - Dirty Deeds
+		sp = dbcSpell.LookupEntryForced( 14082 ); 
+		if( sp != NULL )
+			sp->EffectSpellGroupRelation[0] = 1024 | 256; // Cheap Shot + Garrote
+		sp = dbcSpell.LookupEntryForced( 14083 ); 
+		if( sp != NULL )
+			sp->EffectSpellGroupRelation[0] = 1024 | 256; // Cheap Shot + Garrote
+
 	
 	
 
@@ -14672,6 +14696,19 @@ void ApplyNormalFixes()
 	//////////////////////////////////////////
 
 	// Insert priest spell fixes here
+	    //shadowfiend
+		sp = dbcSpell.LookupEntryForced( 41913 );
+		if( sp != NULL )
+			sp->procFlags = PROC_ON_MELEE_ATTACK;
+		//shadowfiend proc -> kinda rewriting this
+		sp = dbcSpell.LookupEntryForced( 41914 );
+		if( sp != NULL )
+		{
+			sp->Effect[0] = SPELL_EFFECT_ENERGIZE;
+			sp->EffectImplicitTargetA[0] = EFF_TARGET_PET_MASTER;
+			sp->EffectBasePoints[0] = 100; // represent pct value to convert dmg to mana
+			sp->Effect[1] = sp->Effect[2] = 0; //disable these
+		}
 		// Prayer of mending. !very very overwriten
 		// how it is after rewriten : we simply proc on damage and prochandler will get new target + do healing
 		sp = dbcSpell.LookupEntryForced( 33076 );
