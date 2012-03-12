@@ -17075,6 +17075,14 @@ void ApplyNormalFixes()
 			sp->EffectTriggerSpell[0] = 35081;
 		}
 		
+		sp = dbcSpell.LookupEntryForced( 35081 );
+		if( sp != NULL )
+		{
+			sp->procChance = 10;
+			sp->proc_interval = 35000;
+		
+		}
+		
 		//Ashtongue Talisman of Lethality handled in core already fixed x)
 		//sp = dbcSpell.LookupEntryForced( 40460 );
 		//if( sp != NULL )
@@ -17310,7 +17318,9 @@ void ApplyNormalFixes()
 
 		// Dragonspine Trophy
  		sp = dbcSpell.LookupEntryForced( 34774 );
-		if( sp != NULL ){
+		if( sp != NULL )
+		{
+		
 			sp->procChance = 10;
 			sp->procFlags  = PROC_ON_MELEE_ATTACK | PROC_ON_RANGED_ATTACK;
 			sp->proc_interval = 30000;
