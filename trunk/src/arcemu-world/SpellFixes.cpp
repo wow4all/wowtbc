@@ -11244,15 +11244,15 @@ void ApplyNormalFixes()
         /////////////////////
 		
 	//Head Rush Rogue tier 3 two set bonus
-	sp = dbcSpell.LookupEntryForced(37243);
-	if(sp != NULL)
+	if(sp->NameHash == SPELL_HASH_HEAD_RUSH )
 	{
-	    sp->procFlags = PROC_ON_SPELL_CRIT_HIT;
+	    sp->procFlags = PROC_ON_CRIT_ATTACK;
 	    sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
 		sp->procChance = 100;
 		sp->proc_interval = 10000;
 		sp->EffectTriggerSpell[0] = 28813;
-	}	
+	}
+	
 	//Fathom-Brooch of the Tidewalker proc
 	sp = dbcSpell.LookupEntryForced(37243);
 	if(sp != NULL)
@@ -12471,6 +12471,30 @@ void ApplyNormalFixes()
 			//Mend Pet
 			if( sp->NameHash == SPELL_HASH_MEND_PET )
 				sp->ChannelInterruptFlags = 0;
+			
+		   sp = dbcSpell.LookupEntryForced( 56641 ); //Steady Shot Rank 1
+		   if (sp != NULL)
+		   {
+			   return;
+		   }
+		
+		   sp = dbcSpell.LookupEntryForced( 34120 ); //Steady Shot Rank 2
+		   if (sp != NULL)
+		   {
+			  return;
+		   }
+		
+		   sp = dbcSpell.LookupEntryForced( 49051 ); //Steady Shot Rank 3
+		   if (sp != NULL)
+		   {
+			   return;
+		   }
+		
+		   sp = dbcSpell.LookupEntryForced( 49052 ); //Steady Shot Rank 4
+		   if (sp != NULL)
+		  {
+			  return;
+		  }
 			
 			/*
 			// Concussive Shot, Distracting Shot, Silencing Shot - ranged spells
