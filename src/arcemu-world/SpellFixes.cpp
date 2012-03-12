@@ -17359,6 +17359,79 @@ void ApplyNormalFixes()
 			sp->procChance = 4;
 			sp->procFlags = PROC_ON_MELEE_ATTACK;
 		}
+		
+		//Item Set: Malorne Raiment
+		sp = dbcSpell.LookupEntryForced( 37292 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation_high[0] |=524288;
+		}
+
+		//Item Set: Malorne Regalia
+		sp = dbcSpell.LookupEntryForced( 37297 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation_high[0] |=4096;
+		}
+		
+		//Item Set: Thunderheart Harness
+		sp = dbcSpell.LookupEntryForced( 38447 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation_high[0] |=1024;
+			sp->EffectSpellGroupRelation_high[1] |=64;
+		}
+		sp = dbcSpell.LookupEntryForced( 38416 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation[0] |=8388608;
+			sp->EffectSpellGroupRelation_high[0] |=1048576;
+			sp->EffectSpellGroupRelation[1] |=8388608;
+		}
+
+		//Item Set: Thunderheart Regalia
+		sp = dbcSpell.LookupEntryForced( 38414 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation[0] |=2;
+		}
+		sp = dbcSpell.LookupEntryForced( 38415 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation[0] |=4;
+		}
+
+		//Item Set: Thunderheart Raiment
+		sp = dbcSpell.LookupEntryForced( 38417 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation_high[0] |=2;
+		}
+		sp = dbcSpell.LookupEntryForced( 38420 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation_high[0] |=32;
+		}
+		
+		//Item Set: Nordrassil Harness
+		sp = dbcSpell.LookupEntryForced( 37333 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation_high[1] |=256;
+			sp->EffectSpellGroupRelation[0] |=32768;
+		}
+
+		//Item Set: Nordrassil Raiment
+		sp = dbcSpell.LookupEntryForced( 37313 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation[0] |=64;
+		}
+		sp = dbcSpell.LookupEntryForced( 37314 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation_high[0] |=16;
+		}
 
 		//Item Set: Deathmantle
 		sp = dbcSpell.LookupEntryForced( 37170 );
@@ -17374,6 +17447,19 @@ void ApplyNormalFixes()
 		{
 			sp->procChance = 15;
 			//sp->procFlags = PROC_ON_CAST_SPELL; Need new flag - PROC_ON_FINISH_MOVE;
+		}
+		
+		//Item Set: Slayer's Armor
+		sp = dbcSpell.LookupEntryForced( 38388 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation[0] |=262144;
+		}
+		sp = dbcSpell.LookupEntryForced( 38389 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation_high[0] |= 2 | 4;
+			sp->EffectSpellGroupRelation[0] |= 8388612 |8388610 |41943040;
 		}
 
 		//Item Set: Tirisfal Regalia
