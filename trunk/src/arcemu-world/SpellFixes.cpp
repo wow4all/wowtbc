@@ -17442,6 +17442,11 @@ void ApplyNormalFixes()
 		}
 
 		//Item Set: Netherblade
+		sp = dbcSpell.LookupEntryForced( 37167 );
+		if( sp != NULL )
+		{
+			sp->EffectSpellGroupRelation[0] |= 262144;
+		}
 		sp = dbcSpell.LookupEntryForced( 37168 );
 		if( sp != NULL )
 		{
