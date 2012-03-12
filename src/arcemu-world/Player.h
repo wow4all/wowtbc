@@ -364,14 +364,14 @@ static const float crit_to_dodge[ MAX_PLAYER_CLASSES ] = {
     0.0f,      // empty
     1.1f,      // Warrior
     1.0f,      // Paladin
-    1.6f,      // Hunter
+    1.5f,      // Hunter
     1.5f,      // Rogue
     1.0f,      // Priest
     1.0f,      // Shaman
     1.0f,      // Mage
     1.0f,      // Warlock
     0.0f,      // empty
-    1.7f       // Druid
+    1.6f       // Druid
 };
 
 /*
