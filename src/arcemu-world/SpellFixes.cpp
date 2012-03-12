@@ -19,6 +19,7 @@
  */
 
 #include "StdAfx.h"
+#include "Spell.h"
 
 enum SUMMON_TYPE
 {
@@ -11246,7 +11247,8 @@ void ApplyNormalFixes()
 	//Head Rush Rogue tier 3 two set bonus
 	if(sp->NameHash == SPELL_HASH_HEAD_RUSH )
 	{
-	    sp->procFlags = PROC_ON_CRIT_ATTACK;
+	    sp->ProcOnNameHash[1] = SPELL_HASH_HEMORRHAGE | SPELL_HASH_BACKSTAB | SPELL_HASH_SINISTER_STRIKE;
+		sp->procFlags = PROC_ON_CRIT_ATTACK;
 	    sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
 		sp->procChance = 100;
 		sp->proc_interval = 10000;
@@ -11260,12 +11262,14 @@ void ApplyNormalFixes()
 		sp->proc_interval = 45000;
 		sp->procChance = 15;
 	}
+	
 	//Riposte
 	sp = dbcSpell.LookupEntryForced(14251);
 	if(sp != NULL)
 	{
 		sp->CasterAuraState = AURASTATE_FLAG_PARRY;
 	}
+	
 	//Linken's boomerang
 	sp = dbcSpell.LookupEntryForced(15712);
 	if(sp != NULL)
@@ -11273,6 +11277,7 @@ void ApplyNormalFixes()
 		sp->Effect[1] = SPELL_EFFECT_DUMMY;
 		sp->Effect[2] = SPELL_EFFECT_NULL;
 	}
+	
 	//Don Santos' Famous Hunting Rifle
 	sp = dbcSpell.LookupEntryForced(38293);
 	if(sp != NULL)
@@ -11280,6 +11285,7 @@ void ApplyNormalFixes()
 		sp->procChance = 8;
 		sp->proc_interval = 8000;
 	}
+	
 	//Druid gladiator gloves
 	sp = dbcSpell.LookupEntryForced(33830);
 	if(sp != NULL)
@@ -11287,6 +11293,7 @@ void ApplyNormalFixes()
 		sp->EffectSpellGroupRelation_high[0] = 32;
 		sp->EffectSpellGroupRelation_high[1] = 32;
 	}
+	
 	//Volatile infection
 	sp = dbcSpell.LookupEntryForced(43587);
 	if(sp != NULL)
@@ -17050,12 +17057,24 @@ void ApplyNormalFixes()
 		sp = dbcSpell.LookupEntryForced( 42083 );
 		if( sp != NULL )
 		{
-			sp->procFlags = PROC_ON_CRIT_ATTACK;
+			sp->procFlags = PROC_ON_CRIT_ATTACK | PROC_ON_RANGED_CRIT_ATTACK;
 			sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
 			sp->procChance = 20;
 			sp->proc_interval = 25000;
 			sp->EffectTriggerSpell[0] = 42084;
 		}
+		
+		//Band of the eternal champion
+		sp = dbcSpell.LookupEntryForced( 35080 );
+		if( sp != NULL )
+		{
+			sp->procFlags = PROC_ON_MELEE_ATTACK | PROC_ON_RANGED_ATTACK;
+			sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
+			sp->procChance = 20;
+			sp->proc_interval = 35000;
+			sp->EffectTriggerSpell[0] = 35081;
+		}
+		
 		//Ashtongue Talisman of Lethality handled in core already fixed x)
 		//sp = dbcSpell.LookupEntryForced( 40460 );
 		//if( sp != NULL )
@@ -17071,7 +17090,7 @@ void ApplyNormalFixes()
 	    sp = dbcSpell.LookupEntryForced( 45354 );
 		if( sp != NULL )
 		{
-			sp->procFlags = PROC_ON_MELEE_ATTACK | PROC_ON_SPELL_HIT_VICTIM | PROC_ON_RANGED_ATTACK;
+			sp->procFlags = PROC_ON_MELEE_ATTACK | PROC_ON_RANGED_ATTACK;
 			sp->procChance = 15;
 			sp->proc_interval = 25000;
 			sp->EffectTriggerSpell[0] = 45053;
@@ -17091,7 +17110,8 @@ void ApplyNormalFixes()
          sp = dbcSpell.LookupEntryForced( 37173 );
          if( sp != NULL )
          {
-            sp->procFlags = PROC_ON_SPELL_HIT_VICTIM;
+            sp->procFlags = PROC_ON_CAST_SPECIFIC_SPELL;
+            sp->ProcOnNameHash[0] = SPELL_HASH_EVISCERATE | SPELL_HASH_SLICE_AND_DICE;
             sp->procChance = 35;
             sp->proc_interval = 30000;
             sp->EffectTriggerSpell[0] = 37174;
@@ -17101,7 +17121,8 @@ void ApplyNormalFixes()
          sp = dbcSpell.LookupEntryForced( 37174 );
          if( sp != NULL )
          {
-            sp->procFlags = PROC_ON_SPELL_HIT_VICTIM;  
+            sp->procFlags = PROC_ON_CAST_SPECIFIC_SPELL;
+            sp->ProcOnNameHash[0] = SPELL_HASH_EVISCERATE | SPELL_HASH_SLICE_AND_DICE;			
             sp->procChance = 35;
             sp->proc_interval = 30000;
             sp->EffectTriggerSpell[0] = 37174;
@@ -17115,7 +17136,6 @@ void ApplyNormalFixes()
 			sp->procFlags = PROC_ON_CAST_SPECIFIC_SPELL;
 			sp->ProcOnNameHash[0] = SPELL_HASH_KICK;
 			sp->procChance = 100;
-			
 		}
 		
 		
