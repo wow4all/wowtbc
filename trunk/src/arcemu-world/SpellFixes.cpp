@@ -17075,10 +17075,11 @@ void ApplyNormalFixes()
 		sp = dbcSpell.LookupEntryForced( 37165 );
 		if( sp != NULL )
 		{   
-		    sp->ProcOnNameHash[1] = SPELL_HASH_CHEAP_SHOT | SPELL_HASH_KIDNEY_SHOT;
+		    sp->procFlags = PROC_ON_CAST_SPECIFIC_SPELL;
+			sp->ProcOnNameHash[0] = SPELL_HASH_CHEAP_SHOT;
+			sp->ProcOnNameHash[0] = SPELL_HASH_KIDNEY_SHOT;
 			sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
 			sp->procChance = 100;
-			sp->proc_interval = 25000;
 			sp->EffectTriggerSpell[0] = 37163;
 		}
 		//Ashtongue Talisman of Lethality handled in core already fixed x)
