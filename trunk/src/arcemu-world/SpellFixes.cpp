@@ -11244,15 +11244,17 @@ void ApplyNormalFixes()
         /////////////////////
 		
 	//Head Rush Rogue tier 3 two set bonus
-	sp = dbcSpell.LookupEntryForced(37243);
-	if(sp != NULL)
+	sp = dbcSpell.LookupEntryForced(28812);
+	//if(sp != NULL)
 	{
-	    sp->procFlags = PROC_ON_SPELL_CRIT_HIT;
+	    sp->ProcOnNameHash[1] = SPELL_HASH_HEMORRHAGE | SPELL_HASH_BACKSTAB | SPELL_HASH_SINISTER_STRIKE;
+		sp->procFlags = PROC_ON_CRIT_HIT_VICTIM;
 	    sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
 		sp->procChance = 100;
-		sp->proc_interval = 10000;
+		//sp->proc_interval = 10000;
 		sp->EffectTriggerSpell[0] = 28813;
-	}	
+	}
+	
 	//Fathom-Brooch of the Tidewalker proc
 	sp = dbcSpell.LookupEntryForced(37243);
 	if(sp != NULL)
