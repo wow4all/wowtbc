@@ -18,6 +18,7 @@
  */
 
 #include "StdAfx.h"
+#include "Setup.h"
 #include "../Base/Base.h"
 
 
@@ -215,6 +216,63 @@ public:
 
 	
 };
+
+/*
+	Vexallus
+*/
+#define BOSS_VEXALLUS 24744
+#define CN_PURE_ENERGY 24745
+
+#define VEXALLUS_CHAIN_LIGHTNING 44318
+#define VEXALLUS_OVERLOAD 44353
+#define VEXALLUS_ARCANE_SHOCK 44319
+#define VEXALLUS_SUMMON_PURE_ENERGY 44322
+
+class VexallusAI : public MoonScriptBossAI
+{
+		MOONSCRIPT_FACTORY_FUNCTION(VexallusAI, MoonScriptBossAI);
+		VexallusAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
+		{
+			AddPhaseSpell(1, AddSpell(VEXALLUS_CHAIN_LIGHTNING, Target_Current, 19, 0, 8, 0, 0));
+			AddPhaseSpell(1, AddSpell(VEXALLUS_ARCANE_SHOCK, Target_ClosestPlayer, 12, 0, 20, 0, 0, true, "Un...con...tainable.", Text_Yell, 12392));
+			AddPhaseSpell(2, AddSpell(VEXALLUS_OVERLOAD, Target_Self, 85, 0, 3, 0, 0));
+			mPureEnergy = AddSpell(VEXALLUS_SUMMON_PURE_ENERGY, Target_Self, 85, 0, 3);
+
+			AddEmote(Event_OnTargetDied, "Con...sume.", Text_Yell, 12393);
+
+			mSummon = 0;
+		}
+
+		void OnCombatStart(Unit* pTarget)
+		{
+			Emote("Drain... life...", Text_Yell, 12389);
+			SetPhase(1);
+			ParentClass::OnCombatStart(pTarget);
+		}
+
+		void AIUpdate()
+		{
+			if((GetHealthPercent() <= 85  && mSummon == 0) ||
+			        (GetHealthPercent() <= 70 && mSummon == 1) ||
+			        (GetHealthPercent() <= 55 && mSummon == 2) ||
+			        (GetHealthPercent() <= 40 && mSummon == 3) ||
+			        (GetHealthPercent() <= 25 && mSummon == 4))
+			{
+				CastSpell(mPureEnergy);
+				++mSummon;
+			}
+
+			if(GetHealthPercent() <= 10 && GetPhase() == 1)
+				SetPhase(2);
+
+
+			ParentClass::AIUpdate();
+		}
+
+		SpellDesc*	mPureEnergy;
+		uint8		mSummon;
+};
+
 
 //Trash mobs
 
@@ -532,6 +590,7 @@ class KaelThasMTAI : public MoonScriptBossAI
 void SetupMagistersTerrace(ScriptMgr* pScriptMgr) 
 {
 	pScriptMgr->register_creature_script(BOSS_SelinFireheart, &SelinFireheartAI::Create);
+	pScriptMgr->register_creature_script(BOSS_VEXALLUS, &VexallusAI::Create);
 	pScriptMgr->register_creature_script(CN_COILSKAR_WITCH, &CoilskarWitchAI::Create);
 	pScriptMgr->register_creature_script(CN_SISTER_OF_TORMENT, &SisterOfTormentAI::Create);
 	pScriptMgr->register_creature_script(CN_SB_IMP, &SunbladeImpAI::Create);
