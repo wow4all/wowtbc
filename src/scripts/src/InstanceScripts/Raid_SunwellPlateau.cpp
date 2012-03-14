@@ -261,7 +261,7 @@ class BrutallusAI : public MoonScriptBossAI
 		
 		_unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_DUAL_WIELD), true);
 		_unit->SetFloatValue(OBJECT_END + 0x0042, 6000);
-                _unit->SetFloatValue(OBJECT_END + 0x0043, 7500);
+        _unit->SetFloatValue(OBJECT_END + 0x0043, 7500);
 		
 		      
 
@@ -725,6 +725,43 @@ class GrandWarlockAlythessAI : public MoonScriptBossAI
 	uint32					mRespond;
 	LadySacrolashAI*		mLadySacrolash;
 };
+
+#define CREATURE_SHADOW_IMAGE 25214
+
+#define SPELL_SHADOW_IMAGE_VISUAL 45263
+#define SPELL_DARKSTRIKE 5271
+#define SPELL_SHADOW_FURY 45270
+
+class mob_Shadow_imageAI : public MoonScriptCreatureAI
+{
+	MOONSCRIPT_FACTORY_FUNCTION(mob_Shadow_imageAI, MoonScriptCreatureAI);
+	mob_Shadow_imageAI(Creature* pCreature) : MoonScriptCreatureAI(pCreature)
+	{
+	  _unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_SHADOW_IMAGE_VISUAL), true);
+	  
+	  
+	  AddSpell( SPELL_DARKSTRIKE, Target_RandomPlayer, 50, 0, 3);
+	  AddSpell( SPELL_SHADOW_FURY, Target_RandomPlayer, 50, 0, 10);
+
+	}
+	
+	void OnDied(Unit * mKiller)
+	{
+	
+	}
+	
+	void OnTargetDied(Unit* mTarget)
+	{
+	
+	}
+	
+	void OnCombatStart(Unit* mTarget)
+	{
+	
+	}
+	
+
+};
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //M'uru
 #define CN_MURU						25960
@@ -1048,6 +1085,8 @@ void SetupSunwellPlateau(ScriptMgr* pScriptMgr)
 	pScriptMgr->register_creature_script(CN_FELMYST, &FelmystAI::Create);
 	pScriptMgr->register_creature_script(CN_LADY_SACROLASH, &LadySacrolashAI::Create);
 	pScriptMgr->register_creature_script(CN_GRAND_WARLOCK_ALYTHESS, &GrandWarlockAlythessAI::Create);
+	pScriptMgr->register_creature_script(CREATURE_SHADOW_IMAGE, &mob_Shadow_imageAI::Create);
+	
 	pScriptMgr->register_creature_script(CN_MURU, &MuruAI::Create);
 	pScriptMgr->register_creature_script(CN_SHADOWSWORD_BERSERKER, &ShadowswordBerserkerAI::Create);
 	pScriptMgr->register_creature_script(CN_SHADOWSWORD_FURY_MAGE, &ShadowswordFuryMageAI::Create);
