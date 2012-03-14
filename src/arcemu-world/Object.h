@@ -114,7 +114,7 @@ class MapMgr;
  * casting defines
  */
 
-#define TO_PLAYER(ptr) ((Player*)(ptr))
+/*#define TO_PLAYER(ptr) ((Player*)(ptr))
 #define TO_UNIT(ptr) ((Unit*)(ptr))
 #define TO_CREATURE(ptr) ((Creature*)(ptr))
 #define TO_PET(ptr) ((Pet*)(ptr))
@@ -123,7 +123,7 @@ class MapMgr;
 #define TO_OBJECT(ptr) ((Object*)(ptr))
 #define TO_GAMEOBJECT(ptr) ((GameObject*)(ptr))
 #define TO_DYNAMICOBJECT(ptr) ((DynamicObject*)(ptr))
-#define TO_CORPSE(ptr) ((Corpse*)(ptr))
+#define TO_CORPSE(ptr) ((Corpse*)(ptr))*/
 
 
 //====================================================================
