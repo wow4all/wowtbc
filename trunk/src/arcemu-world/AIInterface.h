@@ -245,6 +245,7 @@ public:
 	void DismissPet();
 	void SetUnitToFollow(Unit* un) { UnitToFollow = un; };
 	void SetUnitToFear(Unit* un)  { UnitToFear = un; };
+	void ResetUnitToFollow() { UnitToFollow = 0; };
 	void SetFollowDistance(float dist) { FollowDistance = dist; };
 	void SetUnitToFollowAngle(float angle) { m_fallowAngle = angle; }
 	bool setInFront(Unit* target);
