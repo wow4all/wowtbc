@@ -382,6 +382,35 @@ class SunbladeMagisterAI : public MoonScriptBossAI
 
 };
 
+#define CREATURE_BRIGHTSCALE_WYRM 24761
+
+class mob_Brightscale_wyrmAI : public MoonScriptCreatureAI
+{
+	MOONSCRIPT_FACTORY_FUNCTION(mob_Brightscale_wyrmAI, MoonScriptCreatureAI);
+	mob_Brightscale_wyrmAI(Creature* pCreature) : MoonScriptCreatureAI(pCreature)
+	{
+	  SetFlyMode( true );
+
+	}
+	
+	void OnDied(Unit * mKiller)
+	{
+	
+	}
+	
+	void OnTargetDied(Unit* mTarget)
+	{
+	
+	}
+	
+	void OnCombatStart(Unit* mTarget)
+	{
+	
+	}
+	
+
+};
+
 //Priestess Delrissa
 #define BOSS_Priestess_Delrissa 24560
 
@@ -736,6 +765,9 @@ void SetupMagistersTerrace(ScriptMgr* pScriptMgr)
 	pScriptMgr->register_creature_script(CN_SB_IMP, &SunbladeImpAI::Create);
 	pScriptMgr->register_creature_script(CN_SB_MAGE_GUARD, &SunbladeMageGuardAI::Create);
 	pScriptMgr->register_creature_script(CN_SB_MAGISTER, &SunbladeMagisterAI::Create);
+	pScriptMgr->register_creature_script(CREATURE_BRIGHTSCALE_WYRM, &mob_Brightscale_wyrmAI::Create);
+	
+	
 	
 	//Priestess Delrissa Encounter Creature AI
 	pScriptMgr->register_creature_script(CN_KaganiNightstrike, &Kagani_NightstrikeAI::Create);
