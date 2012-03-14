@@ -390,6 +390,8 @@ class mob_Brightscale_wyrmAI : public MoonScriptCreatureAI
 	mob_Brightscale_wyrmAI(Creature* pCreature) : MoonScriptCreatureAI(pCreature)
 	{
 	  SetFlyMode( true );
+	  
+	  RegisterAIUpdateEvent( 100 );
 
 	}
 	
@@ -766,9 +768,6 @@ void SetupMagistersTerrace(ScriptMgr* pScriptMgr)
 	pScriptMgr->register_creature_script(CN_SB_MAGE_GUARD, &SunbladeMageGuardAI::Create);
 	pScriptMgr->register_creature_script(CN_SB_MAGISTER, &SunbladeMagisterAI::Create);
 	pScriptMgr->register_creature_script(CREATURE_BRIGHTSCALE_WYRM, &mob_Brightscale_wyrmAI::Create);
-	
-	
-	
 	//Priestess Delrissa Encounter Creature AI
 	pScriptMgr->register_creature_script(CN_KaganiNightstrike, &Kagani_NightstrikeAI::Create);
 	pScriptMgr->register_creature_script(CN_EllrysDuskhallow, &Ellrys_DuskhallowAI::Create);
