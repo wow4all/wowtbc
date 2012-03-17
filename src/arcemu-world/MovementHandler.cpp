@@ -245,9 +245,6 @@ void _HandleBreathing(MovementInfo &movement_info, Player * _player, WorldSessio
 		}
 	}
 
-	WorldPacket swimSpline(779/*SMSG_SPLINE_MOVE_START_SWIM*/, 0x8);
-	swimSpline << _player->GetGUID();
-	pSession->SendPacket(&swimSpline);
 }
 
 void WorldSession::HandleMovementOpcodes( WorldPacket & recv_data )
@@ -285,71 +282,27 @@ void WorldSession::HandleMovementOpcodes( WorldPacket & recv_data )
 	/************************************************************************/
 	
 	switch( recv_data.GetOpcode() )
-	{ // need to also update the ascent data on speed change
+	{
 	case MSG_MOVE_START_FORWARD:
-		{
-			_player->activeMoveFlags |= Player::ACTIVE_MOVEMENT_MOVE_FORWARD;
-			_player->moving = true;
-
-			_player->ascendStartHeight = movement_info.z;
-			_player->ascendStartTime = getMSTime();
-		} break;
 	case MSG_MOVE_START_BACKWARD:
-		{
-			_player->activeMoveFlags |= Player::ACTIVE_MOVEMENT_MOVE_BACKWARD;
-			_player->moving = true;
-
-			_player->ascendStartHeight = movement_info.z;
-			_player->ascendStartTime = getMSTime();
-		} break;
+		_player->moving = true;
+		break;
 	case MSG_MOVE_START_STRAFE_LEFT:
 	case MSG_MOVE_START_STRAFE_RIGHT:
-		{
-			_player->activeMoveFlags |= Player::ACTIVE_MOVEMENT_MOVE_STRAFE;
-			_player->strafing = true;
-
-			_player->ascendStartHeight = movement_info.z;
-			_player->ascendStartTime = getMSTime();
-		} break;
+		_player->strafing = true;
+		break;
 	case MSG_MOVE_JUMP:
-		{
-			_player->activeMoveFlags |= Player::ACTIVE_MOVEMENT_JUMP;
-			_player->jumping = true;
-		} break;
+		_player->jumping = true;
+		break;
 	case MSG_MOVE_STOP:
-		{
-			_player->activeMoveFlags &= (~Player::ACTIVE_MOVEMENT_MOVE_FORWARD);
-			_player->activeMoveFlags &= (~Player::ACTIVE_MOVEMENT_MOVE_BACKWARD);
-			_player->moving = false;
-
-			_player->ascendStartHeight = movement_info.z;
-			_player->ascendStartTime = getMSTime();
-		} break;
+		_player->moving = false;
+		break;
 	case MSG_MOVE_STOP_STRAFE:
-		{
-			_player->activeMoveFlags &= (~Player::ACTIVE_MOVEMENT_MOVE_STRAFE);
-			_player->strafing = false;
-
-			_player->ascendStartHeight = movement_info.z;
-			_player->ascendStartTime = getMSTime();
-		} break;
+		_player->strafing = false;
+		break;
 	case MSG_MOVE_FALL_LAND:
-		{
-			_player->activeMoveFlags &= (~Player::ACTIVE_MOVEMENT_JUMP);
-			_player->jumping = false;
-		} break;
-	case CMSG_FLY_PITCH_UP_Z:
-	case CMSG_MOVE_FLY_START_AND_END:
-	{ // added this case for swimming (up)
-		_player->ascending = true;
-		_player->ascendStartHeight = movement_info.z;
-		_player->ascendStartTime = getMSTime();
-		moved = false;
-	} break;
-	case CMSG_FLY_PITCH_DOWN_AFTER_UP:
-	{ // added this case for swimming bug fix
-		_player->ascending = false;
-	}
+		_player->jumping = false;
+		break;
 	default:
 		moved = false;
 		break;
@@ -379,6 +332,7 @@ void WorldSession::HandleMovementOpcodes( WorldPacket & recv_data )
 			sEventMgr.AddEvent( _player, &Player::_Kick, EVENT_PLAYER_KICK, 5000, 1, 0 );
 		}
 	} 
+
 
 	//update the detector
 	if( sWorld.antihack_speed && !_player->GetTaxiState() && _player->m_TransporterGUID == 0 && !_player->GetSession()->GetPermissionCount())
@@ -620,46 +574,7 @@ void WorldSession::HandleMovementOpcodes( WorldPacket & recv_data )
 			_player->SetPosition(movement_info.x, movement_info.y, movement_info.z, 
 				movement_info.orientation + movement_info.transO, false);
 		}
-	}
-
-	
-	////////////////////////////////////////
-	//      swimming bug fix      //
-	//////////////////////////////////////
-	if ( !(movement_info.flags & MOVEFLAG_SWIMMING) )
-		_player->waterHeight = 0.0f;
-	else
-	{
-		if (recv_data.GetOpcode() == MSG_MOVE_FLY_DOWN_UNK)
-		{
-			if (_player->waterHeight == 0.0f)
-				_player->waterHeight = movement_info.z;
-		}
-		else if (recv_data.GetOpcode() == CMSG_FLY_PITCH_DOWN_AFTER_UP && _player->waterHeight != 0.0f)
-		{
-			if (movement_info.z + 1.0f < _player->waterHeight)
-			{
-				WorldPacket data(SMSG_MOVE_SET_FLY, 13);
-				data << _player->GetNewGUID();
-				data << uint32(2);
-				_player->SendMessageToSet(&data, true);
-			}
-		}
-		/*else if (recv_data.GetOpcode() == MSG_MOVE_HEARTBEAT)
-		{
-			if (_player->ascending == true)
-			{
-				if (movement_info.z + 3.5f > _player->waterHeight)
-				{
-					WorldPacket data(SMSG_MOVE_SET_UNFLY, 13);
-					data << _player->GetNewGUID();
-					data << uint32(5);
-					_player->SendMessageToSet(&data, true);
-				}
-			}
-		}*/
-	}
-	
+	}	
 }
 
 void WorldSession::HandleMoveTimeSkippedOpcode( WorldPacket & recv_data )
