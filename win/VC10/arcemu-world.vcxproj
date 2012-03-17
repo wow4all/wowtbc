@@ -259,6 +259,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\arcemu-world\CMovementCompressorThread.cpp" />
     <ClCompile Include="..\..\src\arcemu-world\Main.cpp" />
     <ClCompile Include="..\..\src\arcemu-world\Master.cpp" />
     <ClCompile Include="..\..\src\arcemu-world\CConsole.cpp" />
@@ -383,6 +384,7 @@
     <ClCompile Include="..\..\src\arcemu-world\WorldStateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\arcemu-world\CMovementCompressorThread.h" />
     <ClInclude Include="..\..\src\arcemu-world\Master.h" />
     <ClInclude Include="..\..\src\arcemu-world\BaseConsole.h" />
     <ClInclude Include="..\..\src\arcemu-world\CConsole.h" />
