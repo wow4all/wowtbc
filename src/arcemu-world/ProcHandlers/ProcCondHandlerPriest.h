@@ -1,0 +1,10 @@
+ProcCondHandlerRes Blackout(ProcCondSharedDataStruct *shareddata);
+ProcCondHandlerRes HolyConcentration(ProcCondSharedDataStruct *shareddata);
+ProcCondHandlerRes PrayerofMending(ProcCondSharedDataStruct *shareddata);
+ProcCondHandlerRes Misery(ProcCondSharedDataStruct *shareddata);
+ProcCondHandlerRes ShadowWeaving(ProcCondSharedDataStruct *shareddata);
+ProcCondHandlerRes Inspiration(ProcCondSharedDataStruct *shareddata);
+ProcCondHandlerRes BlessedRecovery(ProcCondSharedDataStruct *shareddata);
+ProcCondHandlerRes Shadowguard(ProcCondSharedDataStruct *shareddata);
+ProcCondHandlerRes ReflectiveShield(ProcCondSharedDataStruct *shareddata);
+ProcCondHandlerRes BlessedResilience(ProcCondSharedDataStruct *shareddata);
