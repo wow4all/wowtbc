@@ -249,7 +249,7 @@ class BrutallusAI : public MoonScriptBossAI
     MOONSCRIPT_FACTORY_FUNCTION(BrutallusAI, MoonScriptBossAI);
 	BrutallusAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
 	{
-	        _unit->MechanicsDispels[ DISPEL_MECHANIC_CHARM ] = 1;
+	    _unit->MechanicsDispels[ DISPEL_MECHANIC_CHARM ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_FEAR ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_ROOT ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_SLEEP ] = 1;
@@ -259,13 +259,8 @@ class BrutallusAI : public MoonScriptBossAI
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_POLYMORPH ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_BANISH ] = 1;
 		
-		_unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_DUAL_WIELD), true);
-		_unit->SetFloatValue(OBJECT_END + 0x0042, 6000);
-        _unit->SetFloatValue(OBJECT_END + 0x0043, 7500);
 		
-		      
-
-	        AddSpell( BRUTALLUS_METEOR_SLASH, Target_Current, 35, 1, 16 );
+	    AddSpell( BRUTALLUS_METEOR_SLASH, Target_Current, 35, 1, 16 );
 		AddSpell( BRUTALLUS_BURN, Target_RandomPlayer, 50, 0, 30 );
 		AddSpell( BRUTALLUS_STOMP, Target_Current, 25, 0, 9 );
 
@@ -283,15 +278,17 @@ class BrutallusAI : public MoonScriptBossAI
 		AddEmote( Event_OnDied, "Gah! Well done... Now... this gets... interesting...", Text_Yell, 12471 );
 	}
 	
-	//Seems to be breaking the script :/ 
-	/*    void OnReset(Unit* mTarget) 
-        {
+	
+	void OnCombatStart(Unit* mTarget)
+    {
  
-          _unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_DUAL_WIELD), true);
-		  _unit->SetFloatValue(OBJECT_END + 0x0042, 6000);
-          _unit->SetFloatValue(OBJECT_END + 0x0043, 7500);
+        _unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_DUAL_WIELD), true);
+		GetUnit()->SetFloatValue(UNIT_FIELD_MINDAMAGE, 7000);//Bfx DB does not support offhands using this instead.
+		GetUnit()->SetFloatValue(UNIT_FIELD_MAXDAMAGE, 8000);
+		GetUnit()->SetFloatValue(UNIT_FIELD_MINOFFHANDDAMAGE, 6000);
+		GetUnit()->SetFloatValue(UNIT_FIELD_MAXOFFHANDDAMAGE, 7500);
  
-        };*/
+    };
 
         
 };
@@ -738,6 +735,8 @@ class mob_Shadow_imageAI : public MoonScriptCreatureAI
 	mob_Shadow_imageAI(Creature* pCreature) : MoonScriptCreatureAI(pCreature)
 	{
 	  _unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_SHADOW_IMAGE_VISUAL), true);
+	  
+	  AddEmote(Event_OnCombatStart, "Fire, consume!", Text_Yell, 12490 );
 	  
 	  
 	  AddSpell( SPELL_DARKSTRIKE, Target_RandomPlayer, 50, 0, 3);
