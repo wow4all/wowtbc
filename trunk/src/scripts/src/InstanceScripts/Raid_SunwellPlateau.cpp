@@ -271,11 +271,6 @@ class BrutallusAI : public MoonScriptBossAI
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_BANISH ] = 1;
 		
 		Init();
-		
-		
-	    AddSpell( BRUTALLUS_METEOR_SLASH, Target_Current, 35, 1, 16 );
-		AddSpell( BRUTALLUS_BURN, Target_RandomPlayer, 50, 0, 30 );
-		AddSpell( BRUTALLUS_STOMP, Target_Current, 25, 0, 9 );
 
 		//6min Enrage
 		SetEnrageInfo( AddSpell( BRUTALLUS_BERSERK, Target_Self, 0, 0, 0, 0, 0, false, "So much for a real challenge... Die!", Text_Yell, 12470 ), 360000);
