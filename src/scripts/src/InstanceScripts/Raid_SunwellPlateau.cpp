@@ -234,14 +234,25 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Brutallus
 //#define CN_Blaze 23259 should spawn when he casts burn on a random member at there location at least it does on trinitycore temp spawn for like 10-20 seconds
-#define CN_BRUTALLUS			24882
-#define BRUTALLUS_METEOR_SLASH	45150
-#define BRUTALLUS_BURN			45141
-#define BRUTALLUS_STOMP			45185
-#define BRUTALLUS_BERSERK		26662
-#define FIRE_WALL				43113
-#define CN_FELMYST				25038
-#define SPELL_DUAL_WIELD        2459
+
+enum Ecreatures
+{
+  
+  CN_BRUTALLUS  = 24882,
+  CN_FELMYST    = 25038,
+
+};
+
+enum Espells
+{
+ 
+   BRUTALLUS_METEOR_SLASH = 45150,
+   BRUTALLUS_BURN         = 45141,
+   BRUTALLUS_STOMP        = 45185,
+   BRUTALLUS_BERSERK      = 26662,
+   SPELL_DUAL_WIELD       = 2459,
+
+};
 
 
 class BrutallusAI : public MoonScriptBossAI
@@ -258,6 +269,8 @@ class BrutallusAI : public MoonScriptBossAI
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_KNOCKOUT ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_POLYMORPH ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_BANISH ] = 1;
+		
+		Init();
 		
 		
 	    AddSpell( BRUTALLUS_METEOR_SLASH, Target_Current, 35, 1, 16 );
@@ -291,6 +304,68 @@ class BrutallusAI : public MoonScriptBossAI
 		ParentClass::OnCombatStart(mTarget);
  
     };
+	
+	void OnDied(Unit * mKiller)
+    {
+		SpawnCreature(CN_FELMYST, 1800, 652, 71, 0, false);
+
+		ParentClass::OnDied(mKiller);
+	};
+	
+	void Init()
+	{
+		MeteorSlashTimer = 11000;
+        BurnTimer = 30000;
+        StompTimer = 25000;
+	};
+	
+	void AIUpdate()
+	{
+
+		if( MeteorSlashTimer <= mAIUpdateFrequency )
+		{
+			Unit* pTarget = _unit->GetAIInterface()->GetNextTarget();
+			if( pTarget )
+			{
+				_unit->CastSpell( pTarget, BRUTALLUS_METEOR_SLASH, false );
+			}
+            MeteorSlashTimer = 11000;
+			return;
+		}
+		else MeteorSlashTimer -= mAIUpdateFrequency;
+		
+		if( StompTimer <= mAIUpdateFrequency )
+			{
+				Unit* pTarget = _unit->GetAIInterface()->GetNextTarget();
+				if( pTarget )
+				{
+					_unit->CastSpell( pTarget, BRUTALLUS_STOMP, false );
+				};
+                StompTimer = 30000;
+				return;
+			}
+		else StompTimer -= mAIUpdateFrequency;
+		
+		
+		if( BurnTimer <= mAIUpdateFrequency )
+			{
+				Player* pTarget = static_cast< Player* >( GetBestPlayerTarget() );
+				if( pTarget )
+				{
+					_unit->CastSpell( pTarget, BRUTALLUS_BURN, false );
+				};
+                BurnTimer = 60000;
+				return;
+			}
+		else BurnTimer -= mAIUpdateFrequency;
+		
+		ParentClass::AIUpdate();
+
+	};
+	
+	uint32	MeteorSlashTimer;
+	uint32	BurnTimer;
+	uint32	StompTimer;
 
         
 };
@@ -320,6 +395,7 @@ class FelmystAI : public MoonScriptBossAI
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_KNOCKOUT ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_POLYMORPH ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_BANISH ] = 1;
+		
 	
 	
 		//Phase 1 spells
@@ -738,31 +814,20 @@ class mob_Shadow_imageAI : public MoonScriptCreatureAI
 	{
 	  _unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_SHADOW_IMAGE_VISUAL), true);
 	  
-	  AddEmote(Event_OnCombatStart, "Fire, consume!", Text_Yell, 12490 );
-	  
-	  
-	  AddSpell( SPELL_DARKSTRIKE, Target_RandomPlayer, 50, 0, 3);
+	  AddSpell( SPELL_DARKSTRIKE, Target_Current, 50, 0, 3);
 	  AddSpell( SPELL_SHADOW_FURY, Target_RandomPlayer, 50, 0, 10);
 
 	}
 	
-	void OnDied(Unit * mKiller)
-	{
-	
-	}
-	
-	void OnTargetDied(Unit* mTarget)
-	{
-	
-	}
 	
 	void OnCombatStart(Unit* mTarget)
 	{
-	
+	  ParentClass::OnCombatStart(mTarget);
 	}
 	
 
 };
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //M'uru
 #define CN_MURU						25960
