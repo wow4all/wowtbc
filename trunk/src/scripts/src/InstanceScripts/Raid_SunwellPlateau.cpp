@@ -287,6 +287,8 @@ class BrutallusAI : public MoonScriptBossAI
 		GetUnit()->SetFloatValue(UNIT_FIELD_MAXDAMAGE, 8000);
 		GetUnit()->SetFloatValue(UNIT_FIELD_MINOFFHANDDAMAGE, 6000);
 		GetUnit()->SetFloatValue(UNIT_FIELD_MAXOFFHANDDAMAGE, 7500);
+		
+		ParentClass::OnCombatStart(mTarget);
  
     };
 
