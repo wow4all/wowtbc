@@ -250,7 +250,7 @@ enum Espells
    BRUTALLUS_BURN         = 45141,
    BRUTALLUS_STOMP        = 45185,
    BRUTALLUS_BERSERK      = 26662,
-   SPELL_DUAL_WIELD       = 2459,
+   SPELL_DUAL_WIELD       = 42459,
 
 };
 
@@ -319,10 +319,10 @@ class BrutallusAI : public MoonScriptBossAI
 
 		if( MeteorSlashTimer <= mAIUpdateFrequency )
 		{
-			Unit* pTarget = _unit->GetAIInterface()->GetNextTarget();
+			Unit* pTarget = _unit->GetAIInterface()->GetMostHated();
 			if( pTarget )
 			{
-				_unit->CastSpell( pTarget, BRUTALLUS_METEOR_SLASH, false );
+				_unit->CastSpell( pTarget, BRUTALLUS_METEOR_SLASH, true );
 			}
             MeteorSlashTimer = 11000;
 			return;
@@ -331,10 +331,10 @@ class BrutallusAI : public MoonScriptBossAI
 		
 		if( StompTimer <= mAIUpdateFrequency )
 			{
-				Unit* pTarget = _unit->GetAIInterface()->GetNextTarget();
+				Unit* pTarget = _unit->GetAIInterface()->GetMostHated();
 				if( pTarget )
 				{
-					_unit->CastSpell( pTarget, BRUTALLUS_STOMP, false );
+					_unit->CastSpell( pTarget, BRUTALLUS_STOMP, true );
 				};
                 StompTimer = 30000;
 				return;
