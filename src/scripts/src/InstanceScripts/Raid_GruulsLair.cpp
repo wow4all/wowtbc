@@ -1,5 +1,5 @@
 /*
- * ArcScripts for ArcEmu MMORPG Server
+ * Sun++ for TbcE MMORPG Server
  * Copyright (C) 2009 ArcEmu Team <http://www.arcemu.org/>
  * Copyright (C) 2008-2009 Sun++ Team <http://www.sunscripting.com/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
@@ -20,17 +20,27 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
-#include "Base.h"
+#include "../Base/ai.h"
+#include "../Base/Base.h"
 
 /************************************************************************/
 /* Raid_GruulsLair.cpp Script											*/
 /************************************************************************/
 
-#define CN_LAIR_BRUTE				19389
-#define LAIR_BRUTE_MORTALSTRIKE		39171
+//#define CN_LAIR_BRUTE				19389
+//#define LAIR_BRUTE_MORTALSTRIKE		39171
 #define LAIR_BRUTE_CLEAVE			39174
 #define LAIR_BRUTE_CHARGE			24193
+
+enum Creatures
+{
+   CN_LAIR_BRUTE  = 19389,
+};
+
+enum Spells
+{
+   LAIR_BRUTE_MORTALSTRIKE =		39171,
+};
 
 void SpellFunc_LairBrute_Charge(SpellDesc* pThis, MoonScriptCreatureAI* pCreatureAI, Unit* pTarget, TargetType pType);
 

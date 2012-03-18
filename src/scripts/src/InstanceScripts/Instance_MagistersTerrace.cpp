@@ -18,7 +18,6 @@
  */
 
 #include "StdAfx.h"
-#include "Setup.h"
 #include "../Base/Base.h"
 
 
@@ -382,7 +381,7 @@ class SunbladeMagisterAI : public MoonScriptBossAI
 
 };
 
-#define CREATURE_BRIGHTSCALE_WYRM 24761
+/*#define CREATURE_BRIGHTSCALE_WYRM 24761
 
 class mob_Brightscale_wyrmAI : public MoonScriptCreatureAI
 {
@@ -395,23 +394,30 @@ class mob_Brightscale_wyrmAI : public MoonScriptCreatureAI
 
 	}
 	
-	void OnDied(Unit * mKiller)
+	void OnLoad()
 	{
-	
+	  SetFlyMode( true );
+	  
+	  RegisterAIUpdateEvent( 100 );
+	  ParentClass::OnLoad();
 	}
 	
-	void OnTargetDied(Unit* mTarget)
-	{
-	
-	}
 	
 	void OnCombatStart(Unit* mTarget)
 	{
 	
+	  ParentClass::OnCombatStart(mTarget);
+	  
 	}
 	
+	void AIUpdate()
+	{
+		ParentClass::AIUpdate();
+	}
+	
+	
 
-};
+};*/
 
 //Priestess Delrissa
 #define BOSS_Priestess_Delrissa 24560
@@ -711,21 +717,6 @@ class KaelThasMTAI : public MoonScriptBossAI
 
 	}
 	
-	void OnDied(Unit * mKiller)
-	{
-	
-	}
-	
-	void OnTargetDied(Unit* mTarget)
-	{
-	
-	}
-	
-	void OnCombatStart(Unit* mTarget)
-	{
-	
-	}
-	
 	uint32 Phases; 
 
 };
@@ -735,26 +726,8 @@ class mob_felkael_flamestrikeAI : public MoonScriptCreatureAI
 	MOONSCRIPT_FACTORY_FUNCTION(mob_felkael_flamestrikeAI, MoonScriptCreatureAI);
 	mob_felkael_flamestrikeAI(Creature* pCreature) : MoonScriptCreatureAI(pCreature)
 	{
-	  
-
 	}
 	
-	void OnDied(Unit * mKiller)
-	{
-	
-	}
-	
-	void OnTargetDied(Unit* mTarget)
-	{
-	
-	}
-	
-	void OnCombatStart(Unit* mTarget)
-	{
-	
-	}
-	
-
 };
 
 void SetupMagistersTerrace(ScriptMgr* pScriptMgr) 
@@ -767,11 +740,12 @@ void SetupMagistersTerrace(ScriptMgr* pScriptMgr)
 	pScriptMgr->register_creature_script(CN_SB_IMP, &SunbladeImpAI::Create);
 	pScriptMgr->register_creature_script(CN_SB_MAGE_GUARD, &SunbladeMageGuardAI::Create);
 	pScriptMgr->register_creature_script(CN_SB_MAGISTER, &SunbladeMagisterAI::Create);
-	pScriptMgr->register_creature_script(CREATURE_BRIGHTSCALE_WYRM, &mob_Brightscale_wyrmAI::Create);
+	//pScriptMgr->register_creature_script(CREATURE_BRIGHTSCALE_WYRM, &mob_Brightscale_wyrmAI::Create);
 	//Priestess Delrissa Encounter Creature AI
 	pScriptMgr->register_creature_script(CN_KaganiNightstrike, &Kagani_NightstrikeAI::Create);
 	pScriptMgr->register_creature_script(CN_EllrysDuskhallow, &Ellrys_DuskhallowAI::Create);
 	pScriptMgr->register_creature_script(CN_EramasBrightblaze, &Eramas_BrightblazeAI::Create);
+	pScriptMgr->register_creature_script(BOSS_Priestess_Delrissa, &Priestess_DelrissaAI::Create);
 	pScriptMgr->register_creature_script(CN_YAZZAI, &YazzaiAI::Create);
 	pScriptMgr->register_creature_script(CN_WARLORD_SALARIS, &Warlord_SalarisAI::Create);
 	pScriptMgr->register_creature_script(CN_GARAXXAS, &GaraxxasAI::Create);
