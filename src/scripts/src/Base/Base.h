@@ -194,6 +194,7 @@ public:
 	MoonScriptCreatureAI(Creature* pCreature);
 	virtual ~MoonScriptCreatureAI();
 
+    uint32                urand(uint32 min, uint32 max) { return min + rand()%(max-min) }; 
 	//Movement
 	bool					GetCanMove();
 	void					SetCanMove(bool pCanMove);
