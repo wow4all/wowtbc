@@ -18,6 +18,7 @@
  */
 
 #include "StdAfx.h"
+#include "../Base/ai.h"
 #include "../Base/Base.h"
 
 /*
@@ -166,22 +167,50 @@ class ShadowswordGuardianAI : public MoonScriptCreatureAI
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Kalecgos
-#define CN_KALECGOS					24850
-#define KALECGOS_FROST_BREATH		44799
-#define KALECGOS_SPECTRAL_BLAST		44866
-#define KALECGOS_ARCANE_BUFFET		45018
+enum Creatures
+{
+  CN_KALECGOS   = 24850,
+};
 
-void SpellFunc_Kalecgos_WildMagic(SpellDesc* pThis, MoonScriptCreatureAI* pCreatureAI, Unit* pTarget, TargetType pType);
+int ran = rand()%6;
+uint32 WildMagic[] = { 44978, 45001, 45002, 45004, 45006, 45010 };
+
+
+
+
+enum Spells
+{
+    AURA_SUNWELL_RADIANCE                        = 45769,
+    AURA_SPECTRAL_EXHAUSTION                     = 44867,
+    AURA_SPECTRAL_REALM                          = 46021,
+    AURA_SPECTRAL_INVISIBILITY                   = 44801,
+    AURA_DEMONIC_VISUAL                          = 44800,
+
+    SPELL_SPECTRAL_BLAST                         = 44869,
+    SPELL_TELEPORT_SPECTRAL                      = 46019,
+    SPELL_ARCANE_BUFFET                          = 45018,
+    SPELL_FROST_BREATH                           = 44799,
+    SPELL_TAIL_LASH                              = 45122,
+
+    SPELL_BANISH                                 = 44836,
+    SPELL_TRANSFORM_KALEC                        = 44670,
+    SPELL_ENRAGE                                 = 44807,
+
+    SPELL_CORRUPTION_STRIKE                      = 45029,
+    SPELL_AGONY_CURSE                            = 45032,
+    SPELL_SHADOW_BOLT                            = 45031,
+
+    SPELL_HEROIC_STRIKE                          = 45026,
+    SPELL_REVITALIZE                             = 45027
+};
+
 
 class KalecgosAI : public MoonScriptBossAI
 {
     MOONSCRIPT_FACTORY_FUNCTION(KalecgosAI, MoonScriptBossAI);
 	KalecgosAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
 	{
-		AddSpell(KALECGOS_FROST_BREATH, Target_Current, 10, 1, 12, 0, 30);
-		AddSpellFunc(SpellFunc_Kalecgos_WildMagic, Target_RandomPlayer, 15, 0, 10, 0, 100);
-		AddSpell(KALECGOS_SPECTRAL_BLAST, Target_Current, 25, 0, 25, 0, 50);
-		AddSpell(KALECGOS_ARCANE_BUFFET, Target_Current, 100, 0, 8);
+		Init();
 
 		//Emotes
 		AddEmote(Event_OnCombatStart, "No longer will I be a slave to Malygos! Challenge me and you will be destroyed!", Text_Yell, 12422);
@@ -189,23 +218,94 @@ class KalecgosAI : public MoonScriptBossAI
 		AddEmote(Event_OnTargetDied, "In the name of Kil'jaeden! ", Text_Yell, 12425);
 		AddEmote(Event_OnDied, "I am forever in your debt. Once we have triumphed over Kil'jaeden, this entire world will be in your debt as well.", Text_Yell, 12431);
 	}
+	
+	void Init()
+	{
+		    ArcaneBuffetTimer = 8000;
+            FrostBreathTimer = 15000;
+            WildMagicTimer = 10000;
+            TailLashTimer = 25000;
+            SpectralBlastTimer = urand(20000, 25000);
+
+	};
+	
+	void AIUpdate()
+	{
+
+		if( ArcaneBuffetTimer <= mAIUpdateFrequency )
+		{
+			Unit* pTarget = _unit->GetAIInterface()->GetMostHated();
+			if( pTarget )
+			{
+				_unit->CastSpell( pTarget, SPELL_ARCANE_BUFFET, true );
+			}
+            ArcaneBuffetTimer = 8000;
+			return;
+		}
+		else ArcaneBuffetTimer -= mAIUpdateFrequency;
+		
+		if( FrostBreathTimer <= mAIUpdateFrequency )
+		{
+			Unit* pTarget = _unit->GetAIInterface()->GetMostHated();
+			if( pTarget )
+			{
+				_unit->CastSpell( pTarget, SPELL_FROST_BREATH, true );
+			}
+            FrostBreathTimer = 15000;
+			return;
+		}
+		else FrostBreathTimer -= mAIUpdateFrequency;
+		
+		if( WildMagicTimer <= mAIUpdateFrequency )
+		{
+			Player* pTarget = static_cast< Player* >( GetBestPlayerTarget() );
+			if( pTarget )
+			{
+				_unit->CastSpell(_unit, WildMagic[rand()%6], false);
+			}
+            WildMagicTimer = 20000;
+			return;
+		}
+		else WildMagicTimer -= mAIUpdateFrequency;
+		
+		if( TailLashTimer <= mAIUpdateFrequency )
+		{
+			Player* pTarget = static_cast< Player* >( GetBestPlayerTarget() );
+			if( pTarget )
+			{
+				_unit->CastSpell( pTarget, SPELL_TAIL_LASH, true );
+
+			}
+            TailLashTimer = 15000;
+			return;
+		}
+		else TailLashTimer -= mAIUpdateFrequency;
+		
+		if( SpectralBlastTimer <= mAIUpdateFrequency )
+		{
+			Unit* pTarget = _unit->GetAIInterface()->GetMostHated();
+			if( pTarget )
+			{
+				_unit->CastSpell( pTarget, SPELL_SPECTRAL_BLAST, true );
+			}
+            SpectralBlastTimer = 11000;
+			return;
+		}
+		else SpectralBlastTimer -= mAIUpdateFrequency;
+		
+		
+		ParentClass::AIUpdate();
+
+	};
+	
+	uint32 TailLashTimer;
+	uint32 SpectralBlastTimer;
+	uint32 WildMagicTimer;
+	uint32 FrostBreathTimer;
+	uint32 ArcaneBuffetTimer;
 };
 
-void SpellFunc_Kalecgos_WildMagic(SpellDesc* pThis, MoonScriptCreatureAI* pCreatureAI, Unit* pTarget, TargetType pType)
-{
-	KalecgosAI* Kalecgos = ( pCreatureAI ) ? (KalecgosAI*)pCreatureAI : NULL;
-	if( Kalecgos )
-	{
-		//TODO
-/*
-		#define SP_WILD_MAGIC_1			44978
-		#define SP_WILD_MAGIC_2			45001
-		#define SP_WILD_MAGIC_3			45002
-		#define SP_WILD_MAGIC_4			45004
-		#define SP_WILD_MAGIC_5			45006
-		#define SP_WILD_MAGIC_6			45010*/
-	}
-}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Sathrovarr the Corruptor
