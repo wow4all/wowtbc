@@ -30,6 +30,8 @@
 #define DEFAULT_UPDATE_FREQUENCY	1000	//milliseconds
 #define DEFAULT_DESPAWN_TIMER		2000	//milliseconds
 
+#define urand( i, y) i + rand()%(y-i)
+
 #define MOONSCRIPT_FACTORY_FUNCTION(ClassName, ParentClassName)\
 public:\
 	ADD_CREATURE_FACTORY_FUNCTION(ClassName);\
@@ -194,7 +196,7 @@ public:
 	MoonScriptCreatureAI(Creature* pCreature);
 	virtual ~MoonScriptCreatureAI();
 
-    uint32                urand(uint32 min, uint32 max) { return min + rand()%(max-min) }; 
+     
 	//Movement
 	bool					GetCanMove();
 	void					SetCanMove(bool pCanMove);
