@@ -197,7 +197,7 @@ enum EncounterDefines
   SCRIPTTARGETFLAG_NO_TANK = 0x01,
   SCRIPTTARGETFLAG_NO_EXHAUTION = 0x02,
 
-}
+};
 
 int ran = rand()%6;
 uint32 WildMagic[] = { 44978, 45001, 45002, 45004, 45006, 45010 };
