@@ -174,6 +174,31 @@ enum Creatures
   CN_HUMAN_KALECGOS = 24891,
 };
 
+
+struct coords
+{
+		float x,y,z;
+		coords(float x,float y, float z)
+		{
+			coords::x = x;
+			coords::y = y;
+			coords::z = z;
+		}
+};
+
+enum EncounterDefines
+{
+
+  //Faction Related
+  FRIENDLY_FACTION = 35,
+  
+  //Custom Script Target Flag defines
+  SCRIPTTARGETFLAG_NONE = 0x00,
+  SCRIPTTARGETFLAG_NO_TANK = 0x01,
+  SCRIPTTARGETFLAG_NO_EXHAUTION = 0x02,
+
+}
+
 int ran = rand()%6;
 uint32 WildMagic[] = { 44978, 45001, 45002, 45004, 45006, 45010 };
 
@@ -361,7 +386,7 @@ class KalecgosHumanAI : public MoonScriptBossAI
 	
 	void OnDied(Unit * mKiller)
     {
-		ParentClass::OnDied(mTarget);
+		ParentClass::OnDied(mKiller);
     }
 	
 	
@@ -488,6 +513,8 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 		Emote( "Gyahaha... There will be no reprieve. My work here is nearly finished.", Text_Yell, 12422);
 		
 		ParentClass::OnCombatStart(mTarget);
+		
+		RegisterAIUpdateEvent(1000);
  
     }
 	
@@ -499,7 +526,7 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 	
 	void OnLoad()
 	{
-	  _unit->CastSpell(_unit,AURA_SPECTRAL_INVISIBILITY,false);
+	  _unit->CastSpell(_unit,AURA_SPECTRAL_INVISIBILITY,true);
 	}
     
 	
