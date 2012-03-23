@@ -170,6 +170,8 @@ class ShadowswordGuardianAI : public MoonScriptCreatureAI
 enum Creatures
 {
   CN_KALECGOS   = 24850,
+  CN_SATHROVARR_THE_CORRUPTOR	= 24892,
+  CN_HUMAN_KALECGOS = 24891,
 };
 
 int ran = rand()%6;
@@ -408,7 +410,7 @@ class KalecgosHumanAI : public MoonScriptBossAI
                 ++YellSequence;
                 break;
             case 1:
-                if (GetHealthPercent() <= 50))
+                if (GetHealthPercent() <= 50)
                 {
                     Emote( "Aaahhh! Help me, before I lose my mind!", Text_Yell, 12422);
                     ++YellSequence;
@@ -420,18 +422,13 @@ class KalecgosHumanAI : public MoonScriptBossAI
                     Emote( "Hurry! There is not much of me left!", Text_Yell, 12422);
                     ++YellSequence;
                 }
+				else YellTimer -= mAIUpdateFrequency;
                 break;
-            default:
-                break;
+				
             }
-            else YellTimer = 5000;
-        }
-		
-		
-		
-		ParentClass::AIUpdate();
-
-	};
+               ParentClass::AIUpdate();
+		}
+	}
 	
 	uint32 RevitalizeTimer;
     uint32 HeroicStrikeTimer;
@@ -439,24 +436,19 @@ class KalecgosHumanAI : public MoonScriptBossAI
     uint32 YellSequence;
 };
 
-//Sathrovarr the Corruptor
-#define CN_SATHROVARR_THE_CORRUPTOR	24892
-#define SPELL_AGONY_CURSE	        45034
-#define SPELL_SHADOW_BOLT			38840
-#define SPELL_CORRUPTION_STRIKE	    45029
 
 //Sathrovarr the Corruptor
-class Sathrovarr_the_CorruptorAI : public MoonScriptBossAI
+class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 {
-    MOONSCRIPT_FACTORY_FUNCTION(Sathrovarr_the_CorruptorAI, MoonScriptBossAI);
-	Sathrovarr_the_CorruptorAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
+    MOONSCRIPT_FACTORY_FUNCTION(SathrovarrTheCorruptorAI, MoonScriptBossAI);
+	SathrovarrTheCorruptorAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
 	{
 		Init();
     }
 	
 	void Init()
 	{
-		ShadowBoltTimer = 7000 + urand()%3 * 1000;
+		ShadowBoltTimer = 7000 + rand()%3 * 1000;
         AgonyCurseTimer = 20000;
         CorruptionStrikeTimer = 13000;
         CheckTimer = 1000;
@@ -502,7 +494,13 @@ class Sathrovarr_the_CorruptorAI : public MoonScriptBossAI
 	
 	void OnCombatStop(Unit *mTarget)
     {
-		me->CastSpell(me, AURA_DEMONIC_VISUAL, true);
+		_unit->CastSpell(_unit, AURA_DEMONIC_VISUAL, true);
+		ParentClass::OnCombatStop(mTarget);
+	}
+	
+	void OnLoad()
+	{
+	  _unit->CastSpell(_unit,AURA_SPECTRAL_INVISIBILITY,false);
 	}
     
 	
@@ -511,7 +509,7 @@ class Sathrovarr_the_CorruptorAI : public MoonScriptBossAI
 		
 		if (AgonyCurseTimer  <= mAIUpdateFrequency)
         {
-		    Unit* pTarget = _unit->GetAIInterface()->GetRandomNotCurrent();
+		    Unit* pTarget = _unit->GetAIInterface()->GetMostHated();
 			if( pTarget )
 			{
 			    _unit->CastSpell( pTarget, SPELL_AGONY_CURSE, true );
@@ -562,7 +560,7 @@ class Sathrovarr_the_CorruptorAI : public MoonScriptBossAI
 
 
 
-//Sathrovarr the Corruptor
+/*//Sathrovarr the Corruptor
 #define CN_SATHROVARR_THE_CORRUPTOR	24892
 #define CURSE_OF_BOUNDLESS_AGONY	45034
 #define SHADOW_BOLT_VOLLEY			38840
@@ -583,7 +581,7 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 		AddEmote(Event_OnTargetDied, "Haven't you heard? I always win!", Text_Yell);
 		AddEmote(Event_OnDied, "I'm... never on... the losing... side...", Text_Yell);
 	}
-};
+};*/
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Brutallus
@@ -1496,6 +1494,7 @@ void SetupSunwellPlateau(ScriptMgr* pScriptMgr)
 
 	pScriptMgr->register_creature_script(CN_KALECGOS, &KalecgosAI::Create);
 	pScriptMgr->register_creature_script(CN_SATHROVARR_THE_CORRUPTOR, &SathrovarrTheCorruptorAI::Create);
+	pScriptMgr->register_creature_script(CN_HUMAN_KALECGOS, &KalecgosHumanAI::Create);
 	pScriptMgr->register_creature_script(CN_BRUTALLUS, &BrutallusAI::Create);
 	pScriptMgr->register_creature_script(CN_FELMYST, &FelmystAI::Create);
 	pScriptMgr->register_creature_script(CN_LADY_SACROLASH, &LadySacrolashAI::Create);
