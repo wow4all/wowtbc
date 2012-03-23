@@ -356,13 +356,12 @@ class KalecgosHumanAI : public MoonScriptBossAI
 	
 	void OnTargetDied(Unit* mTarget)
     {
-		
+		ParentClass::OnTargetDied(mTarget);
     }
 	
 	void OnDied(Unit * mKiller)
     {
-		
-		RemoveAIUpdateEvent();
+		ParentClass::OnDied(mTarget);
     }
 	
 	
