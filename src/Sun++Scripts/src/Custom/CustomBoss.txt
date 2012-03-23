@@ -1,0 +1,45 @@
+include "StdAfx.h"
+include "Setup.h"
+include "../Common/Base.h"
+
+
+class FirstNPC : public MoonScriptBossAI {
+
+MOONSCRIPT_FACTORY_FUNCTION(FirstNPC, MoonScriptBossAI);
+
+   AddEmote(Event_OnCombatStart, "OMG SDYESS IS AMAZING AND IM IN COMBAT",    Text_Yell);
+   AddSpell(50000, Target_Current, 100, 0, 20);
+   AddPhaseSpell(2, AddSpell(5, Target_RandomPlayer, 100, 0, 30));
+   AddPhaseSpell(3, AddSpell(5, Target_Current, 100, 0, 28));
+
+
+
+if(GetPhase() == 1)
+   {
+       if(_unit->GetHealthPct() <= 80 )
+       {
+           Emote("Now feel my wrath!, Text_Yell);
+           SetPhase(2);
+       }
+   }
+   else if(GetPhase() == 2)
+   {
+      if(_unit->GetHealthPct() <= 45 )
+      {
+          Emote("I require heals!, Text_Yell);
+          SetPhase(3);
+      }
+   }
+   else if(GetPhase() == 3)
+   {
+      if(_unit->GetHealthPct() <= 20 )
+      {
+         Emote("OH NOES!", Text_Yell);
+      }
+
+ParentClass::AIUpdate(); }
+
+void Destroy() { delete this; }
+};
+
+void SetupFirstNPC(ScriptMgr * mgr) { mgr->register_creature_script(npcid, FirstNPC::Create); }
