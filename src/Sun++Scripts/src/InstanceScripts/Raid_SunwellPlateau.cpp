@@ -290,6 +290,23 @@ class KalecgosAI : public MoonScriptBossAI
  
     };
 	
+	/*void OnReachWP(uint32 iWaypointId, bool bForwards)
+	{
+			switch(iWaypointId)
+			{
+			case 3: // 
+				{
+					cbMap.clear();
+					saymap.clear();
+					_unit->Despawn(100,0);
+					if(sathrovar != NULL)
+						sathrovar->Despawn(100,0);
+					if(darkelf != NULL)
+						darkelf->Despawn(100,0);
+				}
+			}
+	};*/
+	
 	
 	
 	void AIUpdate()
@@ -366,6 +383,13 @@ class KalecgosAI : public MoonScriptBossAI
 	uint32 WildMagicTimer;
 	uint32 FrostBreathTimer;
 	uint32 ArcaneBuffetTimer;
+	uint32 darkelf;
+	uint32 sathrovar;
+	
+	
+	
+	bool failed;
+	bool  success;
 };
 
 
@@ -466,6 +490,7 @@ class KalecgosHumanAI : public MoonScriptBossAI
     uint32 HeroicStrikeTimer;
     uint32 YellTimer;
     uint32 YellSequence;
+	
 };
 
 
