@@ -110,7 +110,24 @@ bool ChatHandler::HandleGMOnCommand(const char* args, WorldSession *m_session)
 	/*uint32 newbytes = m_session->GetPlayer( )->GetUInt32Value(PLAYER_BYTES_2) | 0x8;
 	m_session->GetPlayer( )->SetUInt32Value( PLAYER_BYTES_2, newbytes);
 
+
 	GreenSystemMessage(m_session, "GM Flag Set.");*/
+
+	Player * plyr = getSelectedChar(m_session, true);
+	if(!plyr) 
+		return true;
+
+	if(!*args) 
+		if (plyr->TriggerpassCheat) 
+			args = "off"; 
+		else 
+			args = "on";
+
+    if(strcmp(args, "on") == 0)
+	{
+		plyr->TriggerpassCheat = true;
+	}
+
 	GreenSystemMessage(m_session, "Setting GM Flag on yourself...");
 	if(m_session->GetPlayer()->bGMTagOn)
 		RedSystemMessage(m_session, "GM Flag is already set on. Use !gm off to disable it.");
@@ -131,6 +148,23 @@ bool ChatHandler::HandleGMOffCommand(const char* args, WorldSession *m_session)
 	//m_session->GetPlayer( )->SetUInt32Value( PLAYER_BYTES_2, newbytes);
 
 	//GreenSystemMessage(m_session, "GM Flag Unset.");
+
+	Player * plyr = getSelectedChar(m_session, true);
+	if(!plyr) 
+		return true;
+
+	if(!*args) 
+		if (plyr->TriggerpassCheat) 
+			args = "off"; 
+		else 
+			args = "on";
+
+    if(strcmp(args, "off") == 0)
+	{
+		plyr->TriggerpassCheat = false;
+		
+	}
+
 	GreenSystemMessage(m_session, "Unsetting GM Flag on yourself...");
 	if(!m_session->GetPlayer()->bGMTagOn)
 		RedSystemMessage(m_session, "GM Flag not set. Use !gm on to enable it.");
