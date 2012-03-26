@@ -269,6 +269,9 @@
     <ClCompile Include="..\src\InstanceScripts\Raid_WorldBosses.cpp" />
     <ClCompile Include="..\src\InstanceScripts\Raid_ZulAman.cpp" />
     <ClCompile Include="..\src\InstanceScripts\Raid_ZulGurub.cpp" />
+    <ClCompile Include="..\src\InstanceScripts\ZoneHellfirePeninsula.cpp" />
+    <ClCompile Include="..\src\InstanceScripts\ZoneTerokkarForest.cpp" />
+    <ClCompile Include="..\src\InstanceScripts\ZoneZangarmarsh.cpp" />
     <ClCompile Include="..\src\MiscScripts\Creatures.cpp" />
     <ClCompile Include="..\src\MiscScripts\DarkmoonFaireObjects.cpp" />
     <ClCompile Include="..\src\MiscScripts\GameObjects.cpp" />
@@ -319,9 +322,6 @@
     <ClCompile Include="..\src\QuestScripts\Zone\Westfall.cpp" />
     <ClCompile Include="..\src\QuestScripts\Zone\Zangarmarsh.cpp" />
     <ClCompile Include="..\src\Setup.cpp" />
-    <ClCompile Include="..\src\WorldPvpScripts\ZoneHellfirePeninsula.cpp" />
-    <ClCompile Include="..\src\WorldPvpScripts\ZoneTerokkarForest.cpp" />
-    <ClCompile Include="..\src\WorldPvpScripts\ZoneZangarmarsh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Base\ai.h" />

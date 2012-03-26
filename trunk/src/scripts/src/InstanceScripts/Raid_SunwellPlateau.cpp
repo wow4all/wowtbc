@@ -166,17 +166,26 @@ class ShadowswordGuardianAI : public MoonScriptCreatureAI
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Kalecgos
+//Kalecgos Encounter
 enum Creatures
 {
   CN_KALECGOS   = 24850,
+  CN_SATHROVARR_THE_CORRUPTOR	= 24892,
+  CN_HUMAN_KALECGOS = 24891,
 };
 
-int ran = rand()%6;
-uint32 WildMagic[] = { 44978, 45001, 45002, 45004, 45006, 45010 };
+enum EncounterDefines
+{
 
+  //Faction Related
+  FRIENDLY_FACTION = 35,
+  
+  //Custom Script Target Flag defines
+  SCRIPTTARGETFLAG_NONE = 0x00,
+  SCRIPTTARGETFLAG_NO_TANK = 0x01,
+  SCRIPTTARGETFLAG_NO_EXHAUTION = 0x02,
 
-
+};
 
 enum Spells
 {
@@ -205,19 +214,36 @@ enum Spells
 };
 
 
+
+struct coords
+{
+ float x,y,z;
+    coords(float x,float y, float z)
+ {
+    coords::x = x;
+    coords::y = y;
+    coords::z = z;
+ }
+};
+
+
+int ran = rand()%6;
+uint32 WildMagic[] = { 44978, 45001, 45002, 45004, 45006, 45010 };
+
+coords spectralCoords(1724.94f,909.265f,-74.5588f);
+coords wp1(1703.69653f,869.224854f,65.416687f);
+coords wp2(1703.131348f,842.142822f,91.754280f);
+coords wp3(1752.924194f,754.499634f,181.749878f);
+
+
+
 class KalecgosAI : public MoonScriptBossAI
 {
     MOONSCRIPT_FACTORY_FUNCTION(KalecgosAI, MoonScriptBossAI);
 	KalecgosAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
 	{
 		Init();
-
-		//Emotes
-		AddEmote(Event_OnCombatStart, "No longer will I be a slave to Malygos! Challenge me and you will be destroyed!", Text_Yell, 12422);
-		AddEmote(Event_OnTargetDied, "You were warned! ", Text_Yell, 12426);
-		AddEmote(Event_OnTargetDied, "In the name of Kil'jaeden! ", Text_Yell, 12425);
-		AddEmote(Event_OnDied, "I am forever in your debt. Once we have triumphed over Kil'jaeden, this entire world will be in your debt as well.", Text_Yell, 12431);
-	}
+    }
 	
 	void Init()
 	{
@@ -228,6 +254,43 @@ class KalecgosAI : public MoonScriptBossAI
             SpectralBlastTimer = urand(20000, 25000);
 
 	};
+	
+	void OnTargetDied(Unit* mTarget)
+    {
+		if (_unit->GetHealthPct() > 0)
+		{
+			int RandomSpeach = rand()%2;
+			switch (RandomSpeach)
+			{
+			case 0:
+				Emote( "You were warned!", Text_Yell, 12426);
+				break;
+			case 1:
+				Emote( "In the name of Kil'jaeden!", Text_Yell, 12425);
+				break;
+			}
+		}
+    }
+	
+	void OnDied(Unit * mKiller)
+    {
+		Emote( "I am forever in your debt. Once we have triumphed over Kil'jaeden, this entire world will be in your debt as well.", Text_Yell, 12431);
+		
+		RemoveAIUpdateEvent();
+    }
+	
+	
+	
+	void OnCombatStart(Unit* mTarget)
+    {
+		Emote( "No longer will I be a slave to Malygos! Challenge me and you will be destroyed!", Text_Yell, 12422);
+		_unit->SetStandState( STANDSTATE_STAND);
+		
+		ParentClass::OnCombatStart(mTarget);
+ 
+    };
+	
+	
 	
 	void AIUpdate()
 	{
@@ -306,13 +369,236 @@ class KalecgosAI : public MoonScriptBossAI
 };
 
 
+//Kalecgos Human Form
+class KalecgosHumanAI : public MoonScriptBossAI
+{
+    MOONSCRIPT_FACTORY_FUNCTION(KalecgosHumanAI, MoonScriptBossAI);
+	KalecgosHumanAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
+	{
+		Init();
+    }
+	
+	void Init()
+	{
+		RevitalizeTimer = 5000;
+        HeroicStrikeTimer = 3000;
+        YellTimer = 5000;
+        YellSequence = 0;
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	};
+	
+	void OnTargetDied(Unit* mTarget)
+    {
+		ParentClass::OnTargetDied(mTarget);
+    }
+	
+	void OnDied(Unit * mKiller)
+    {
+		ParentClass::OnDied(mKiller);
+    }
+	
+	
+	
+	void OnCombatStart(Unit* mTarget)
+    {
+		
+		ParentClass::OnCombatStart(mTarget);
+ 
+    };
+	
+	
+	
+	void AIUpdate()
+	{
+		
+		if (RevitalizeTimer <= mAIUpdateFrequency)
+        {
+		    Unit* pTarget = _unit->GetAIInterface()->GetMostHated();
+			if( pTarget )
+			{
+			    _unit->CastSpell( pTarget, SPELL_REVITALIZE, true );
+                RevitalizeTimer = 5000;
+			}
+        }
+		else HeroicStrikeTimer -= mAIUpdateFrequency;
+		
+		if (HeroicStrikeTimer <= mAIUpdateFrequency)
+        {
+		    Unit* pTarget = _unit->GetAIInterface()->GetMostHated();
+			if( pTarget )
+			{
+			    _unit->CastSpell( pTarget, SPELL_HEROIC_STRIKE, true );
+                HeroicStrikeTimer = 5000;
+			}
+        }
+		else HeroicStrikeTimer -= mAIUpdateFrequency;
+		
+		if (YellTimer <= mAIUpdateFrequency )
+        {
+            switch (YellSequence)
+            {
+            case 0:
+                Emote( "I need... your help... Cannot... resist him... much longer...", Text_Yell, 12422);
+                ++YellSequence;
+                break;
+            case 1:
+                if (GetHealthPercent() <= 50)
+                {
+                    Emote( "Aaahhh! Help me, before I lose my mind!", Text_Yell, 12422);
+                    ++YellSequence;
+                }
+                break;
+            case 2:
+                if (GetHealthPercent() <= 10)
+                {
+                    Emote( "Hurry! There is not much of me left!", Text_Yell, 12422);
+                    ++YellSequence;
+                }
+				else YellTimer -= mAIUpdateFrequency;
+                break;
+				
+            }
+               ParentClass::AIUpdate();
+		}
+	}
+	
+	uint32 RevitalizeTimer;
+    uint32 HeroicStrikeTimer;
+    uint32 YellTimer;
+    uint32 YellSequence;
+};
+
+
 //Sathrovarr the Corruptor
-#define CN_SATHROVARR_THE_CORRUPTOR							24892
-#define SATHROVARR_THE_CORRUPTOR_CURSE_OF_BOUNDLESS_AGONY	45034
-#define SATHROVARR_THE_CORRUPTOR_SHADOW_BOLT_VOLLEY			38840
-#define SATHROVARR_THE_CORRUPTOR_CORRUPTING_STRIKE			45029
+class SathrovarrTheCorruptorAI : public MoonScriptBossAI
+{
+    MOONSCRIPT_FACTORY_FUNCTION(SathrovarrTheCorruptorAI, MoonScriptBossAI);
+	SathrovarrTheCorruptorAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
+	{
+		Init();
+    }
+	
+	void Init()
+	{
+		ShadowBoltTimer = 7000 + rand()%3 * 1000;
+        AgonyCurseTimer = 20000;
+        CorruptionStrikeTimer = 13000;
+        CheckTimer = 1000;
+        ResetThreat = 1000;
+        isEnraged = false;
+        isBanished = false;
+
+	};
+	
+	void OnTargetDied(Unit* mTarget)
+    {
+		if (_unit->GetHealthPct() > 0)
+		{
+			int RandomSpeach = rand()%2;
+			switch (RandomSpeach)
+			{
+			case 0:
+				Emote( "zzzzzzzzz", Text_Yell, 12426);
+				break;
+			case 1:
+				Emote( "zzzzzzzz", Text_Yell, 12425);
+				break;
+			}
+		}
+    }
+	
+	void OnDied(Unit * mKiller)
+    {
+		Emote( "I'm... never on... the losing... side...", Text_Yell, 12431);
+		
+		RemoveAIUpdateEvent();
+    }
+	
+	
+	
+	void OnCombatStart(Unit* mTarget)
+    {
+		Emote( "Gyahaha... There will be no reprieve. My work here is nearly finished.", Text_Yell, 12422);
+		
+		ParentClass::OnCombatStart(mTarget);
+		
+		RegisterAIUpdateEvent(1000);
+ 
+    }
+	
+	void OnCombatStop(Unit *mTarget)
+    {
+		_unit->CastSpell(_unit, AURA_DEMONIC_VISUAL, true);
+		ParentClass::OnCombatStop(mTarget);
+	}
+	
+	void OnLoad()
+	{
+	  _unit->CastSpell(_unit,AURA_SPECTRAL_INVISIBILITY,true);
+	}
+    
+	
+	void AIUpdate()
+	{
+		
+		if (AgonyCurseTimer  <= mAIUpdateFrequency)
+        {
+		    Unit* pTarget = _unit->GetAIInterface()->GetMostHated();
+			if( pTarget )
+			{
+			    _unit->CastSpell( pTarget, SPELL_AGONY_CURSE, true );
+                AgonyCurseTimer = 20000;
+			}
+        }
+		else AgonyCurseTimer  -= mAIUpdateFrequency;
+		
+		if (ShadowBoltTimer <= mAIUpdateFrequency)
+        {
+		    Unit* pTarget = _unit->GetAIInterface()->GetMostHated();
+			if( pTarget )
+			{
+			    _unit->CastSpell( pTarget, SPELL_SHADOW_BOLT, true );
+                ShadowBoltTimer = 7000+(rand()%3000);
+			}
+        }
+		else ShadowBoltTimer -= mAIUpdateFrequency;
+		
+		if (CorruptionStrikeTimer <= mAIUpdateFrequency)
+        {
+		    Unit* pTarget = _unit->GetAIInterface()->GetMostHated();
+			if( pTarget )
+			{
+			    _unit->CastSpell( pTarget, SPELL_CORRUPTION_STRIKE, true );
+                CorruptionStrikeTimer = 13000;
+			}
+        }
+		else CorruptionStrikeTimer -= mAIUpdateFrequency;
+		
+		ParentClass::AIUpdate();
+
+	};
+	
+	uint32 ShadowBoltTimer;
+    uint32 AgonyCurseTimer;
+    uint32 CorruptionStrikeTimer;
+    uint32 CheckTimer;
+    uint32 ResetThreat;
+	
+	uint64 KalecGUID;
+    uint64 KalecgosGUID;
+
+    bool isEnraged;
+    bool isBanished;
+};
+
+
+
+
+/*//Sathrovarr the Corruptor
+#define CN_SATHROVARR_THE_CORRUPTOR	24892
+#define CURSE_OF_BOUNDLESS_AGONY	45034
+#define SHADOW_BOLT_VOLLEY			38840
+#define CORRUPTING_STRIKE			45029
 
 class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 {
@@ -329,7 +615,7 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 		AddEmote(Event_OnTargetDied, "Haven't you heard? I always win!", Text_Yell);
 		AddEmote(Event_OnDied, "I'm... never on... the losing... side...", Text_Yell);
 	}
-};
+};*/
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Brutallus
@@ -1242,6 +1528,7 @@ void SetupSunwellPlateau(ScriptMgr* pScriptMgr)
 
 	pScriptMgr->register_creature_script(CN_KALECGOS, &KalecgosAI::Create);
 	pScriptMgr->register_creature_script(CN_SATHROVARR_THE_CORRUPTOR, &SathrovarrTheCorruptorAI::Create);
+	pScriptMgr->register_creature_script(CN_HUMAN_KALECGOS, &KalecgosHumanAI::Create);
 	pScriptMgr->register_creature_script(CN_BRUTALLUS, &BrutallusAI::Create);
 	pScriptMgr->register_creature_script(CN_FELMYST, &FelmystAI::Create);
 	pScriptMgr->register_creature_script(CN_LADY_SACROLASH, &LadySacrolashAI::Create);
