@@ -399,7 +399,7 @@ class KalecgosHumanAI : public MoonScriptBossAI
     MOONSCRIPT_FACTORY_FUNCTION(KalecgosHumanAI, MoonScriptBossAI);
 	KalecgosHumanAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
 	{
-		Init();
+		
     }
 	
 	void Init()
@@ -427,6 +427,8 @@ class KalecgosHumanAI : public MoonScriptBossAI
     {
 		
 		ParentClass::OnCombatStart(mTarget);
+		
+		Init();
  
     };
 	
@@ -477,14 +479,13 @@ class KalecgosHumanAI : public MoonScriptBossAI
                 {
                     Emote( "Hurry! There is not much of me left!", Text_Yell, 12422);
                     ++YellSequence;
-                }
-				else YellTimer -= mAIUpdateFrequency;
-                break;
-				
-            }
-               ParentClass::AIUpdate();
-		}
-	}
+                }	
+                break;		
+            } 
+		}else YellTimer -= mAIUpdateFrequency;
+
+	 ParentClass::AIUpdate();
+}
 	
 	uint32 RevitalizeTimer;
     uint32 HeroicStrikeTimer;
