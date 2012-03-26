@@ -174,18 +174,6 @@ enum Creatures
   CN_HUMAN_KALECGOS = 24891,
 };
 
-
-struct coords
-{
-		float x,y,z;
-		coords(float x,float y, float z)
-		{
-			coords::x = x;
-			coords::y = y;
-			coords::z = z;
-		}
-};
-
 enum EncounterDefines
 {
 
@@ -198,9 +186,6 @@ enum EncounterDefines
   SCRIPTTARGETFLAG_NO_EXHAUTION = 0x02,
 
 };
-
-int ran = rand()%6;
-uint32 WildMagic[] = { 44978, 45001, 45002, 45004, 45006, 45010 };
 
 enum Spells
 {
@@ -227,6 +212,29 @@ enum Spells
     SPELL_HEROIC_STRIKE                          = 45026,
     SPELL_REVITALIZE                             = 45027
 };
+
+
+
+struct coords
+{
+ float x,y,z;
+    coords(float x,float y, float z)
+ {
+    coords::x = x;
+    coords::y = y;
+    coords::z = z;
+ }
+};
+
+
+int ran = rand()%6;
+uint32 WildMagic[] = { 44978, 45001, 45002, 45004, 45006, 45010 };
+
+coords spectralCoords(1724.94f,909.265f,-74.5588f);
+coords wp1(1703.69653f,869.224854f,65.416687f);
+coords wp2(1703.131348f,842.142822f,91.754280f);
+coords wp3(1752.924194f,754.499634f,181.749878f);
+
 
 
 class KalecgosAI : public MoonScriptBossAI

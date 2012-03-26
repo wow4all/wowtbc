@@ -26,10 +26,8 @@ public:
             Menu->AddItem(3, "VIP Mall!", 950, 0);
 
         if ( Plr->GetTeam() == 1 )
-		if (Plr->GetItemInterface()->GetItemCount(98114, true) >= 1 )  //Gnomish Teleport card
             Menu->AddItem(3, "Alliance Cities", 1, 0);
         else
-		if (Plr->GetItemInterface()->GetItemCount(98116, true) >= 1 )  //Goblin Teleport card
             Menu->AddItem(3, "Horde Cities", 2, 0);
 
         Menu->AddItem(3, "Eastern Kingdom Locations", 3, 0);
@@ -39,6 +37,7 @@ public:
         Menu->AddItem(3, "Outland Instances", 7, 0);
         Menu->AddItem(1, "Shattrath(mall)", 420, 0);
 		Menu->AddItem(4, "Remove Resurrection Sickness", 998, 0);
+		Menu->AddItem(3, "Dueling Areas", 3, 0);
 
         if(AutoS)
             Menu->SendTo(Plr);
@@ -181,19 +180,7 @@ Menu->SendTo(Plr);
 
 break; case 8: 
 objmgr.CreateGossipMenuForPlayer(&Menu, pObject->GetGUID(), 4273, Plr);
-Menu->AddItem(1, "Dalaran", 403, 0);
-Menu->AddItem(1, "DK Start Zone", 405, 0);
-Menu->AddItem(1, "Borean Tundra", 394, 0);
-Menu->AddItem(1, "Crystalsong Forest", 404, 0);
-Menu->AddItem(1, "Dragonblight", 395, 0);
-Menu->AddItem(1, "Grizzly Hills", 396, 0);
-Menu->AddItem(1, "Howling Fjord", 397, 0);
-Menu->AddItem(1, "Icecrown", 398, 0);
-Menu->AddItem(1, "Sholazar Basin", 399, 0);
-Menu->AddItem(1, "Storm Peaks", 400, 0);
-Menu->AddItem(1, "Wintergrasp", 401, 0);
-Menu->AddItem(1, "Zul'Drak", 402, 0);
-Menu->AddItem(0, "[Back]", 999, 0);
+Menu->AddItem(1, "WinterSpring", 403, 0);
 Menu->SendTo(Plr);
 
 

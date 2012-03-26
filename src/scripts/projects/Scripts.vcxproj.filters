@@ -326,16 +326,16 @@
     <ClCompile Include="..\src\Base\EAS\EasyFunctions.cpp">
       <Filter>Base\EAS</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\WorldPvpScripts\ZoneHellfirePeninsula.cpp">
-      <Filter>InstanceScripts</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\WorldPvpScripts\ZoneTerokkarForest.cpp">
-      <Filter>InstanceScripts</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\WorldPvpScripts\ZoneZangarmarsh.cpp">
-      <Filter>InstanceScripts</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\InstanceScripts\Dps_Dummies.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\ZoneHellfirePeninsula.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\ZoneTerokkarForest.cpp">
+      <Filter>InstanceScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstanceScripts\ZoneZangarmarsh.cpp">
       <Filter>InstanceScripts</Filter>
     </ClCompile>
   </ItemGroup>
