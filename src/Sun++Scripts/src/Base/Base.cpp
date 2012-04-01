@@ -864,6 +864,18 @@ void MoonScriptCreatureAI::OnCombatStop(Unit* pTarget)
 	if( mDespawnWhenInactive ) Despawn(DEFAULT_DESPAWN_TIMER);
 }
 
+void MoonScriptCreatureAI::Reset(Unit* pTarget)
+{
+	CancelAllSpells();
+	CancelAllTimers();
+	RemoveAllAuras();
+	SetCanMove(true);
+	SetBehavior(Behavior_Default);
+	//_unit->GetAIInterface()->SetAIState(STATE_IDLE);				// Fix for stucking mobs that don't regen
+	RemoveAIUpdateEvent();
+	if( mDespawnWhenInactive ) Despawn(DEFAULT_DESPAWN_TIMER);
+}
+
 void MoonScriptCreatureAI::OnTargetDied(Unit* pTarget)
 {
 	if( GetHealthPercent() > 0 )	//Prevent double yelling (OnDied and OnTargetDied)
@@ -1401,6 +1413,13 @@ void MoonScriptBossAI::OnCombatStop(Unit* pTarget)
 	SetPhase(1);
 	RemoveTimer(mEnrageTimer);
 	MoonScriptCreatureAI::OnCombatStop(pTarget);
+}
+
+void MoonScriptBossAI::Reset(Unit* pTarget)
+{
+	SetPhase(1);
+	RemoveTimer(mEnrageTimer);
+	MoonScriptCreatureAI::Reset(pTarget);
 }
 
 void MoonScriptBossAI::AIUpdate()

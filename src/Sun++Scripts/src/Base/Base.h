@@ -315,6 +315,7 @@ public:
 	//Reimplemented Events
 	virtual void			OnCombatStart(Unit* pTarget);
 	virtual void			OnCombatStop(Unit* pTarget);
+	virtual void			Reset(Unit* pTarget);
 	virtual void			OnTargetDied(Unit* pTarget);
 	virtual void			OnDied(Unit* pKiller);
 	virtual void			AIUpdate();
@@ -378,6 +379,7 @@ public:
 	//Reimplemented Events
 	virtual void	OnCombatStart(Unit* pTarget);
 	virtual void	OnCombatStop(Unit* pTarget);
+	virtual void	Reset(Unit* pTarget);
 	virtual void	AIUpdate();
 
 protected:
