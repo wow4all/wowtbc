@@ -854,7 +854,7 @@ void MoonScriptCreatureAI::OnCombatStart(Unit* pTarget)
 
 void MoonScriptCreatureAI::OnCombatStop(Unit* pTarget)
 {
-    Reset();
+    this->Reset();
 	CancelAllSpells();
 	CancelAllTimers();
 	RemoveAllAuras();
