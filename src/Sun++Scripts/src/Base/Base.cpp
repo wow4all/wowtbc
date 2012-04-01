@@ -854,18 +854,7 @@ void MoonScriptCreatureAI::OnCombatStart(Unit* pTarget)
 
 void MoonScriptCreatureAI::OnCombatStop(Unit* pTarget)
 {
-	CancelAllSpells();
-	CancelAllTimers();
-	RemoveAllAuras();
-	SetCanMove(true);
-	SetBehavior(Behavior_Default);
-	//_unit->GetAIInterface()->SetAIState(STATE_IDLE);				// Fix for stucking mobs that don't regen
-	RemoveAIUpdateEvent();
-	if( mDespawnWhenInactive ) Despawn(DEFAULT_DESPAWN_TIMER);
-}
-
-void MoonScriptCreatureAI::Reset(Unit* pTarget)
-{
+    Reset();
 	CancelAllSpells();
 	CancelAllTimers();
 	RemoveAllAuras();
