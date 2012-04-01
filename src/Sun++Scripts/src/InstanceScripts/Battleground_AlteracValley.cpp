@@ -1,40 +1,71 @@
+/*
+ * TbcE MMORPG Server
+ * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
+ * Copyright (C) 2008 <http://www.ArcEmu.org/>
+ * Copyright (C) 2009-2012 <http://code.google.com/p/wowtbc/.org/>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+
 #include "StdAfx.h"
-#include "Setup.h"
+#include "../Base/ai.h"
+#include "../Base/Base.h"
 
-#define CN_VANNDAR_STORMPIKE 11948
-#define CN_DREKTHAR 11946
-#define CN_BALINDASTONEHEARTH 11949
-#define CN_GALVANGAR 11947
-#define CN_STORMPIKEBOWMAN 13358
-#define CN_FROSTWOLFBOWMAN 13359
+enum Avdefines
+{
 
-#define BOWMAN_SHOOT 22121
+CN_VANNDAR_STORMPIKE = 11948,
+CN_DREKTHAR = 11946,
+CN_BALINDASTONEHEARTH = 11949,
+CN_GALVANGAR = 11947,
+CN_STORMPIKEBOWMAN = 13358,
+CN_FROSTWOLFBOWMAN = 13359,
 
-#define DREKTHAR_STORMSTRIKE 17364
-#define DREKTHAR_CLEAVE 29561
-#define DREKTHAR_AOEKNOCKDOWN 20276
+BOWMAN_SHOOT = 22121,
 
-#define VANNDAR_AVATAR 19135
-#define VANNDAR_THUNDERCLAP 15588
-#define VANNDAR_STORMBOLT 20685
+DREKTHAR_STORMSTRIKE = 17364,
+DREKTHAR_CLEAVE = 29561,
+DREKTHAR_AOEKNOCKDOWN = 20276,
 
-#define BALINDA_ARCANEEXPLOSION 46608
-#define BALINDA_CONEOFCOLD 38384
-#define BALINDA_FIREBALL 46988
-#define BALINDA_FROSTBOLT 46987
-#define BALINDA_SUMMONWATERELEMENTAL 45067
+VANNDAR_AVATAR = 19135,
+VANNDAR_THUNDERCLAP = 15588,
+VANNDAR_STORMBOLT = 20685,
 
-#define GALVANGAR_CLEAVE 15284
-#define GALVANGAR_FRIGHTENINGSHOUT 19134
-#define GALVANGAR_MORTALSTRIKE 16856
-#define GALVANGAR_WHIRLWIND 15589
+BALINDA_ARCANEEXPLOSION = 46608,
+BALINDA_CONEOFCOLD = 38384,
+BALINDA_FIREBALL = 46988,
+BALINDA_FROSTBOLT = 46987,
+BALINDA_SUMMONWATERELEMENTAL = 45067,
 
-class SelfBuffNPCAI : public CreatureAIScript
+GALVANGAR_CLEAVE = 15284,
+GALVANGAR_FRIGHTENINGSHOUT = 19134,
+GALVANGAR_MORTALSTRIKE = 16856,
+GALVANGAR_WHIRLWIND = 15589,
+
+};
+
+
+
+class SelfBuffNPCAI : public MoonScriptCreatureAI
+
 {
 public:
-	ADD_CREATURE_FACTORY_FUNCTION(SelfBuffNPCAI);
+	MOONSCRIPT_FACTORY_FUNCTION(SelfBuffNPCAI, MoonScriptCreatureAI);
 
-	SelfBuffNPCAI(Creature* pCreature) : CreatureAIScript(pCreature)
+	SelfBuffNPCAI(Creature* pCreature) : MoonScriptCreatureAI(pCreature)
 	{
 		uint32 castspell = 0;
 		switch(pCreature->GetEntry())
@@ -73,12 +104,12 @@ public:
 	}
 };
 
-class BowmanAI : public CreatureAIScript
+class BowmanAI : public MoonScriptCreatureAI
 {
 public:
-	ADD_CREATURE_FACTORY_FUNCTION(BowmanAI);
+	MOONSCRIPT_FACTORY_FUNCTION(BowmanAI, MoonScriptCreatureAI);
 
-	BowmanAI(Creature* pCreature) : CreatureAIScript(pCreature)
+	BowmanAI(Creature* pCreature) : MoonScriptCreatureAI(pCreature)
 	{
 		pCreature->GetAIInterface()->m_canMove = false;
 	}
@@ -124,16 +155,16 @@ public:
 	}
 };
 
-class CaptainGalvangarAI : public CreatureAIScript
+class CaptainGalvangarAI : public MoonScriptCreatureAI
 {
 public:
-	ADD_CREATURE_FACTORY_FUNCTION(CaptainGalvangarAI);
+	MOONSCRIPT_FACTORY_FUNCTION(CaptainGalvangarAI, MoonScriptCreatureAI);
 
 	uint32 nrspells;
 	SP_AI_Spell spells[3];
 	bool m_spellcheck[3];
 
-	CaptainGalvangarAI(Creature* pCreature) : CreatureAIScript(pCreature)
+	CaptainGalvangarAI(Creature* pCreature) : MoonScriptCreatureAI(pCreature)
 	{
 		nrspells = 3;
 
@@ -249,16 +280,16 @@ public:
 };
 
 
-class BalindaStonehearthAI : public CreatureAIScript
+class BalindaStonehearthAI : public MoonScriptCreatureAI
 {
 public:
-	ADD_CREATURE_FACTORY_FUNCTION(BalindaStonehearthAI);
+	MOONSCRIPT_FACTORY_FUNCTION(BalindaStonehearthAI, MoonScriptCreatureAI);
 
 	uint32 nrspells;
 	SP_AI_Spell spells[3];
 	bool m_spellcheck[3];
 
-	BalindaStonehearthAI(Creature* pCreature) : CreatureAIScript(pCreature)
+	BalindaStonehearthAI(Creature* pCreature) : MoonScriptCreatureAI(pCreature)
 	{
 		nrspells = 3;
 
@@ -375,16 +406,16 @@ public:
 	}
 };
 
-class DrektharAI : public CreatureAIScript
+class DrektharAI : public MoonScriptCreatureAI
 {
 public:
-	ADD_CREATURE_FACTORY_FUNCTION(DrektharAI);
+	MOONSCRIPT_FACTORY_FUNCTION(DrektharAI, MoonScriptCreatureAI);
 
 	uint32 nrspells;
 	SP_AI_Spell spells[3];
 	bool m_spellcheck[3];
 
-	DrektharAI(Creature* pCreature) : CreatureAIScript(pCreature)
+	DrektharAI(Creature* pCreature) : MoonScriptCreatureAI(pCreature)
 	{
 		nrspells = 3;
 
@@ -544,16 +575,16 @@ public:
 	}
 };
 
-class VanndarStormpikeAI : public CreatureAIScript
+class VanndarStormpikeAI : public MoonScriptCreatureAI
 {
 public:
-	ADD_CREATURE_FACTORY_FUNCTION(VanndarStormpikeAI);
+	MOONSCRIPT_FACTORY_FUNCTION(VanndarStormpikeAI, MoonScriptCreatureAI);
 
 	uint32 nrspells;
 	SP_AI_Spell spells[3];
 	bool m_spellcheck[3];
 
-	VanndarStormpikeAI(Creature* pCreature) : CreatureAIScript(pCreature)
+	VanndarStormpikeAI(Creature* pCreature) : MoonScriptCreatureAI(pCreature)
 	{
 		// -- Number of spells to add --
 		nrspells = 3;
