@@ -552,10 +552,9 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
  
     }
 	
-	void Reset(Unit *mTarget)
+	void Reset()
     {
 		_unit->CastSpell(_unit, AURA_DEMONIC_VISUAL, true);
-		ParentClass::Reset(mTarget);
 	}
 	
 	void OnLoad()
@@ -869,15 +868,16 @@ class FelmystAI : public MoonScriptBossAI
 		ParentClass::OnCombatStart(pTarget);
 	}
 	
-	void Reset( Unit* pTarget )
+	void Reset()
 	{
 		_unit->SetFloatValue(UNIT_FIELD_BOUNDINGRADIUS, 10);
 		_unit->SetFloatValue(UNIT_FIELD_COMBATREACH, 10);
-		ParentClass::Reset( pTarget );
-		Emote( "Debug herp derp  Reset test", Text_Yell, 12426);//Bfx Need sound Id
+		
+		Emote( "Reset Test", Text_Yell, 12426);//Bfx Need sound Id
+			
 	};
 	
-	
+			
 	void OnTargetDied(Unit* mTarget)
     {
 		if (_unit->GetHealthPct() > 0)
@@ -1033,9 +1033,8 @@ class LadySacrolashAI : public MoonScriptBossAI
 		};
 	};
 
-	void Reset( Unit* pTarget )
+	void Reset()
 	{
-		ParentClass::Reset( pTarget );
 		Init();
 	};
 
