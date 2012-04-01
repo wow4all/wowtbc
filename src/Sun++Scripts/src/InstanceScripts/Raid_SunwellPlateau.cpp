@@ -1254,7 +1254,6 @@ class MuruAI : public MoonScriptBossAI
 	MuruAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
 	{
 	
-	    pCreature->GetAIInterface()->m_canMove = false;
 		
 	    _unit->MechanicsDispels[ DISPEL_MECHANIC_CHARM ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_FEAR ] = 1;
@@ -1286,6 +1285,7 @@ class MuruAI : public MoonScriptBossAI
 		summoningst = false;
 		timmer = 0;
 		SetAllowMelee(false);
+		pCreature->GetAIInterface()->m_canMove = false;
 		ParentClass::OnLoad();
 	}
 
