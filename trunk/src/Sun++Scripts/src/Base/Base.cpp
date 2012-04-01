@@ -1404,12 +1404,6 @@ void MoonScriptBossAI::OnCombatStop(Unit* pTarget)
 	MoonScriptCreatureAI::OnCombatStop(pTarget);
 }
 
-void MoonScriptBossAI::Reset(Unit* pTarget)
-{
-	SetPhase(1);
-	RemoveTimer(mEnrageTimer);
-	MoonScriptCreatureAI::Reset(pTarget);
-}
 
 void MoonScriptBossAI::AIUpdate()
 {
