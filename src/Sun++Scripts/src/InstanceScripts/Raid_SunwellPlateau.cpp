@@ -552,9 +552,10 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
  
     }
 	
-	void Reset()
+	void OnCombatStop(Unit *mTarget)
     {
 		_unit->CastSpell(_unit, AURA_DEMONIC_VISUAL, true);
+		ParentClass::OnCombatStop(mTarget);
 	}
 	
 	void OnLoad()
@@ -671,7 +672,6 @@ class BrutallusAI : public MoonScriptBossAI
 		AddEmote( Event_OnTaunt, "Bring the fight to me!", Text_Yell, 12467 );
 		AddEmote( Event_OnTaunt, "Another day, another glorious battle!", Text_Yell, 12468 );
 		AddEmote( Event_OnTaunt, "I live for this!", Text_Yell, 12469 );
-		AddEmote( Event_OnDied, "Gah! Well done... Now... this gets... interesting...", Text_Yell, 12471 );
 	}
 	
 	
@@ -690,6 +690,7 @@ class BrutallusAI : public MoonScriptBossAI
 	
 	void OnDied(Unit * mKiller)
     {
+		Emote( "Gah! Well done... Now... this gets... interesting....", Text_Yell, 12471);
 		SpawnCreature(CN_FELMYST, 1800, 652, 71, 0, false);
 
 		ParentClass::OnDied(mKiller);
@@ -868,16 +869,14 @@ class FelmystAI : public MoonScriptBossAI
 		ParentClass::OnCombatStart(pTarget);
 	}
 	
-	void Reset()
+	void OnCombatStop( Unit* pTarget )
 	{
 		_unit->SetFloatValue(UNIT_FIELD_BOUNDINGRADIUS, 10);
 		_unit->SetFloatValue(UNIT_FIELD_COMBATREACH, 10);
-		
-		Emote( "Reset Test", Text_Yell, 12426);//Bfx Need sound Id
-			
+		ParentClass::OnCombatStop( pTarget );
 	};
 	
-			
+	
 	void OnTargetDied(Unit* mTarget)
     {
 		if (_unit->GetHealthPct() > 0)
@@ -1033,8 +1032,9 @@ class LadySacrolashAI : public MoonScriptBossAI
 		};
 	};
 
-	void Reset()
+	void OnCombatStop( Unit* pTarget )
 	{
+		ParentClass::OnCombatStop( pTarget );
 		Init();
 	};
 
