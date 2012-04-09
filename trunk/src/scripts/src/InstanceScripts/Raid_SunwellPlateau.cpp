@@ -666,10 +666,6 @@ class BrutallusAI : public MoonScriptBossAI
 		SetEnrageInfo( AddSpell( BRUTALLUS_BERSERK, Target_Self, 0, 0, 0, 0, 0, false, "So much for a real challenge... Die!", Text_Yell, 12470 ), 360000);
 
 		//Emotes
-		AddEmote( Event_OnCombatStart, "Ah, more lambs to the slaughter!", Text_Yell, 12463 );
-		AddEmote( Event_OnTargetDied, "Perish, insect!", Text_Yell, 12464 );
-		AddEmote( Event_OnTargetDied, "You are meat!", Text_Yell, 12465 );
-		AddEmote( Event_OnTargetDied, "Too easy!", Text_Yell, 12466 );
 		AddEmote( Event_OnTaunt, "Bring the fight to me!", Text_Yell, 12467 );
 		AddEmote( Event_OnTaunt, "Another day, another glorious battle!", Text_Yell, 12468 );
 		AddEmote( Event_OnTaunt, "I live for this!", Text_Yell, 12469 );
@@ -678,7 +674,8 @@ class BrutallusAI : public MoonScriptBossAI
 	
 	void OnCombatStart(Unit* mTarget)
     {
- 
+        Emote( "Ah, more lambs to the slaughter!", Text_Yell, 12463);
+        
         _unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_DUAL_WIELD), true);
 		GetUnit()->SetFloatValue(UNIT_FIELD_MINDAMAGE, 7000);//Bfx DB does not support offhands using this instead.
 		GetUnit()->SetFloatValue(UNIT_FIELD_MAXDAMAGE, 8000);
@@ -688,6 +685,26 @@ class BrutallusAI : public MoonScriptBossAI
 		ParentClass::OnCombatStart(mTarget);
  
     };
+	
+	void OnTargetDied(Unit* mTarget)
+    {
+		if (_unit->GetHealthPct() > 0)
+		{
+			int RandomSpeach = rand()%3;
+			switch (RandomSpeach)
+			{
+			case 0:
+				Emote( "You are meat!", Text_Yell, 12465);
+				break;
+			case 1:
+				Emote( "Too easy!", Text_Yell, 12466);
+				break;
+			case 3:
+				Emote( "Perish, insect!", Text_Yell, 12464);
+				break;
+			}
+		}
+    }
 	
 	void OnDied(Unit * mKiller)
     {
@@ -810,18 +827,18 @@ enum PhaseFelmyst
 
 enum EventFelmyst
 {
-    EVENT_NONE,
-    EVENT_BERSERK,
+    EVENT_NULL          =   0,
+    EVENT_BERSERK       =   1,
 
-    EVENT_CLEAVE,
-    EVENT_CORROSION,
-    EVENT_GAS_NOVA,
-    EVENT_ENCAPSULATE,
-    EVENT_FLIGHT,
+    EVENT_CLEAVE        =   2,
+    EVENT_CORROSION     =   3,
+    EVENT_GAS_NOVA      =   4,
+    EVENT_ENCAPSULATE   =   5,
+    EVENT_FLIGHT        =   6,
 
-    EVENT_FLIGHT_SEQUENCE,
-    EVENT_SUMMON_DEAD,
-    EVENT_SUMMON_FOG,
+    EVENT_FLIGHT_SEQUENCE   =   2,
+    EVENT_SUMMON_DEAD       =   3,
+    EVENT_SUMMON_FOG        =   4
 };
 
 enum FelMystEncounterCreatures
@@ -837,12 +854,13 @@ enum FelMystEncounterCreatures
     CREATURE_VAPOR_TRAIL    =   25267
 };
 
-/*static EventFelmyst MaxTimer[]=
+
+static EventFelmyst MaxTimer[]=
 {
     EVENT_NULL,
     EVENT_FLIGHT,
     EVENT_SUMMON_FOG,
-};*/
+};
 
 
 
@@ -892,6 +910,11 @@ class FelmystAI : public MoonScriptBossAI
 	
 	void OnCombatStop( Unit* pTarget )
 	{
+		Phase = PHASE_NULL;
+        Event = EVENT_NULL;
+        Timer[EVENT_BERSERK] = 600000;
+        FlightCount = 0;
+		
 		_unit->SetFloatValue(UNIT_FIELD_BOUNDINGRADIUS, 10);
 		_unit->SetFloatValue(UNIT_FIELD_COMBATREACH, 10);
 		ParentClass::OnCombatStop( pTarget );
@@ -926,11 +949,15 @@ class FelmystAI : public MoonScriptBossAI
 		}
     }
 	
-	   PhaseFelmyst phase;
-       EventMap events;
-       uint32 uiFlightCount;
-       uint32 uiBreathCount;
-       float breathX, breathY;
+	
+	PhaseFelmyst Phase;
+    EventFelmyst Event;
+    uint32 Timer[EVENT_FLIGHT + 1];
+    uint32 FlightCount;
+    uint32 BreathCount;
+    float BreathX, BreathY;
+	
+	
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
