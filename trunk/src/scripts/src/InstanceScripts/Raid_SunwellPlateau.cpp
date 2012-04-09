@@ -399,7 +399,7 @@ class KalecgosHumanAI : public MoonScriptBossAI
     MOONSCRIPT_FACTORY_FUNCTION(KalecgosHumanAI, MoonScriptBossAI);
 	KalecgosHumanAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
 	{
-		Init();
+		
     }
 	
 	void Init()
@@ -427,6 +427,8 @@ class KalecgosHumanAI : public MoonScriptBossAI
     {
 		
 		ParentClass::OnCombatStart(mTarget);
+		
+		Init();
  
     };
 	
@@ -477,14 +479,13 @@ class KalecgosHumanAI : public MoonScriptBossAI
                 {
                     Emote( "Hurry! There is not much of me left!", Text_Yell, 12422);
                     ++YellSequence;
-                }
-				else YellTimer -= mAIUpdateFrequency;
-                break;
-				
-            }
-               ParentClass::AIUpdate();
-		}
-	}
+                }	
+                break;		
+            } 
+		}else YellTimer -= mAIUpdateFrequency;
+
+	 ParentClass::AIUpdate();
+}
 	
 	uint32 RevitalizeTimer;
     uint32 HeroicStrikeTimer;
@@ -523,10 +524,10 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 			switch (RandomSpeach)
 			{
 			case 0:
-				Emote( "zzzzzzzzz", Text_Yell, 12426);
+				Emote( "Pitious mortal", Text_Yell, 12426);
 				break;
 			case 1:
-				Emote( "zzzzzzzz", Text_Yell, 12425);
+				Emote( "Haven't you heard? I always win!", Text_Yell, 12425);
 				break;
 			}
 		}
@@ -619,29 +620,6 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 
 
 
-/*//Sathrovarr the Corruptor
-#define CN_SATHROVARR_THE_CORRUPTOR	24892
-#define CURSE_OF_BOUNDLESS_AGONY	45034
-#define SHADOW_BOLT_VOLLEY			38840
-#define CORRUPTING_STRIKE			45029
-
-class SathrovarrTheCorruptorAI : public MoonScriptBossAI
-{
-    MOONSCRIPT_FACTORY_FUNCTION(SathrovarrTheCorruptorAI, MoonScriptBossAI);
-	SathrovarrTheCorruptorAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
-	{
-		AddSpell(SATHROVARR_THE_CORRUPTOR_CURSE_OF_BOUNDLESS_AGONY, Target_RandomPlayer, 20, 0, 12, 0, 40); 
-		AddSpell(SATHROVARR_THE_CORRUPTOR_SHADOW_BOLT_VOLLEY, Target_RandomPlayerApplyAura, 20, 1, 25, 0, 40);
-		AddSpell(SATHROVARR_THE_CORRUPTOR_CORRUPTING_STRIKE, Target_Current, 30, 0, 5, 0, 10);
-
-		//Emotes
-		AddEmote(Event_OnCombatStart, "Gyahaha... There will be no reprieve. My work here is nearly finished.", Text_Yell);
-		AddEmote(Event_OnTargetDied, "Pitious mortal!", Text_Yell);
-		AddEmote(Event_OnTargetDied, "Haven't you heard? I always win!", Text_Yell);
-		AddEmote(Event_OnDied, "I'm... never on... the losing... side...", Text_Yell);
-	}
-};*/
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Brutallus
 //#define CN_Blaze 23259 should spawn when he casts burn on a random member at there location at least it does on trinitycore temp spawn for like 10-20 seconds
@@ -649,8 +627,9 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 enum Ecreatures
 {
   
-  CN_BRUTALLUS  = 24882,
-  CN_FELMYST    = 25038,
+  CN_BRUTALLUS        = 24882,
+  CREATURE_FELMYST    = 25038, 
+  
 
 };
 
@@ -694,7 +673,6 @@ class BrutallusAI : public MoonScriptBossAI
 		AddEmote( Event_OnTaunt, "Bring the fight to me!", Text_Yell, 12467 );
 		AddEmote( Event_OnTaunt, "Another day, another glorious battle!", Text_Yell, 12468 );
 		AddEmote( Event_OnTaunt, "I live for this!", Text_Yell, 12469 );
-		AddEmote( Event_OnDied, "Gah! Well done... Now... this gets... interesting...", Text_Yell, 12471 );
 	}
 	
 	
@@ -713,7 +691,8 @@ class BrutallusAI : public MoonScriptBossAI
 	
 	void OnDied(Unit * mKiller)
     {
-		SpawnCreature(CN_FELMYST, 1800, 652, 71, 0, false);
+		Emote( "Gah! Well done... Now... this gets... interesting....", Text_Yell, 12471);
+		SpawnCreature(CREATURE_FELMYST, 1800, 652, 71, 0, false);
 
 		ParentClass::OnDied(mKiller);
 	};
@@ -777,15 +756,95 @@ class BrutallusAI : public MoonScriptBossAI
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Felmyst
-#define FELMYST_CLEAVE				19983
-#define FELMYST_CORROSION			45866
-#define FELMYST_DEMONIC_VAPOR		45402
-#define FELMYST_GAS_NOVA			45855
-#define FELMYST_NOXIOUS_FUME		47002
-#define FELMYST_ENCAPSULATE			45662
-#define FELMYST_FOG_OF_CORRUPTION	45717
-#define FELMYST_ENRAGE				26662	//Using same as Brutallus for now, need to find actual spell id
+//Felmyst Encounter
+
+enum FelMystSpells
+{
+    //Aura
+    AURA_NOXIOUS_FUMES                            = 47002,
+
+    //Land phase
+    SPELL_CLEAVE                                  = 19983,
+    SPELL_CORROSION                               = 45866,
+    SPELL_GAS_NOVA                                = 45855,
+    SPELL_ENCAPSULATE_CHANNEL                     = 45661,
+    // SPELL_ENCAPSULATE_EFFECT                      = 45665,
+    // SPELL_ENCAPSULATE_AOE                         = 45662,
+
+    //Flight phase
+    SPELL_VAPOR_SELECT                            = 45391,   // fel to player, force cast 45392, 50000y selete target
+    SPELL_VAPOR_SUMMON                            = 45392,   // player summon vapor, radius around caster, 5y,
+    SPELL_VAPOR_FORCE                             = 45388,   // vapor to fel, force cast 45389
+    SPELL_VAPOR_CHANNEL                           = 45389,   // fel to vapor, green beam channel
+    SPELL_VAPOR_TRIGGER                           = 45411,   // linked to 45389, vapor to self, trigger 45410 and 46931
+    SPELL_VAPOR_DAMAGE                            = 46931,   // vapor damage, 4000
+    SPELL_TRAIL_SUMMON                            = 45410,   // vapor summon trail
+    SPELL_TRAIL_TRIGGER                           = 45399,   // trail to self, trigger 45402
+    SPELL_TRAIL_DAMAGE                            = 45402,   // trail damage, 2000 + 2000 dot
+    SPELL_DEAD_SUMMON                             = 45400,   // summon blazing dead, 5min
+    SPELL_DEAD_PASSIVE                            = 45415,
+    SPELL_FOG_BREATH                              = 45495,   // fel to self, speed burst
+    SPELL_FOG_TRIGGER                             = 45582,   // fog to self, trigger 45782
+    SPELL_FOG_FORCE                               = 45782,   // fog to player, force cast 45714
+    SPELL_FOG_INFORM                              = 45714,   // player let fel cast 45717, script effect
+    SPELL_FOG_CHARM                               = 45717,   // fel to player
+    SPELL_FOG_CHARM2                              = 45726,   // link to 45717
+
+    SPELL_TRANSFORM_TRIGGER                       = 44885,   // madrigosa to self, trigger 46350
+    SPELL_TRANSFORM_VISUAL                        = 46350,   // 46411stun?
+    SPELL_TRANSFORM_FELMYST                       = 45068,   // become fel
+    SPELL_FELMYST_SUMMON                          = 45069,
+
+    //Other
+    SPELL_BERSERK                                 = 45078,
+    SPELL_CLOUD_VISUAL                            = 45212,
+    SPELL_CLOUD_SUMMON                            = 45884,
+};
+
+enum PhaseFelmyst
+{
+    PHASE_NULL   = 0,
+    PHASE_GROUND = 1,
+    PHASE_FLIGHT = 2,
+};
+
+enum EventFelmyst
+{
+    EVENT_NONE,
+    EVENT_BERSERK,
+
+    EVENT_CLEAVE,
+    EVENT_CORROSION,
+    EVENT_GAS_NOVA,
+    EVENT_ENCAPSULATE,
+    EVENT_FLIGHT,
+
+    EVENT_FLIGHT_SEQUENCE,
+    EVENT_SUMMON_DEAD,
+    EVENT_SUMMON_FOG,
+};
+
+enum FelMystEncounterCreatures
+{
+    CN_FELMYST              = 25038,       
+    CREATURE_DEAD           =   25268,
+    CREATURE_MADRIGOSA      =   25160,
+    CREATURE_FELMYST_VISUAL =   25041,
+    CREATURE_FLIGHT_LEFT    =   25357,
+    CREATURE_FLIGHT_RIGHT   =   25358,
+    CREATURE_DEATH_CLOUD    =   25703,
+    CREATURE_VAPOR          =   25265,
+    CREATURE_VAPOR_TRAIL    =   25267
+};
+
+/*static EventFelmyst MaxTimer[]=
+{
+    EVENT_NULL,
+    EVENT_FLIGHT,
+    EVENT_SUMMON_FOG,
+};*/
+
+
 
 class FelmystAI : public MoonScriptBossAI
 {
@@ -802,9 +861,13 @@ class FelmystAI : public MoonScriptBossAI
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_POLYMORPH ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_BANISH ] = 1;
 		
-	
-	
-		//Phase 1 spells
+		//10min Enrage
+		SetEnrageInfo(AddSpell(SPELL_BERSERK, Target_Self, 0, 0, 0, 0, 0, false, "No more hesitation! Your fates are written!"), 600000);
+
+		AddEmote(Event_OnTaunt, "I am stronger than ever before!", Text_Yell);
+	}
+		
+	    /*//Phase 1 spells
 		AddPhaseSpell(1, AddSpell(FELMYST_CLEAVE, Target_Current, 6, 0, 10, 0, 5));
 		AddPhaseSpell(1, AddSpell(FELMYST_GAS_NOVA, Target_Self, 25, 1, 18));
 		AddPhaseSpell(1, AddSpell(FELMYST_ENCAPSULATE, Target_RandomPlayer, 25, 7, 30, 0, 30));
@@ -815,24 +878,59 @@ class FelmystAI : public MoonScriptBossAI
 
 		//Phase 3 spells
 		//Fog of corruption is the actual breath Felmyst does during his second phase, probably we'll have to spawn it like a creature.
-		//AddSpell(FELMYST_FOG_OF_CORRUPTION, Target_RandomPlayerApplyAura, 15, 0, 20, 0, 10); Does not support by the core.
+		//AddSpell(FELMYST_FOG_OF_CORRUPTION, Target_RandomPlayerApplyAura, 15, 0, 20, 0, 10); Does not support by the core.*/
 
-		//10min Enrage
-		SetEnrageInfo(AddSpell(FELMYST_ENRAGE, Target_Self, 0, 0, 0, 0, 0, false, "No more hesitation! Your fates are written!"), 600000);
 
-		//Emotes
-		AddEmote(Event_OnCombatStart, "Glory to Kil'jaeden! Death to all who oppose!", Text_Yell);
-		AddEmote(Event_OnTargetDied, "I kill for the master! ", Text_Yell);
-		AddEmote(Event_OnTargetDied, "The end has come!", Text_Yell);
-		AddEmote(Event_OnDied, "Kil'jaeden... will... prevail...", Text_Yell);
-		AddEmote(Event_OnTaunt, "I am stronger than ever before!", Text_Yell);
-	}
 
-	void OnCombatStart(Unit* pTarget)
+	void OnCombatStart( Unit* pTarget )
 	{
-		ApplyAura(FELMYST_NOXIOUS_FUME);
+		Emote( "Glory to Kil'jaeden! Death to all who oppose!", Text_Yell);//Bfx Sound id
+		
+		ApplyAura(AURA_NOXIOUS_FUMES);
 		ParentClass::OnCombatStart(pTarget);
 	}
+	
+	void OnCombatStop( Unit* pTarget )
+	{
+		_unit->SetFloatValue(UNIT_FIELD_BOUNDINGRADIUS, 10);
+		_unit->SetFloatValue(UNIT_FIELD_COMBATREACH, 10);
+		ParentClass::OnCombatStop( pTarget );
+	};
+	
+	void init()
+	{
+	  //phase = 1;
+	}
+	
+	void OnDied(Unit* pKiller)
+	{
+        Emote( "Kil'jaeden... will... prevail...", Text_Yell);
+		ParentClass::OnDied(pKiller);
+	}
+	
+	
+	void OnTargetDied(Unit* mTarget)
+    {
+		if (_unit->GetHealthPct() > 0)
+		{
+			int RandomSpeach = rand()%2;
+			switch (RandomSpeach)
+			{
+			case 0:
+				Emote( "I kill for the master!", Text_Yell, 12426);//Bfx Need sound Id
+				break;
+			case 1:
+				Emote( "The end has come!", Text_Yell, 12425);//Bfx Need Sound ID
+				break;
+			}
+		}
+    }
+	
+	   PhaseFelmyst phase;
+       EventMap events;
+       uint32 uiFlightCount;
+       uint32 uiBreathCount;
+       float breathX, breathY;
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1253,7 +1351,6 @@ class MuruAI : public MoonScriptBossAI
 	MuruAI(Creature* pCreature) : MoonScriptBossAI(pCreature)
 	{
 	
-	    pCreature->GetAIInterface()->m_canMove = false;
 		
 	    _unit->MechanicsDispels[ DISPEL_MECHANIC_CHARM ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_FEAR ] = 1;
@@ -1285,6 +1382,7 @@ class MuruAI : public MoonScriptBossAI
 		summoningst = false;
 		timmer = 0;
 		SetAllowMelee(false);
+		_unit->GetAIInterface()->m_canMove = false;
 		ParentClass::OnLoad();
 	}
 
