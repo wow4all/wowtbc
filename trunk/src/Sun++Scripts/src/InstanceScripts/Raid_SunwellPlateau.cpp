@@ -464,20 +464,20 @@ class KalecgosHumanAI : public MoonScriptBossAI
             switch (YellSequence)
             {
             case 0:
-                Emote( "I need... your help... Cannot... resist him... much longer...", Text_Yell, 12422);
+                Emote( "I need... your help... Cannot... resist him... much longer...", Text_Yell, 12428);
                 ++YellSequence;
                 break;
             case 1:
                 if (GetHealthPercent() <= 50)
                 {
-                    Emote( "Aaahhh! Help me, before I lose my mind!", Text_Yell, 12422);
+                    Emote( "Aaahhh! Help me, before I lose my mind!", Text_Yell, 12429);
                     ++YellSequence;
                 }
                 break;
             case 2:
                 if (GetHealthPercent() <= 10)
                 {
-                    Emote( "Hurry! There is not much of me left!", Text_Yell, 12422);
+                    Emote( "Hurry! There is not much of me left!", Text_Yell, 12430);
                     ++YellSequence;
                 }	
                 break;		
@@ -524,10 +524,10 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 			switch (RandomSpeach)
 			{
 			case 0:
-				Emote( "Pitious mortal", Text_Yell, 12426);
+				Emote( "Pitious mortal", Text_Yell, 12455);
 				break;
 			case 1:
-				Emote( "Haven't you heard? I always win!", Text_Yell, 12425);
+				Emote( "Haven't you heard? I always win!", Text_Yell, 12456);
 				break;
 			}
 		}
@@ -535,7 +535,7 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 	
 	void OnDied(Unit * mKiller)
     {
-		Emote( "I'm... never on... the losing... side...", Text_Yell, 12431);
+		Emote( "I'm... never on... the losing... side...", Text_Yell, 12452;
 		
 		RemoveAIUpdateEvent();
     }
@@ -544,7 +544,7 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 	
 	void OnCombatStart(Unit* mTarget)
     {
-		Emote( "Gyahaha... There will be no reprieve. My work here is nearly finished.", Text_Yell, 12422);
+		Emote( "Gyahaha... There will be no reprieve. My work here is nearly finished.", Text_Yell, 12451);
 		
 		ParentClass::OnCombatStart(mTarget);
 		
@@ -627,8 +627,9 @@ class SathrovarrTheCorruptorAI : public MoonScriptBossAI
 enum Ecreatures
 {
   
-  CN_BRUTALLUS  = 24882,
-  CN_FELMYST    = 25038,
+  CN_BRUTALLUS        = 24882,
+  CREATURE_FELMYST    = 25038, 
+  
 
 };
 
@@ -665,10 +666,6 @@ class BrutallusAI : public MoonScriptBossAI
 		SetEnrageInfo( AddSpell( BRUTALLUS_BERSERK, Target_Self, 0, 0, 0, 0, 0, false, "So much for a real challenge... Die!", Text_Yell, 12470 ), 360000);
 
 		//Emotes
-		AddEmote( Event_OnCombatStart, "Ah, more lambs to the slaughter!", Text_Yell, 12463 );
-		AddEmote( Event_OnTargetDied, "Perish, insect!", Text_Yell, 12464 );
-		AddEmote( Event_OnTargetDied, "You are meat!", Text_Yell, 12465 );
-		AddEmote( Event_OnTargetDied, "Too easy!", Text_Yell, 12466 );
 		AddEmote( Event_OnTaunt, "Bring the fight to me!", Text_Yell, 12467 );
 		AddEmote( Event_OnTaunt, "Another day, another glorious battle!", Text_Yell, 12468 );
 		AddEmote( Event_OnTaunt, "I live for this!", Text_Yell, 12469 );
@@ -677,7 +674,8 @@ class BrutallusAI : public MoonScriptBossAI
 	
 	void OnCombatStart(Unit* mTarget)
     {
- 
+        Emote( "Ah, more lambs to the slaughter!", Text_Yell, 12463);
+        
         _unit->CastSpell(_unit, dbcSpell.LookupEntry(SPELL_DUAL_WIELD), true);
 		GetUnit()->SetFloatValue(UNIT_FIELD_MINDAMAGE, 7000);//Bfx DB does not support offhands using this instead.
 		GetUnit()->SetFloatValue(UNIT_FIELD_MAXDAMAGE, 8000);
@@ -688,10 +686,30 @@ class BrutallusAI : public MoonScriptBossAI
  
     };
 	
+	void OnTargetDied(Unit* mTarget)
+    {
+		if (_unit->GetHealthPct() > 0)
+		{
+			int RandomSpeach = rand()%3;
+			switch (RandomSpeach)
+			{
+			case 0:
+				Emote( "You are meat!", Text_Yell, 12465);
+				break;
+			case 1:
+				Emote( "Too easy!", Text_Yell, 12466);
+				break;
+			case 3:
+				Emote( "Perish, insect!", Text_Yell, 12464);
+				break;
+			}
+		}
+    }
+	
 	void OnDied(Unit * mKiller)
     {
 		Emote( "Gah! Well done... Now... this gets... interesting....", Text_Yell, 12471);
-		SpawnCreature(CN_FELMYST, 1800, 652, 71, 0, false);
+		SpawnCreature(CREATURE_FELMYST, 1800, 652, 71, 0, false);
 
 		ParentClass::OnDied(mKiller);
 	};
@@ -802,24 +820,45 @@ enum FelMystSpells
 
 enum PhaseFelmyst
 {
-    PHASE_NONE,
-    PHASE_GROUND,
-    PHASE_FLIGHT,
+    PHASE_NULL   = 0,
+    PHASE_GROUND = 1,
+    PHASE_FLIGHT = 2,
 };
 
 enum EventFelmyst
 {
-    EVENT_NONE,
-    EVENT_BERSERK,
+    EVENT_NULL          =   0,
+    EVENT_BERSERK       =   1,
 
-    EVENT_CLEAVE,
-    EVENT_CORROSION,
-    EVENT_GAS_NOVA,
-    EVENT_ENCAPSULATE,
+    EVENT_CLEAVE        =   2,
+    EVENT_CORROSION     =   3,
+    EVENT_GAS_NOVA      =   4,
+    EVENT_ENCAPSULATE   =   5,
+    EVENT_FLIGHT        =   6,
+
+    EVENT_FLIGHT_SEQUENCE   =   2,
+    EVENT_SUMMON_DEAD       =   3,
+    EVENT_SUMMON_FOG        =   4
+};
+
+enum FelMystEncounterCreatures
+{
+    CN_FELMYST              = 25038,       
+    CREATURE_DEAD           =   25268,
+    CREATURE_MADRIGOSA      =   25160,
+    CREATURE_FELMYST_VISUAL =   25041,
+    CREATURE_FLIGHT_LEFT    =   25357,
+    CREATURE_FLIGHT_RIGHT   =   25358,
+    CREATURE_DEATH_CLOUD    =   25703,
+    CREATURE_VAPOR          =   25265,
+    CREATURE_VAPOR_TRAIL    =   25267
+};
+
+
+static EventFelmyst MaxTimer[]=
+{
+    EVENT_NULL,
     EVENT_FLIGHT,
-
-    EVENT_FLIGHT_SEQUENCE,
-    EVENT_SUMMON_DEAD,
     EVENT_SUMMON_FOG,
 };
 
@@ -840,6 +879,12 @@ class FelmystAI : public MoonScriptBossAI
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_POLYMORPH ] = 1;
 		_unit->MechanicsDispels[ DISPEL_MECHANIC_BANISH ] = 1;
 		
+		//10min Enrage
+		SetEnrageInfo(AddSpell(SPELL_BERSERK, Target_Self, 0, 0, 0, 0, 0, false, "No more hesitation! Your fates are written!"), 600000);
+
+		AddEmote(Event_OnTaunt, "I am stronger than ever before!", Text_Yell);
+	}
+		
 	    /*//Phase 1 spells
 		AddPhaseSpell(1, AddSpell(FELMYST_CLEAVE, Target_Current, 6, 0, 10, 0, 5));
 		AddPhaseSpell(1, AddSpell(FELMYST_GAS_NOVA, Target_Self, 25, 1, 18));
@@ -851,17 +896,11 @@ class FelmystAI : public MoonScriptBossAI
 
 		//Phase 3 spells
 		//Fog of corruption is the actual breath Felmyst does during his second phase, probably we'll have to spawn it like a creature.
-		//AddSpell(FELMYST_FOG_OF_CORRUPTION, Target_RandomPlayerApplyAura, 15, 0, 20, 0, 10); Does not support by the core.
+		//AddSpell(FELMYST_FOG_OF_CORRUPTION, Target_RandomPlayerApplyAura, 15, 0, 20, 0, 10); Does not support by the core.*/
 
-		//10min Enrage
-		SetEnrageInfo(AddSpell(SPELL_BERSERK, Target_Self, 0, 0, 0, 0, 0, false, "No more hesitation! Your fates are written!"), 600000);
 
-		//Emotes
-		AddEmote(Event_OnDied, "Kil'jaeden... will... prevail...", Text_Yell);
-		AddEmote(Event_OnTaunt, "I am stronger than ever before!", Text_Yell);*/
-	}
 
-	void OnCombatStart(Unit* pTarget)
+	void OnCombatStart( Unit* pTarget )
 	{
 		Emote( "Glory to Kil'jaeden! Death to all who oppose!", Text_Yell);//Bfx Sound id
 		
@@ -871,10 +910,26 @@ class FelmystAI : public MoonScriptBossAI
 	
 	void OnCombatStop( Unit* pTarget )
 	{
+		Phase = PHASE_NULL;
+        Event = EVENT_NULL;
+        Timer[EVENT_BERSERK] = 600000;
+        FlightCount = 0;
+		
 		_unit->SetFloatValue(UNIT_FIELD_BOUNDINGRADIUS, 10);
 		_unit->SetFloatValue(UNIT_FIELD_COMBATREACH, 10);
 		ParentClass::OnCombatStop( pTarget );
 	};
+	
+	void init()
+	{
+	  //phase = 1;
+	}
+	
+	void OnDied(Unit* pKiller)
+	{
+        Emote( "Kil'jaeden... will... prevail...", Text_Yell);
+		ParentClass::OnDied(pKiller);
+	}
 	
 	
 	void OnTargetDied(Unit* mTarget)
@@ -894,11 +949,15 @@ class FelmystAI : public MoonScriptBossAI
 		}
     }
 	
-	   PhaseFelmyst phase;
-       EventMap events;
-       uint32 uiFlightCount;
-       uint32 uiBreathCount;
-       float breathX, breathY;
+	
+	PhaseFelmyst Phase;
+    EventFelmyst Event;
+    uint32 Timer[EVENT_FLIGHT + 1];
+    uint32 FlightCount;
+    uint32 BreathCount;
+    float BreathX, BreathY;
+	
+	
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
